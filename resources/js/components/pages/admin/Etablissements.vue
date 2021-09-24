@@ -15,7 +15,7 @@
                                 <div class="box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
-                                            Liste des écoles ddd
+                                            Liste des écoles 
                                         </h3>
                                       
                                         <!-- <h6 class="box-subtitle">
@@ -34,7 +34,7 @@
                                                     
                                                 </div>
                                                 <div slot="footer">
-                                                    <Button type="error" size="large" long  @click="delateSchool">Confimer</Button>
+                                                    <Button type="error" size="large" long  @click="delateSchool">Confirmer</Button>
                                                 </div>
                                         </Modal>
 

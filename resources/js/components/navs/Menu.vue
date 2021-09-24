@@ -18,14 +18,14 @@
                                 </router-link>
                             </li>
                             <li class="treeview">
-                                <a href="#">
+                                <router-link to="etablissementDash">
                                     <i span class="icon-Layout-grid"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
                                     ></i>
                                     <span>Etablissements</span>
-                                </a>
-                                <ul class="treeview-menu">
+                                </router-link>
+                                <!-- <ul class="treeview-menu">
                                     <li>
                                         <router-link to="addetablissement"
                                             ><i class="icon-Commit"
@@ -66,7 +66,7 @@
                                             >Mailbox</a
                                         >
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             <!-- <li class="header">Components & UI </li> -->
                             <li class="treeview">

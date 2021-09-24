@@ -22,7 +22,7 @@ use App\Http\Controllers\EtablissementController;
 //     return $request->user();
 // });
 
-Route::middleware(['auth'])->group(function () {
+//Route::middleware(['auth'])->group(function () {
 
 
     Route::post('admin/upload', [EtablissementController::class, 'upload']);
@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     // Modifier un etablissement 
 
     Route::post('admin/updateEtablissement', [EtablissementController::class, 'updateEtablissement']);
-});
+//});
 
 
 Route::post('/login', [AuthController::class, 'login']);

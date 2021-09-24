@@ -5,9 +5,15 @@ import Login from '../components/pages/Login';
 import Etablissements from '../components/pages/admin/Etablissements';
 import AddEtablissement from '../components/pages/admin/AddEtablissement';
 import EditEtablissement from '../components/pages/admin/EditEtablissement';
+import EtablissementDash from '../components/pages/admin/EtablissementDash';
 import Dashboard from '../components/pages/Dashboard';
 
 const routes=[
+
+    {   name:'etablissementDash',
+        path:'/etablissementDash',
+        component: EtablissementDash
+    },
 
     {   name:'login',
         path:'/login',
