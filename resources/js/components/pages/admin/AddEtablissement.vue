@@ -9,7 +9,7 @@
                         <div class="box box-default">
                             <div class="box-header with-border">
                                 <h4 class="box-title">
-                                    Formulaire de création d'un établissement
+                                    Formulaire de création d'un établissement {{$store.state.counter}}
                                 </h4>
                                 <!-- <h6 class="box-subtitle">You can us the validation like what we did</h6> -->
                             </div>
@@ -1101,6 +1101,7 @@
 import Header from "../../headers/Header.vue";
 import Menu from "../../navs/Menu.vue";
 import Chats from "../../navs/Chats.vue";
+import { mapState } from "vuex";
 import {
     required,
     minLength,
@@ -1145,13 +1146,16 @@ export default {
                 loginAdmin: "",
                 passAdmin: "",
                 CpassAdmin: "",
-                imageLogo: ""
+                imageLogo: "",
+                idUser:""
             },
 
             visible: false,
             uploadList: []
         };
     },
+
+     computed:mapState(["datasUser"]),
 
     validations: {
         data: {
@@ -1236,36 +1240,28 @@ export default {
             }
         }
     },
+            //  Recuperer les donnees envoyees dans la store par computed:
+             computed:mapState(["datasUser"]),
 
-    async mounted() {
-        console.log("Component mounted.");
-        if (localStorage.getItem("UserData")) {
-            let thedata = JSON.parse(localStorage.getItem("UserData"));
-            // console.log(thedata.data.data);
-            this.UserData = thedata.data.data;
-            // let data=JSON.parse(thedata);
-            // console.log(data);
-        }
-    },
-    /*,
-    mounted(){
-      console.log('App Mounted');
-        // if (localStorage.getItem('UserData'))
-        //     this.UserData = JSON.parse(localStorage.getItem('UserData'));
+    // async mounted() {
 
-        //     console.log(this.UserData);
-    }*/
-
+    //     console.log("Component mounted.");
+    //     if (localStorage.getItem("UserData")) {
+    //         let thedata = JSON.parse(localStorage.getItem("UserData"));
+    //         // console.log(thedata.data.data);
+    //         this.UserData = thedata.data.data;
+    //         // let data=JSON.parse(thedata);
+    //         // console.log(data);
+    //     }
+    // },
+   
     methods: {
         Savegroupe() {
             if (this.data.groupeName == "") {
                 this.Modal = true;
                 this.data.groupeName = ""
 
-                this.$Notice.warning({
-                    title: "Attention !",
-                    desc: "Veillez saisir le  nom du groupe scolaire."
-                });
+                this.e('Veillez saisir le  nom du groupe scolaire.')
 
             } else {
                 this.Modal = false; 
@@ -1304,31 +1300,19 @@ export default {
         },
 
         handleError(res, file) {
-            this.$Notice.warning({
-                title: "Erreure du serveur  ",
-                desc: "Selectionner un jpg, png ou jpeg."
-            });
+            this.w('Selectionner un jpg, png ou jpeg.')
         },
         handleFormatError(file) {
-            this.$Notice.warning({
-                title: "Le format du fichier est incorrect ",
-                desc: "Selectionner un jpg, png ou jpeg."
-            });
+            this.w('Selectionner un jpg, png ou jpeg')
         },
         handleMaxSize(file) {
-            this.$Notice.warning({
-                title: "Le fihcier est trop volumineux ",
-                desc: "Selctionner un fichier de moins de 2M."
-            });
+            this.w('Selctionner un fichier de moins de 2M.')
         },
 
         handleBeforeUpload () {
                 const check = this.uploadList.length < 1;
                 if (!check) {
-                    this.$Notice.warning({
-                        title: 'Le logo est requi.',
-                         desc: "Merci de selectionner votre logo."
-                    });
+                    this.w('Le logo est requi...')
                 }
                 return check;
             },
@@ -1346,7 +1330,7 @@ export default {
                              desc: "Etablissement ajoute avec success ."
                              })
 
-                             this.$router.push("/Etablissements");
+                             //this.$router.push("/Etablissements");
 
                     }
 

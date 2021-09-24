@@ -1,7 +1,12 @@
 <template>
 <div class="">
 
-    <router-view></router-view>
+    <router-view>
+
+        
+
+    </router-view>
+
 </div>
 
 </template>
@@ -16,11 +21,24 @@
 
            }
         },
-        mounted() {
 
-        },created()
+       
+        created()
         {
- console.log('est ce la page de login ')
+           
         }
     }
 </script>
+
+<style>
+
+        .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s,transform 1s;
+        }
+        .fade-enter, .fade-leave-to  {
+        opacity: 0;
+        transform: translate(20px)
+        } 
+
+</style>
+

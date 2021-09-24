@@ -2,12 +2,13 @@ import Vue from "vue";
 import Router from "vue-router";
 Vue.use(Router);
 import Login from '../components/pages/Login';
-import Dashboard from '../components/pages/Dashboard';
 import Etablissements from '../components/pages/admin/Etablissements';
 import AddEtablissement from '../components/pages/admin/AddEtablissement';
 import EditEtablissement from '../components/pages/admin/EditEtablissement';
+import Dashboard from '../components/pages/admin/Dashboard';
 
 const routes=[
+    
     {   name:'login',
         path:'/login',
         component: Login

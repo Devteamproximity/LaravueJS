@@ -5,6 +5,8 @@ import router from "./routers/router";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
 import store from "./store";
+import common from './common';
+Vue.mixin(common);
 Vue.use(ViewUI);
 import Vuelidate from "vuelidate";
 Vue.use(Vuelidate);

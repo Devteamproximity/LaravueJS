@@ -1,32 +1,62 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
 
-    private $status_code  =  200;
 
-    function login(Request $req)
+    function login(Request $request)
     {
-        $login_status = User::where('login', $req->login)->first();
-        if (!is_null($login_status)) {
-            $password_status = User::where('login', $req->login)->where('password', $req->password);
 
-            if (!is_null($password_status)) {
-                $user = $this->userDetail($req->login);
+        $this->validate($request, [ 
 
-                return response()->json(["status" => $this->status_code, "success" => true, "message" => "You have logged in successfully", "data" => $user, "typeaccount" => $user->type]);
-            } else {
-                return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. Incorrect password."]);
-            }
-        } else {
-            return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. Email doesn't exist."]);
+            'login' => 'required',
+            'password' => 'required',
+
+        ]);
+
+        if(Auth::attempt(['login' => $request->login, 'password' => $request->password])) {
+            $user = Auth::user();
+            $check=Auth::check();
+            return response()->json([
+                'msg'=>'Connexion reuissi',
+                'userDatas'=>$user,
+                'check' =>$check
+            ]);
         }
+
+        else {
+            $user = Auth::user();
+            $check=Auth::check();
+            return response()->json([
+                'msg'=>'Login ou mot de passe incorrect',
+                'userDatas'=>$user,
+                'check' =>$check
+            ],401);
+        }
+
+
+        // $login_status = User::where('login', $req->login)->first();
+        // if (!is_null($login_status)) {
+        //     $password_status = User::where('login', $req->login)->where('password', $req->password);
+
+        //     if (!is_null($password_status)) {
+        //         $user = $this->userDetail($req->login);
+
+        //         return response()->json(["status" => $this->status_code, "success" => true, "message" => "You have logged in successfully", "data" => $user, "typeaccount" => $user->type]);
+        //     } else {
+        //         return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. Incorrect password."]);
+        //     }
+        // } else {
+        //     return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. Email doesn't exist."]);
+        // }
+
+
     }
     public function userDetail($login)
     {

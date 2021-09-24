@@ -3,6 +3,7 @@
         <div class="wrapper">
             <Header />
             <Menu />
+        
             <div class="content-wrapper">
                 <div class="container-full">
                     <!-- Main content -->
@@ -14,8 +15,9 @@
                                 <div class="box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
-                                            Liste des écoles 
+                                            Liste des écoles ddd
                                         </h3>
+                                      
                                         <!-- <h6 class="box-subtitle">
                                             Export data to Copy, CSV, Excel, PDF
                                             & Print
@@ -55,7 +57,7 @@
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody name="fruit-table" is="transition-group">
                                                     <tr
                                                         v-for="(data,
                                                         i) in datas"
@@ -136,6 +138,7 @@
                     <!-- /.content -->
                 </div>
             </div>
+     
         </div>
         <Chats />
     </div>
@@ -167,7 +170,8 @@ export default {
             visible: false,
             showDelateModal: false,
             delateItem:{},
-            i:-1
+            i:-1,
+            visible:false
         };
     },
 
@@ -265,17 +269,21 @@ export default {
             // console.log(data);
         }
     },
-    /*,
-    mounted(){
-      console.log('App Mounted');
-        // if (localStorage.getItem('UserData'))
-        //     this.UserData = JSON.parse(localStorage.getItem('UserData'));
-
-        //     console.log(this.UserData);
-    }*/
 
     
+    mounted(){
+
+      console.log('App Mounted');
+
+        if (localStorage.getItem('UserData'))
+        
+            this.UserData = JSON.parse(localStorage.getItem('UserData'));
+
+            console.log(this.UserData);
+    }, 
     methods: {
+
+    
        async  delateSchool() {
 
             const response = await axios.post("api/admin/delateEtablissement", this.delateItem)
@@ -292,10 +300,10 @@ export default {
         },
 
         updataSchool(data, i) {
-            // this.$root.$emit('eventing', dataEdit);
 
-            //this.$store.dispatch('SaveStore', dataEdit )
+            // Envoyer lecole sur laquelle on a clique dans la store 
             this.$store.commit("muttation", data);
+            // aller a la page edit 
             this.$router.push("/editEtablissment");
         },
 
@@ -308,6 +316,7 @@ export default {
     },
 
     async created() {
+        
         await axios
             .get("api/admin/getAllEtablissement")
             .then(response => {
@@ -323,6 +332,18 @@ export default {
 </script>
 
 <style>
+
+.fruit-table-move {
+  transition: transform 1s;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s, transform 1s,
+}
+.fade-enter, .fade-leave-active  {
+  opacity: 0;
+  transform: translate(20px);
+}
 .demo-upload-list {
     display: inline-block;
     width: 60px;

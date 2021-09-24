@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
 
+        counter:100,
+
         dataToEdit: {
             groupeName: "",
             groupe: "Non",
@@ -34,17 +36,33 @@ export default new Vuex.Store({
             passAdmin: "",
             CpassAdmin: "",
             imageProfil: ""
-        }
+        },
+
+        datasUser : {},
+
+    
     },
 
-    mutations: {
+    mutations: { 
 
         muttation(state, playload) {
 
            state.dataToEdit = playload
 
            console.log(playload)
-        }
+        },
+
+        saveUserdata (state, playload) {
+
+             state.datasUser = playload
+ 
+             console.log(playload) 
+
+
+         },
+ 
+
+
     },
 
     // actions: {

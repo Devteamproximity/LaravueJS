@@ -10,7 +10,7 @@
                             <div class="box-header with-border">
                                 <h4 class="box-title">
                                     Formulaire de modication d'un
-                                    établissement
+                                    établissement {{$store.state.counter}}
                                 </h4>
                                 <!-- <h6 class="box-subtitle">You can us the validation like what we did</h6> -->
                             </div>
@@ -1204,28 +1204,18 @@ export default {
     },
 
     mounted() {
-        // Recuperer les valeur du composant a modifier dans la store
-
-    
-
-        console.log("Component mounted.");
-        if (localStorage.getItem("UserData")) {
-            let thedata = JSON.parse(localStorage.getItem("UserData"));
-            // console.log(thedata.data.data);
-            this.UserData = thedata.data.data;
-            // let data=JSON.parse(thedata);
-            // console.log(data);
-        }
+        
+        // console.log("Component mounted.");
+        // if (localStorage.getItem("UserData")) {
+        //     let thedata = JSON.parse(localStorage.getItem("UserData"));
+        //     // console.log(thedata.data.data);
+        //     this.UserData = thedata.data.data;
+        //     // let data=JSON.parse(thedata);
+        //     // console.log(data);
+        // }
     },
-    /*,
-    mounted(){
-      console.log('App Mounted');
-        // if (localStorage.getItem('UserData'))
-        //     this.UserData = JSON.parse(localStorage.getItem('UserData'));
-
-        //     console.log(this.UserData);
-    }*/
-
+  
+   
     methods: {
         Savegroupe() {
             if (this.dataToEdit.groupeName == "") {

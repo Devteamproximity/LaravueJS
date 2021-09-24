@@ -10,13 +10,13 @@
 	<link rel="stylesheet" href="{{ asset("main/css/style.css") }}">
 	<link rel="stylesheet" href="{{ asset("main/css/skin_color.css") }}">
 
-        <title>Xschoolink</title>
+        <title> Xschoolink </title>
 
 
     </head>
     <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
         <div id="app">
-<example-component></example-component>
+            
         </div>
         <script src="{{ asset("js/app.js") }}"></script>
         <script src="{{ asset("main/js/vendors.min.js") }}"></script>

@@ -17,30 +17,33 @@
     </head>
     <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
         <div id="app" class="wrapper">
-<example-component></example-component>
+
+            <example-component :user="{{ auth()->check() ? auth()->user() : 'null' }}"></example-component>
+           
         </div>
+        
         <script src="{{ asset("js/app.js") }}"></script>
         <script src="{{ asset("main/js/vendors.min.js") }}"></script>
-    <script src="{{ asset("main/js/pages/chat-popup.js") }}"></script>
-    <script src="{{ asset("assets/icons/feather-icons/feather.min.js") }}"></script>
-	<script src="{{ asset("assets/vendor_components/apexcharts-bundle/dist/apexcharts.js") }}"></script>
-	<script src="{{ asset("assets/vendor_components/moment/min/moment.min.js") }}"></script>
-    <script src="{{ asset("assets/vendor_components/datatable/datatables.min.js") }}"></script>
-	{{-- <script src="{{ asset("assets/vendor_components/fullcalendar/fullcalendar.js") }}"></script> --}}
+        <script src="{{ asset("main/js/pages/chat-popup.js") }}"></script>
+        <script src="{{ asset("assets/icons/feather-icons/feather.min.js") }}"></script>
+        <script src="{{ asset("assets/vendor_components/apexcharts-bundle/dist/apexcharts.js") }}"></script>
+        <script src="{{ asset("assets/vendor_components/moment/min/moment.min.js") }}"></script>
+        <script src="{{ asset("assets/vendor_components/datatable/datatables.min.js") }}"></script>
+        {{-- <script src="{{ asset("assets/vendor_components/fullcalendar/fullcalendar.js") }}"></script> --}}
 
-	<script src="{{ asset("main/js/pages/chat-popup.js") }}"></script>
-    <script src="{{ asset("assets/icons/feather-icons/feather.min.js") }}"></script>
+        <script src="{{ asset("main/js/pages/chat-popup.js") }}"></script>
+        <script src="{{ asset("assets/icons/feather-icons/feather.min.js") }}"></script>
 
-    {{-- <script src="{{ asset("assets/vendor_components/jquery-steps-master/build/jquery.steps.js") }}"></script> --}}
-    {{-- <script src="{{ asset("assets/vendor_components/jquery-validation-1.17.0/dist/jquery.validate.min.js") }}"></script> --}}
-    {{-- <script src="{{ asset("main/js/pages/steps.js") }}"></script> --}}
-    {{-- <script src="{{ asset("assets/vendor_components/sweetalert/sweetalert.min.js") }}"></script> --}}
+        {{-- <script src="{{ asset("assets/vendor_components/jquery-steps-master/build/jquery.steps.js") }}"></script> --}}
+        {{-- <script src="{{ asset("assets/vendor_components/jquery-validation-1.17.0/dist/jquery.validate.min.js") }}"></script> --}}
+        {{-- <script src="{{ asset("main/js/pages/steps.js") }}"></script> --}}
+        {{-- <script src="{{ asset("assets/vendor_components/sweetalert/sweetalert.min.js") }}"></script> --}}
 
-    <script src="{{ asset("main/js/template.js") }}"></script>
-	<script src="{{ asset("main/js/pages/dashboard.js") }}"></script>
-	<script src="{{ asset("main/js/pages/calendar.js") }}"></script>
-    <script src="{{ asset("main/js/pages/data-table.js") }}"></script>
-    <script src="{{ asset("main/js/vendors.min.js") }}"></script>
+        <script src="{{ asset("main/js/template.js") }}"></script>
+        <script src="{{ asset("main/js/pages/dashboard.js") }}"></script>
+        <script src="{{ asset("main/js/pages/calendar.js") }}"></script>
+        <script src="{{ asset("main/js/pages/data-table.js") }}"></script>
+        <script src="{{ asset("main/js/vendors.min.js") }}"></script>
 
     </body>
 </html>
