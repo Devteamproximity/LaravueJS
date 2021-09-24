@@ -5,10 +5,10 @@ import Login from '../components/pages/Login';
 import Etablissements from '../components/pages/admin/Etablissements';
 import AddEtablissement from '../components/pages/admin/AddEtablissement';
 import EditEtablissement from '../components/pages/admin/EditEtablissement';
-import Dashboard from '../components/pages/admin/Dashboard';
+import Dashboard from '../components/pages/Dashboard';
 
 const routes=[
-    
+
     {   name:'login',
         path:'/login',
         component: Login
