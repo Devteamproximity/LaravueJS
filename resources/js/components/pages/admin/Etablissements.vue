@@ -15,8 +15,40 @@
                                 <div class="box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
+
                                             Liste des écoles 
+
+                                            
+
+                                                   
+                                                   
+
+                                                     <router-link to="addetablissement">
+
+                                                        <button
+                                                           type="button"  class="waves-effect btn btn-outline btn-info mb-5"
+                                                        
+                                                        > 
+
+                                                           <Icon type="md-add" />  
+
+                                                            Nouveau 
+
+                                                        </button>
+                                                             
+
+                                                     </router-link>
+                                                     
+                                                     
+                                               
+                                              
+                                            
+                                                    
+                                                 
                                         </h3>
+                                           
+                                              
+                                
                                       
                                         <!-- <h6 class="box-subtitle">
                                             Export data to Copy, CSV, Excel, PDF
