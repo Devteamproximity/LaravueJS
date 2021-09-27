@@ -4,11 +4,20 @@ Vue.use(Router);
 import Login from '../components/pages/Login';
 import Etablissements from '../components/pages/admin/Etablissements';
 import AddEtablissement from '../components/pages/admin/AddEtablissement';
+import addLocal from '../components/pages/admin/AddLocal'
 import EditEtablissement from '../components/pages/admin/EditEtablissement';
 import EtablissementDash from '../components/pages/admin/EtablissementDash';
+
 import Dashboard from '../components/pages/Dashboard';
 
 const routes=[
+
+
+    {
+        name: 'addLocal',
+        path: '/addLocal',
+        component: addLocal
+    },
 
     {   name:'etablissementDash',
         path:'/etablissementDash',

@@ -17,12 +17,7 @@
                                         <h3 class="box-title">
 
                                             Liste des écoles 
-
-                                            
-
                                                    
-                                                   
-
                                                      <router-link to="addetablissement">
 
                                                         <button
@@ -38,17 +33,9 @@
                                                              
 
                                                      </router-link>
-                                                     
-                                                     
-                                               
-                                              
-                                            
-                                                    
-                                                 
+                                                                
                                         </h3>
                                            
-                                              
-                                
                                       
                                         <!-- <h6 class="box-subtitle">
                                             Export data to Copy, CSV, Excel, PDF

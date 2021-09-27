@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('prenom')->default("NULL");
             $table->date('datenais')->nullable();
             $table->string('lieunais')->default("NULL");
-            $table->enum('genre', ['M', 'F'])->default("M");
+            $table->string('genre')->default("M");
             $table->string('telephone')->default("NULL");
             $table->string('email')->unique()->default("NULL");
             $table->string('fonction')->default("NULL");
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->boolean('statut')->default(0);
             $table->string('photo')->default("NULL");
             $table->string('online')->default(0);
-            $table->enum('type', ['Administrateur', 'Admin_locale', 'Teatcher', 'Student']);
+            $table->string('type')->default("NULL");
             $table->string('adresse')->default("NULL");
             $table->string('telbureau')->default("NULL");
             $table->string('lieuhabitqtion')->default("NULL");

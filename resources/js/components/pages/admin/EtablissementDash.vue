@@ -9,7 +9,7 @@
                         <!-- START Card With Image -->
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> ESPACE ESTABLISSEMENT </h4>
+                                <h4 class="card-title"> ESPACE ETABLISSEMENT </h4>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
 
                             <div class="col-md-12 col-lg-4">
 
-                                <router-link to="etablissement">
+                                <router-link to="addLocal">
 
                                     <div class="card">
                                         <img
@@ -49,9 +49,9 @@
                                             alt="Card image cap"
                                         />
                                         <div class="card-body">
-                                            <h4 class="card-title"> Classes </h4>
+                                            <h4 class="card-title"> Administrateur locaux  </h4>
                                             <p class="card-text">
-                                                Ajouter et configurer les classses
+                                                Ajouter et configurer les admins locaux
                                             </p>
                                         </div>
                                         

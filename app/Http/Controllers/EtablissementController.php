@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assigners;
 use App\Models\Pays;
 use App\Models\User;
 use App\Models\Etablissement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Assign;
 
 class EtablissementController extends Controller
 {
@@ -16,6 +18,55 @@ class EtablissementController extends Controller
         $data = Pays::All();
         //var_dump($pays);
         return response()->json($data);
+    }
+
+    public function addAdmin( Request $request){
+
+       
+        $this->validate($request, [
+
+            'nomAdmin' => 'required',
+            'PrenomAdmin' => 'required',
+            'telAdmin' => 'required',
+            'fonctionAdmin' => 'required',
+            'emailAdmin' => 'required|email',
+            'loginAdmin' => 'required',
+            'passAdmin' => 'required',
+            'CpassAdmin' => 'required',
+        
+        ]);
+
+
+        // Recuperer l 'id de la derniere ecole cree 
+
+       
+
+       
+        if($request->imageLogo==null) {
+
+            $request->imageLogo="profildefaut.png";
+
+        }
+
+         $data = User::Create([
+
+            'nom' => $request->nomAdmin,
+            'prenom'=>$request->PrenomAdmin,
+            'datenais'=>$request->dateNaiss,
+            'email'=>$request->emailAdmin,
+            'fonction'=>$request->fonctionAdmin,
+            'login'=>$request->loginAdmin,
+            'telephone'=>$request->telAdmin,
+            'password'=>$request->passAdmin,
+            'type'=>$request->type,
+            'photo'=>$request->imageLogo
+
+         ]);
+
+         return response()->json($data);
+
+       
+
     }
 
     public function upload(Request $request)
@@ -41,8 +92,6 @@ class EtablissementController extends Controller
     {
 
 
-        //dd($request);
-
         $this->validate($request, [
 
             'codeEtablissement' => 'required',
@@ -57,14 +106,19 @@ class EtablissementController extends Controller
             'telephoneEtablissementSecond' => 'required',
             'paysEtablissement' => 'required',
             'villeEtablissement' => 'required',
-            //'siteInternetEtablissement' => 'required',
             'directeurEtablissement' => 'required',
             'telephoneDirecteurEtablissement' => 'required',
-            'addressEtablissement' => 'required'
+            'addressEtablissement' => 'required',
+            'nomAdmin' => 'required',
+            'PrenomAdmin' => 'required',
+            'telAdmin' => 'required',
+            'fonctionAdmin' => 'required',
+            'emailAdmin' => 'required',
+            'loginAdmin' => 'required',
+            'passAdmin' => 'required',
+            'CpassAdmin' => 'required',
             
-
         ]);
-
 
         if ($request->groupe == "Oui") {
 
@@ -96,13 +150,6 @@ class EtablissementController extends Controller
             $request->imageLogo="logodefaut.png";
         }
 
-        //dd($request);
-
-        $data = new Etablissement;
-        // $status = "1";
-        // $groupstateEtab = "0";
-        $datebuildEtab = date('Y-m-d H:i:s');
-
         // @insertion dans la table Etablissement
 
         $data = Etablissement::Create([
@@ -133,29 +180,37 @@ class EtablissementController extends Controller
             //'user_id'=> $data->user_id= Auth::user()->id,
         ]);
 
-        //dd($request);
+        //dd($data->id);
 
-
-
-
-
+       
+  
         // insertion dans la table utulisateur (compte)
 
-        // $SaveId =$data->id(); 
-        // $user= User::Create([
-        //     'nom'=>$request->datebuildEtab,
-        //     'prenom'=>$request->datebuildEtab,
-        //     'fonction'=>$request->fonction,
-        //     'email'=>$request->email,
-        //     'telephone'=>$request->telephone,
-        //     'telbureau'=>$request->telbureau,
-        //     'login'=>$request->login,
-        //     'password'=>$request->password,
-        // ]);
+        $user = User::Create([
 
-        //$msg = ' Etablissement cree avec success';
+            'nom' => $request->nomAdmin,
+            'prenom'=>$request->PrenomAdmin,
+            'datenais'=>$request->dateNaiss,
+            'email'=>$request->emailAdmin,
+            'fonction'=>$request->fonctionAdmin,
+            'login'=>$request->loginAdmin,
+            'telephone'=>$request->telAdmin,
+            'password'=>$request->passAdmin,
+            'type'=>$request->type,
 
-        return response()->json($data);
+         ]);
+
+          // insertion dans la table Assigner 
+
+        
+          $assigner = Assigners::Create([
+
+            'codeEtabAssisgn'=>$request->codeEtablissement,
+            'user_id'=>$data->id
+            
+         ]);
+
+       
     }
 
 

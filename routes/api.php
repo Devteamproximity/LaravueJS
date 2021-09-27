@@ -33,6 +33,10 @@ use App\Http\Controllers\EtablissementController;
 
     Route::post('admin/addEtablissement', [EtablissementController::class, 'addEtablissement']);
 
+    // Ajouter un admin a une ecole 
+
+    Route::post('admin/addAdmin', [EtablissementController::class, 'addAdmin']);
+
     //  Recuperer tous les etalissements 
 
     Route::get('admin/getAllEtablissement', [EtablissementController::class, 'getAllEtablissement']);

@@ -9,7 +9,7 @@
                         <div class="box box-default">
                             <div class="box-header with-border">
                                 <h4 class="box-title">
-                                    Formulaire de création d'un établissement {{$store.state.counter}}
+                                    Formulaire de création d'un établissement 
                                 </h4>
                                 <!-- <h6 class="box-subtitle">You can us the validation like what we did</h6> -->
                             </div>
@@ -688,81 +688,12 @@
                                         Informations Administrateur
                                     </h4>
                                     <hr class="my-15" />
-                                    <!-- 
-                                    <section>
-                                         <Upload
-                                            multiple
-                                            type="drag"
-                                            action="api/admin/upload"
-                                            :on-success="handleSuccess"
-                                            :on-error="handleError"
-                                            :format="['jpg', 'jpeg', 'png']"
-                                            :max-size="2048"
-                                            :on-format-error="handleFormatError"
-                                            :on-exceeded-size="handleMaxSize"
-                                            :headers="{
-                                                'X-Requested-With':
-                                                    'XMLHttpRequest'
-                                            }"
-                                        >
-                                            <div style="padding: 20px 0">
-                                                <Icon
-                                                    type="ios-cloud-upload"
-                                                    size="52"
-                                                    style="color: #3399ff"
-                                                ></Icon>
-                                                <p class="text-center">
-                                                    Cliquer ou glisser deposer
-                                                    pour inserer une photo de l'admin
-                                                </p>
-                                            </div>
-                                        </Upload>
-
-                                         <Modal title="Image" v-model="visible">
-                                            <img
-                                                :src="
-                                                    `/Photos/admins/${data.imageLogo}`
-                                                "
-                                                v-if="visible"
-                                                style="width: 100%"
-                                            />
-                                            <div slot="footer">
-                                                <Button
-                                                    type="primary"
-                                                    @click="visible = false"
-                                                    >Close</Button
-                                                >
-                                            </div>
-                                        </Modal>
-                                        <div
-                                            class="demo-upload-list"
-                                            v-if="data.imageLogo"
-                                        >
-                                            <img
-                                                :src="
-                                                    `/Photos/admins/${data.imageLogo}`
-                                                "
-                                            />
-                                            <div class="demo-upload-list-cover">
-                                                <Icon
-                                                    type="ios-eye-outline"
-                                                    @click.native="
-                                                        handleView(
-                                                            data.imageLogo
-                                                        )
-                                                    "
-                                                ></Icon>
-                                                <Icon
-                                                    type="ios-trash-outline"
-                                                    @click.native="
-                                                        handleRemove(
-                                                            data.imageLogo
-                                                        )
-                                                    "
-                                                ></Icon>
-                                            </div>
-                                        </div>
-
+                                
+                                      <section>
+                                        <div> </div>
+                                       
+                                         
+                                           
                                         <div class="row">
 
                                    
@@ -1075,16 +1006,9 @@
                                                 />
                                             </div>
                                         </div>
-                                    </section> -->
 
-                                    <div class="col-md-6">
-                                        <input
-                                            type="submit"
-                                            class="btn btn-facebook"
-                                            value="Enregistrer"
-                                        />
-                                    </div>
-                                    <!-- Step 4 -->
+                                    </section>
+
                                 </form>
                             </div>
                             <!-- /.box-body -->
@@ -1147,7 +1071,7 @@ export default {
                 passAdmin: "",
                 CpassAdmin: "",
                 imageLogo: "",
-                idUser:""
+                type: "Admin_locale"
             },
 
             visible: false,
