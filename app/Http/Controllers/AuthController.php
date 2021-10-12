@@ -10,6 +10,15 @@ class AuthController extends Controller
 {
 
 
+    function index( Request $request){
+
+
+        return $request->path;
+
+
+    }
+
+
     function login(Request $request)
     {
 
@@ -20,23 +29,24 @@ class AuthController extends Controller
 
         ]);
 
+       // dd($request);
+
+
         if(Auth::attempt(['login' => $request->login, 'password' => $request->password])) {
             $user = Auth::user();
-            $check=Auth::check();
             return response()->json([
                 'msg'=>'Connexion reuissi',
-                'userDatas'=>$user,
-                'check' =>$check
+                'userDatas'=>$user
+                
             ]);
         }
 
         else {
             $user = Auth::user();
-            $check=Auth::check();
             return response()->json([
                 'msg'=>'Login ou mot de passe incorrect',
-                'userDatas'=>$user,
-                'check' =>$check
+                'userDatas'=>$user
+               
             ],401);
         }
 
@@ -79,10 +89,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+  
 
     /**
      * Show the form for creating a new resource.

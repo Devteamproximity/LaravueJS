@@ -16,7 +16,7 @@
 							<div class="row align-items-center">
 								<div class="col-12 col-lg-3"><img src="https://www.multipurposethemes.com/admin/eduadmin-template/images/svg-icon/color-svg/custom-14.svg" alt=""></div>
 								<div class="col-12 col-lg-9">
-									<h2>Hello {{ datasUser.data.data.nom}}, Welcome Back!</h2>
+									<h2>Hello {{$store.state.counter}}, Wdddelcome Back!</h2>
 									<p class="text-dark mb-0 font-size-16">
 										Your course Overcoming the fear of public speaking was completed by 11 New users this week!
 									</p>
@@ -26,7 +26,7 @@
 					</div>
 				</div>
 
-			</div>
+</div>
 
 </section>
 

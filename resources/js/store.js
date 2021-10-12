@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
 
-        counter:100,
+        userDatas:0,
 
         dataToEdit: {
             groupeName: "",
@@ -38,9 +38,6 @@ export default new Vuex.Store({
             imageProfil: ""
         },
 
-        datasUser : {},
-
-    
     },
 
     mutations: { 
@@ -52,10 +49,9 @@ export default new Vuex.Store({
            console.log(playload)
         },
 
-        saveUserdata (state, playload) {
+        SaveUser (state, playload) {
 
-             state.datasUser = playload
- 
+             state.userDatas = playload
              console.log(playload) 
 
 

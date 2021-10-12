@@ -9,7 +9,7 @@ class Assigners extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'codeEtabAssisgn',
+        'etablissement_id',
         'user_id',
         
     ];

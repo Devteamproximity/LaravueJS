@@ -112,6 +112,9 @@ export default {
     //  Recuperer les donnees envoyees dans la store par computed:
     //computed:mapState(["datasUser"]),
 
-    async mounted() {}
+    async mounted() {
+
+        callApi()
+    }
 };
 </script>

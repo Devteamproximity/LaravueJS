@@ -1247,7 +1247,7 @@ export default {
                 try {
                     const response = await axios.post("api/admin/addEtablissement", this.data);
 
-                    if(response.status==200){
+                    if(response.status==200) {
 
                          this.$Notice.success({
                              title: "Felecitations",
@@ -1262,7 +1262,7 @@ export default {
 
                          this.$Notice.warning({
                              title: "Echec ",
-                          desc: "Une erreure est survenue lors de la procedure."
+                             desc: "Une erreure est survenue lors de la procedure."
                              })
                     }
 

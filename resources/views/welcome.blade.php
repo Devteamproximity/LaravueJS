@@ -11,6 +11,17 @@
 	<link rel="stylesheet" href="{{ asset("main/css/skin_color.css") }}">
 
         <title>Xschoolink</title>
+
+        
+        <script>
+            
+            (function () {
+                 window.Laravel={
+                 csrfToken:'{{Auth::user()}}'
+                };
+            })();
+
+        </script>
        
 
 
@@ -18,7 +29,7 @@
     <body class="hold-transition light-skin sidebar-mini theme-primary fixed">
         <div id="app" class="wrapper">
 
-            <example-component :user="{{ auth()->check() ? auth()->user() : 'null' }}"></example-component>
+            <example-component ></example-component>
            
         </div>
         

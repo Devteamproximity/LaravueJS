@@ -108,15 +108,35 @@ export default {
             if (this.values.password.trim() == "")
                 return this.w('Veillez saisir un mot de passe')
             const response = await this.callApi("post", "/api/login", this.values);
+
+            console.log(response.data.userDatas.nom)
+
+            // Enregistrer les donnees du user dans le local storage 
+
+            localStorage.setItem('users', JSON.stringify(response.data.userDatas));
+
+             // Enregistrer les donnees du user dans la store 
+
+            this.$store.commit('SaveUser', response.data.userDatas)
+            
                 if (response.status === 200) {
-                          this.s(response.data.msg)
-                          this.IsloggIn=true
+                         
                           let typecompte=response.data.userDatas.type
+                         
                           if(typecompte==="Administrateur") {
 
+                              console.log(typecompte)
                               this.$router.push('dashboard');
-
                           }
+
+                          if(typecompte==="Admin_locale") {
+
+                              console.log(typecompte)
+                              this.$router.push('DashboardLocal');
+                          }
+
+                        //this.s(response.data.msg)
+                          this.IsloggIn=true
                     } 
                 else {
 

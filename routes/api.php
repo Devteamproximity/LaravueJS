@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EtablissementController;
+use App\Http\Controllers\SessionController;
+use App\Models\Etablissement;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +53,12 @@ use App\Http\Controllers\EtablissementController;
 //});
 
 
-Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+
+    Route::get('locale/getEtabinfos', [EtablissementController::class, 'getEtabinfos']);
+
+    Route::post('locale/addSession', [SessionController::class, 'addSession']);
 
 // Route::post('/login', [UserController::class, 'login']);
 

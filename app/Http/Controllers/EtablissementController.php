@@ -13,8 +13,19 @@ use PhpParser\Node\Expr\Assign;
 class EtablissementController extends Controller
 {
 
+
+    public function getEtabinfos() {
+
+        $infos= Etablissement::with('users')->get();
+
+        return response()->json($infos);
+
+    }
+
     public function create(Request $request)
     {
+
+
         $data = Pays::All();
         //var_dump($pays);
         return response()->json($data);
@@ -91,6 +102,8 @@ class EtablissementController extends Controller
 
     {
 
+       
+
 
         $this->validate($request, [
 
@@ -132,14 +145,7 @@ class EtablissementController extends Controller
             $request->groupeName = '';
         }
 
-        // if ($request->mixte == "Oui") {
-
-        //     $request->mixte = 1;
-        // } else {
-
-        //     $request->mixte = 0;
-        // }
-
+    
         if($request->siteInternetEtablissement==null){
 
             $request->siteInternetEtablissement="";
@@ -182,7 +188,7 @@ class EtablissementController extends Controller
 
         //dd($data->id);
 
-       
+        
   
         // insertion dans la table utulisateur (compte)
 
@@ -195,7 +201,7 @@ class EtablissementController extends Controller
             'fonction'=>$request->fonctionAdmin,
             'login'=>$request->loginAdmin,
             'telephone'=>$request->telAdmin,
-            'password'=>$request->passAdmin,
+            'password'=>bcrypt( $request->passAdmin),
             'type'=>$request->type,
 
          ]);
@@ -203,85 +209,21 @@ class EtablissementController extends Controller
           // insertion dans la table Assigner 
 
         
-          $assigner = Assigners::Create([
+        $assigner = Assigners::Create([
 
-            'codeEtabAssisgn'=>$request->codeEtablissement,
-            'user_id'=>$data->id
+            //'codeEtabAssisgn'=>$request->codeEtablissement,
+            'user_id'=>$user->id, 
+            'etablissement_id'=>$data->id
             
          ]);
 
        
     }
 
-
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'title' => 'required|string',
-    //         'content' => 'required|string'
-    //     ]);
-    //     if ($request->file('file')) {
-    //         /* Multiple file upload */
-    //         $files = $request->file('file');
-    //         if (!is_array($files)) {
-    //             $files = [$files];
-    //         }
-    //         //loop throu the array
-    //         for ($i = 0; $i < count($files); $i++) {
-    //             $file = $files[$i];
-    //             $filename = $file->getClientOriginalName();
-    //             $filename = str_replace(' ', '', $filename);
-    //             $file->storeAs('uploads', $filename);
-    //         }
-    //     }
-    //     $data=new Etablissement;
-    //     $status="1";
-    //     $groupstateEtab="0";
-    //     $datebuildEtab=date("d/m/dY");
-    //     // @insertion dans la table Etablissement
-    //    $data= Etablissement::update([
-    //     'codeEtab'=>$request->CodeEtab,
-    //     'libelleEtab'=>$request->libelleEtab,
-    //     'sigleEtab'=>$request->sigleEtab,
-    //     'sloganEtab'=>$request->sloganEtab,
-    //     'emailEtab'=>$request->emailEtab,
-    //     'principaltelEtab'=>$request->principaltelEtab,
-    //     'secondairetelEtab'=>$request->secondairetelEtab,
-    //     'paysEtab'=>$request->paysEtab,
-    //     'sitewebEtab'=>$request->sitewebEtab,
-    //     'directeurEtab'=>$request->directeurEtab,
-    //     'principalteldirecteurEtab'=>$request->principalteldirecteurEtab,
-    //     'adresseEtab'=>$request->adresseEtab,,
-    //     'logoEtab'=>$filename,
-    //     'datecreationEtab'=>$request->datecreationEtab,
-    //     'createbyEtab'=>$request->createbyEtab,
-    //     'typeEtab'=>$request->typeEtab,
-    //     'mixteEtab'=>$request->mixteEtab,
-    //     'groupstateEtab'=>$groupstateEtab,
-    //     'groupidEtab'=>$request->groupidEtab,
-    //     'primaireEtab'=>$request->primaireEtab,
-    //     'datebuildEtab'=>$datebuildEtab,
-    //     'status'=>$status,
-    //     ]);
-    //     // @insertion dans la table utulisateur (compte)
-    //     $user= User::update([
-    //         'nom'=>$request->$datebuildEtab,
-    //         'prenom'=>$request->$datebuildEtab,
-    //         'fonction'=>$request->fonction,
-    //         'email'=>$request->email,
-    //         'telephone'=>$request->telephone,
-    //         'telbureau'=>$request->telbureau,
-    //         'login'=>$request->login,
-    //         'password'=>$request->password,
-    //     ]);
-
-    //    $msg=' Etablissement modifier avec success';
-    //    return response()->json($msg);
-    // }
-
     //  Recuperation des ecoles 
 
-    public function getAllEtablissement(){
+    public function getAllEtablissement() {
+
 
         $datas = Etablissement::orderBy('id', 'desc')->get();
 

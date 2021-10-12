@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+
+use App\Models\Assigners;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Etablissement extends Model
 {
@@ -15,4 +18,8 @@ class Etablissement extends Model
         'villeEtab', 'paysEtab','sitewebEtab','directeurEtab','mixteEtab ','groupstateEtab','groupnameEtab',
         'typeEtab','principalteldirecteurEtab','adresseEtab','logoEtab'
     ];
+
+    public function users(){
+        return $this->belongsToMany(User::class,'Assigners');
+    }
 }
