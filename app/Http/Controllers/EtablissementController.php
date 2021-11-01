@@ -14,10 +14,20 @@ class EtablissementController extends Controller
 {
 
 
-    public function getEtabinfos() {
+    public function getEtabinfos(Request  $request) {
 
-        $infos= Etablissement::with('users')->get();
 
+        // Recuperons l'id de l'etablissment 
+
+        $user = User::with('Etablissements')->where('id',$request->id)->get();
+
+        $id = $user[0]['Etablissements'][0]['id'];
+
+        
+
+        $infos = Etablissement::with('users')->where('id',$id)->get();
+
+      
         return response()->json($infos);
 
     }

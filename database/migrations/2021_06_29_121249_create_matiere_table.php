@@ -15,19 +15,12 @@ class CreateMatiereTable extends Migration
     {
         Schema::create('matiere', function (Blueprint $table) {
             $table->id();
-            $table->string('libelleMat')->default("NULL");
-            $table->string('codeEtabMat')->default("NULL");
-            $table->string('sessionMat')->default("0");
-            $table->float('coefMat')->default("0");
-            $table->integer('classeMat')->default("0");
-            $table->integer('teatcherMat')->default("0");
-            $table->string('langueMat')->default("NULL");
-            $table->string('competenceMat')->default("NULL");
-            $table->string('niveauMat')->default("NULL");
-            $table->string('cycleMat')->default("NULL");
-            $table->string('facultatifMat')->default("NULL");
-            $table->date('datecreaMat')->nullable();
-            $table->integer('createbyMat')->default("0");
+            $table->foreignId('classe_id')->constrained()->default('0')->onDelete('cascade');
+            $table->foreignId('enseignant_id')->constrained()->default('0')->onDelete('cascade');
+            $table->string('libelle')->default("NULL");
+            $table->string('codeEtab')->default("NULL");
+            $table->string('session')->default("0");
+            $table->float('coef')->default("0");
             $table->timestamps();
         });
     }

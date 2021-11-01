@@ -1164,21 +1164,7 @@ export default {
             }
         }
     },
-            //  Recuperer les donnees envoyees dans la store par computed:
-             computed:mapState(["datasUser"]),
-
-    // async mounted() {
-
-    //     console.log("Component mounted.");
-    //     if (localStorage.getItem("UserData")) {
-    //         let thedata = JSON.parse(localStorage.getItem("UserData"));
-    //         // console.log(thedata.data.data);
-    //         this.UserData = thedata.data.data;
-    //         // let data=JSON.parse(thedata);
-    //         // console.log(data);
-    //     }
-    // },
-   
+           
     methods: {
         Savegroupe() {
             if (this.data.groupeName == "") {

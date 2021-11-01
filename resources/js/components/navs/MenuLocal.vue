@@ -18,25 +18,27 @@
                                 </router-link>
                             </li>
 
-                            <!-- Menu local sessio   -->
+                            <!-- Menu local session   -->
 
                             <li class="treeview">
                                 <router-link to="session">
-                                    <i class="icon-Layout-4-blocks"
+                                    <i class="icon-Library"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
                                     ></i>
-                                    <span>Session</span>
+                                    <span> Session </span> 
                                 </router-link>
                             </li>
 
+                             <!-- Menu local administration   -->
+
                              <li class="treeview">
-                                <router-link to="dashboard">
-                                    <i class="icon-Layout-4-blocks"
+                                <router-link to="administration">
+                                    <i class="icon-File"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
                                     ></i>
-                                    <span>Eleves </span>
+                                    <span> Administration</span>
                                 </router-link>
                             </li>
                     

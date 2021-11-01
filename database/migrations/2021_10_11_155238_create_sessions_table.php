@@ -15,6 +15,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('etablissement_id')->constrained()->default('NULL')->onDelete('cascade');
             $table->string('libelle_sess')->default("NULL");
             $table->string('codeEtab_sess')->default("NULL");
             $table->string('encours_sess')->default("NULL");

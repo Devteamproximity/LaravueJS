@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 
+use App\Models\Session;
 use App\Models\Assigners;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,15 @@ class Etablissement extends Model
         'typeEtab','principalteldirecteurEtab','adresseEtab','logoEtab'
     ];
 
-    public function users(){
+    public function users() {
+
         return $this->belongsToMany(User::class,'Assigners');
+
     }
+
+    public function Sessions () {
+        return $this->hasMany(Session::class);
+    }
+
+    
 }

@@ -45,8 +45,6 @@ class AuthController extends Controller
             $user = Auth::user();
             return response()->json([
                 'msg'=>'Login ou mot de passe incorrect',
-                'userDatas'=>$user
-               
             ],401);
         }
 

@@ -1,0 +1,178 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Parents;
+use App\Models\Session;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class ParentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addParent( Request $request)
+    {
+         //  Recuperons le code etab 
+
+         $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
+
+         // Recuperons les datas de la session en cour 
+ 
+         $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+ 
+         // Recuperons le libelle  de la session en cour 
+         
+         $sessionEncour = $sessiondata[0]['libelle_sess'];
+
+
+        $this->validate($request, [
+
+            'nomAdmin' => 'required',
+            'PrenomAdmin' => 'required',
+            'telAdmin' => 'required',
+            'sexe' => 'required',
+            'emailAdmin' => 'required|email',
+            'loginAdmin' => 'required',
+            'passAdmin' => 'required',
+            'CpassAdmin' => 'required',
+            'profession'=>'required',
+            
+        
+        ]);
+
+        // Enregistrer dans la table user 
+
+        $user = User::Create([
+
+            'nom' => $request->nomAdmin,
+            'prenom'=>$request->PrenomAdmin,
+            'email'=>$request->emailAdmin,
+            'login'=>$request->loginAdmin,
+            'telephone'=>$request->telAdmin,
+            'password'=>bcrypt( $request->passAdmin),
+            'photo'=>$request->imageLogo,
+            'type'=>'Parent'
+         ]);
+
+        // Enregistrer dans la table parent 
+
+         $parent  = Parents::Create([
+
+            'nomParent' => $request->nomAdmin,
+            'prenomParent'=>$request->PrenomAdmin,
+            'emailParent'=>$request->emailAdmin,
+            'telParent'=>$request->telAdmin,
+            'user_id'=>$user->id,
+            'cniParent'=>$request->cni,
+            'nationaliteParent'=>$request->natio,
+            'professionParent'=>$request->profession,
+            'sexeParent'=>$request->sexe,
+            'addressParent'=>$request->address,
+            'codeEtab'=>$codeEtab,
+            'session'=>$sessionEncour,
+            
+        ]);
+
+
+
+
+
+      
+
+
+        // dd($request);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getParent (Request $request)
+    {
+
+        //  Recuperons le code etab 
+
+        $codeEtab = $request[0]['codeEtab'];
+
+        // dd($request[0]['codeEtab']);
+
+        // Recuperons les datas de la session en cour 
+
+           $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+
+        // Recuperons le libelle  de la session en cour 
+        
+           $sessionEncour = $sessiondata[0]['libelle_sess'];
+
+        // Recuperons les parents de cette ecole et et de la session en cour 
+
+          $parents = Parents::where('codeEtab', $codeEtab)->where('session',$sessionEncour)->orderBy('id', 'desc')->get();
+
+           // $parents  = Parents::all();
+
+           return $parents ;
+
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

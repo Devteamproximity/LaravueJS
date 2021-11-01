@@ -9,16 +9,20 @@
 		<section class="content">
 
 				<div class="row align-items-end">
+
 								<div class="col-xl-12 col-12">
 									<div class="box bg-primary-light pull-up">
 										<div class="box-body p-xl-0">
 											<div class="row align-items-center">
-												<div class="col-12 col-lg-3"><img src="https://www.multipurposethemes.com/admin/eduadmin-template/images/svg-icon/color-svg/custom-14.svg" alt=""></div>
+												<div class="col-12 col-lg-3">
+													<img src="images/cap3.png" alt="">
+												</div>
+				
 												<div class="col-12 col-lg-9">
 													<h2   v-for="(data, i) in EtabInfos" :key="i"> {{data.libelleEtab}}</h2>
 													
-													<p class="text-dark mb-0 font-size-16" > Bienvenu , 
-														{{this.users.nom}}
+													<p class="text-dark mb-0 font-size-16" > Bienvenu, {{this.users.prenom}}
+														
 													</p>
 												</div>
 											</div>
@@ -26,7 +30,7 @@
 									</div>
 								</div>
 
-				</div>
+			</div>
 
 			<div class="row">
 				<div class="col-12">														
@@ -232,22 +236,26 @@ import { mapState } from "vuex";
     },
 
             //  Recuperer les donnees envoyees dans la store par computed:
-             //computed:mapState(["datasUser"]),
 
+            
        async  mounted() {
-
-		    const response = await this.callApi("get", "api/locale/getEtabinfos");
-
-			this.EtabInfos=response.data 
 
 			   if (localStorage.users)  {
 
 				   this.users =  JSON.parse(localStorage.getItem("users"));
 
-                 
 				   console.log(this.users.nom);
 
               }
+
+
+			  const response = await this.callApi("post", "api/locale/getEtabinfos",this.users);
+
+			  this.EtabInfos=response.data 
+
+			  // Garder les donnees de l'ecole dans le storage de navigateur 
+			 
+			  localStorage.setItem('EtabInfos', JSON.stringify( this.EtabInfos));
 
 			
 			

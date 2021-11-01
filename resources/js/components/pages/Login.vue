@@ -109,17 +109,17 @@ export default {
                 return this.w('Veillez saisir un mot de passe')
             const response = await this.callApi("post", "/api/login", this.values);
 
-            console.log(response.data.userDatas.nom)
-
-            // Enregistrer les donnees du user dans le local storage 
-
-            localStorage.setItem('users', JSON.stringify(response.data.userDatas));
-
-             // Enregistrer les donnees du user dans la store 
-
-            this.$store.commit('SaveUser', response.data.userDatas)
+            //console.log(response.data.userDatas.nom)
             
                 if (response.status === 200) {
+
+                    // Enregistrer les donnees du user dans le local storage 
+
+                        localStorage.setItem('users', JSON.stringify(response.data.userDatas));
+
+                     // Enregistrer les donnees du user dans la store 
+
+                         this.$store.commit('SaveUser', response.data.userDatas)
                          
                           let typecompte=response.data.userDatas.type
                          
@@ -138,13 +138,15 @@ export default {
                         //this.s(response.data.msg)
                           this.IsloggIn=true
                     } 
-                else {
+             
 
-                    if (response.status === 401) {
+                if (response.status === 401)  {
+
                          this.e(response.data.msg)
-                    } 
+                
+                } 
 
-                }
+            
         
 
 

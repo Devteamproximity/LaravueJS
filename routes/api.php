@@ -1,13 +1,18 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\Etablissement;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EtablissementController;
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SessionController;
-use App\Models\Etablissement;
+use App\Http\Controllers\TrimestreController;
+use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\EtablissementController;
+use App\Http\Controllers\MatiereController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +61,83 @@ use App\Models\Etablissement;
     Route::post('/login', [AuthController::class, 'login']);
 
 
-    Route::get('locale/getEtabinfos', [EtablissementController::class, 'getEtabinfos']);
+   
 
-    Route::post('locale/addSession', [SessionController::class, 'addSession']);
+    /*    ROUTES LIEES A L"ADMIN LOCAL  */
+
+       Route::post('locale/Addclasse', [ClasseController::class, 'Addclasse']);
+
+        // Recuperer toutes les sessions d'une ecole 
+
+        Route::post('locale/getSessionEtablissement', [SessionController::class, 'getSessionEtablissement']);
+
+         // Recuperer tous les trimestres de la session  en cour d'une ecole 
+
+         Route::post('locale/getTrimestreEtablissement', [SessionController::class, 'getTrimestreEtablissement']);
+
+          // Recuperer toutes les classe de la session  en cour d'une ecole 
+
+          Route::post('locale/getClasseEtablissement', [ClasseController::class, 'getClasseEtablissement']);
+
+        // Recuperer toutes les infos d'une ecole 
+
+        Route::post('locale/getEtabinfos', [EtablissementController::class, 'getEtabinfos']);
+
+        // Ajouter une session a une ecole 
+
+        Route::post('locale/addSession', [SessionController::class, 'addSession']);
+
+
+        // clotruer une session cloturerSession
+
+        Route::post('locale/cloturerSession', [SessionController::class, 'cloturerSession']);
+
+
+  /* ROUTES POUR LES PARENTS */
+
+
+            // Ajouter un parent a une ecole 
+
+          Route::post('locale/addParent', [ParentController::class, 'addParent']);
+
+          // Recuperer les parents d'une ecole 
+
+          Route::post('locale/getParent', [ParentController::class, 'getParent']);
+
+
+  /* Routes pour les enseignants  */  
+
+
+          // Ajouter un enseigant  a une ecole 
+
+          Route::post('locale/addEnseignant', [EnseignantController::class, 'addEnseignant']);
+
+          // Recuperer les enseignants  d'une ecole 
+
+          Route::post('locale/getParent', [ParentController::class, 'getParent']);
+
+
+  /* ROUTES POUR LES MATIERS */ 
+
+
+           // Ajouter un libelle 
+
+           Route::post('locale/addLibelle', [MatiereController::class, 'addLibelle']);
+
+
+           // Recuperer tous les  libelles 
+
+           Route::post('locale/getLibelles', [MatiereController::class, 'getLibelles']);
+
+          // Ajouter une matiere  
+
+          Route::post('locale/addMatiere', [MatiereController::class, 'addMatiere']);
+
+          // Recuperer toutes les classes pour creer des matieres 
+
+          Route::post('locale/getClasses', [MatiereController::class, 'getClasses']);
+
+
 
 // Route::post('/login', [UserController::class, 'login']);
 
