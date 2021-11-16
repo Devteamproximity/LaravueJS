@@ -21,12 +21,12 @@
                             <!-- Menu local session   -->
 
                             <li class="treeview">
-                                <router-link to="session">
-                                    <i class="icon-Library"
+                                <router-link to="enseignements">
+                                    <i class="icon-Write"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
                                     ></i>
-                                    <span> Session </span> 
+                                    <span> Enseignements  </span>
                                 </router-link>
                             </li>
 
@@ -41,7 +41,31 @@
                                     <span> Administration</span>
                                 </router-link>
                             </li>
-                    
+
+                            <!-- Menu gestion eleve   -->
+
+                             <li class="treeview">
+                                <router-link to="students">
+                                    <i class="icon-User"
+                                        ><span class="path1"></span
+                                        ><span class="path2"></span
+                                    ></i>
+                                    <span> Elèves </span>
+                                </router-link>
+                            </li>
+
+                             <!-- Menu gestion des messsages  -->
+
+                             <li class="treeview">
+                                <router-link to="messageDash">
+                                    <i class="icon-Mail"
+                                        ><span class="path1"></span
+                                        ><span class="path2"></span
+                                    ></i>
+                                    <span> Messages  </span>
+                                </router-link>
+                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -76,7 +100,7 @@
                 ></a>
             </div>
         </aside>
-        
+
         <div class="control-sidebar-bg"></div>
     </div>
 </template>

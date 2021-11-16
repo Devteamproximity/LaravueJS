@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Eleves;
 use App\Models\Assigners;
 use App\Models\Etablissement;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Student;
 
 class User extends Authenticatable
 {
@@ -37,6 +39,13 @@ class User extends Authenticatable
 
         return $this->belongsToMany(Etablissement::class,'Assigners');
     }
+
+    public function eleve(){
+
+        return $this->hasOne(Student::class);
+
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.

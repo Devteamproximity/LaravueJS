@@ -47,7 +47,7 @@
                                     class="form-control"
                                     placeholder="Entrer le mot de passe"
                                 />
-                             
+
                             </div>
 
                             <div class="form-group text-left mt-2">
@@ -104,25 +104,21 @@ export default {
         async onSubmit() {
             if (this.values.login.trim() == "")
                 return this.w('Veillez saisir un identifiant')
-               
+
             if (this.values.password.trim() == "")
                 return this.w('Veillez saisir un mot de passe')
-            const response = await this.callApi("post", "/api/login", this.values);
+               const response = await this.callApi("post", "/api/login", this.values);
 
             //console.log(response.data.userDatas.nom)
-            
+
                 if (response.status === 200) {
 
-                    // Enregistrer les donnees du user dans le local storage 
+                    // Enregistrer les donnees du user dans le local storage
 
                         localStorage.setItem('users', JSON.stringify(response.data.userDatas));
 
-                     // Enregistrer les donnees du user dans la store 
-
-                         this.$store.commit('SaveUser', response.data.userDatas)
-                         
                           let typecompte=response.data.userDatas.type
-                         
+
                           if(typecompte==="Administrateur") {
 
                               console.log(typecompte)
@@ -135,19 +131,25 @@ export default {
                               this.$router.push('DashboardLocal');
                           }
 
+                           if(typecompte==="Enseignant") {
+
+                              console.log(typecompte)
+                              this.$router.push('DashTeacher');
+                          }
+
                         //this.s(response.data.msg)
                           this.IsloggIn=true
-                    } 
-             
+                    }
+
 
                 if (response.status === 401)  {
 
                          this.e(response.data.msg)
-                
-                } 
 
-            
-        
+                }
+
+
+
 
 
         }

@@ -18,13 +18,21 @@ class ClasseController extends Controller
 
         $codeEtab = $request[0]['codeEtab'];
 
-        // Recuperer les informations sur ecole et session en cour 
+        // Recuperer les informations sur la session en cour
 
-        $EtabSession = Session::with('Etablissement')->where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+        $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
 
-        // Recuperer tous les classes de cet ecole pour cette session en cour 
+        $sessionEncour = $sessiondata[0]['libelle_sess'];
 
-        $ClasseData = Classe::where('codeEtabClasse', $codeEtab)->orderBy('id', 'desc')->get();
+
+        // Recuperer tous les classes et les eleves de chaque de classe de cette ecole pour cette session en cour
+
+
+        //$ClasseData = Classe::where('codeEtabClasse', $codeEtab)->where('sessionClasse', $sessionEncour)->orderBy('id', 'desc')->get();
+
+        $ClasseData = Classe::with('eleves')->where('codeEtabClasse', $codeEtab)->where('sessionClasse', $sessionEncour)->orderBy('id', 'desc')->get();
+
+        //  dd($ClasseData);
 
        // $ClasseData = Classe::All();
 
@@ -32,23 +40,23 @@ class ClasseController extends Controller
 
 
     }
-    public function Addclasse ( Request $request) 
+    public function Addclasse ( Request $request)
 
     {
 
         //dd($request);
 
-        //  Recuperons le code etab 
+        //  Recuperons le code etab
 
            $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
 
-        // Recuperons les datas de la session en cour 
+        // Recuperons les datas de la session en cour
 
            $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
 
-    
-        // Recuperons le libelle  de la session en cour 
-        
+
+        // Recuperons le libelle  de la session en cour
+
            $sessioEncour = $sessiondata[0]['libelle_sess'];
 
 
@@ -73,7 +81,7 @@ class ClasseController extends Controller
 
 
        return response()->json($ClasseData);
-        
+
     }
 
     /**

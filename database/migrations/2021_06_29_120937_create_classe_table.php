@@ -13,7 +13,7 @@ class CreateClasseTable extends Migration
      */
     public function up()
     {
-        Schema::create('classe', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('libelleClasse')->default("NULL");
             $table->string('codeEtabClasse')->default("NULL");

@@ -15,14 +15,14 @@ class CreateTrimestresTable extends Migration
     {
         Schema::create('trimestres', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('session_id')->constrained()->default('NULL')->onDelete('cascade');
-            $table->string('libelle_semes')->default("NULL");
-            $table->string('codeEta_semes')->default("NULL");
-            $table->string('statut_semes')->default("NULL");
-            $table->string('next_semes')->default("NULL");
+            $table->foreignId('session_id')->constrained()->nullable()->onDelete('cascade');
+            $table->string('libelle_semes')->nullable();
+            $table->string('codeEta_semes')->nullable();
+            $table->string('statut_semes')->nullable();
+            $table->string('next_semes')->nullable();
             $table->timestamps();
         });
-        
+
     }
 
     /**

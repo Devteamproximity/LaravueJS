@@ -8,11 +8,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\MatiereController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TrimestreController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\EtablissementController;
-use App\Http\Controllers\MatiereController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,110 +33,162 @@ use App\Http\Controllers\MatiereController;
 //Route::middleware(['auth'])->group(function () {
 
 
-    Route::post('admin/upload', [EtablissementController::class, 'upload']);
+Route::post('admin/upload', [EtablissementController::class, 'upload']);
 
-    Route::post('admin/delateImage', [EtablissementController::class, 'delateImage']);
+Route::post('admin/delateImage', [EtablissementController::class, 'delateImage']);
 
-    //  Ajouter un  etalissement
+//  Ajouter un  etalissement
 
-    Route::post('admin/addEtablissement', [EtablissementController::class, 'addEtablissement']);
+Route::post('admin/addEtablissement', [EtablissementController::class, 'addEtablissement']);
 
-    // Ajouter un admin a une ecole 
+// Ajouter un admin a une ecole
 
-    Route::post('admin/addAdmin', [EtablissementController::class, 'addAdmin']);
+Route::post('admin/addAdmin', [EtablissementController::class, 'addAdmin']);
 
-    //  Recuperer tous les etalissements 
+//  Recuperer tous les etalissements
 
-    Route::get('admin/getAllEtablissement', [EtablissementController::class, 'getAllEtablissement']);
+Route::get('admin/getAllEtablissement', [EtablissementController::class, 'getAllEtablissement']);
 
-    //  supprimer  un  etalissement
+//  supprimer  un  etalissement
 
-    Route::post('admin/delateEtablissement', [EtablissementController::class, 'delateEtablissement']);
+Route::post('admin/delateEtablissement', [EtablissementController::class, 'delateEtablissement']);
 
-    // Modifier un etablissement 
+// Modifier un etablissement
 
-    Route::post('admin/updateEtablissement', [EtablissementController::class, 'updateEtablissement']);
+Route::post('admin/updateEtablissement', [EtablissementController::class, 'updateEtablissement']);
 //});
 
 
-    Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
-   
+// Route::middleware(['ProtectedPage'])->group(function () {
 
-    /*    ROUTES LIEES A L"ADMIN LOCAL  */
+  /*    ROUTES LIEES A L"ADMIN LOCAL  */
 
-       Route::post('locale/Addclasse', [ClasseController::class, 'Addclasse']);
+  Route::post('locale/Addclasse', [ClasseController::class, 'Addclasse']);
 
-        // Recuperer toutes les sessions d'une ecole 
+  // Recuperer toutes les sessions d'une ecole
 
-        Route::post('locale/getSessionEtablissement', [SessionController::class, 'getSessionEtablissement']);
+  Route::post('locale/getSessionEtablissement', [SessionController::class, 'getSessionEtablissement']);
 
-         // Recuperer tous les trimestres de la session  en cour d'une ecole 
+  // Recuperer tous les trimestres de la session  en cour d'une ecole
 
-         Route::post('locale/getTrimestreEtablissement', [SessionController::class, 'getTrimestreEtablissement']);
+  Route::post('locale/getTrimestreEtablissement', [SessionController::class, 'getTrimestreEtablissement']);
 
-          // Recuperer toutes les classe de la session  en cour d'une ecole 
+  // Recuperer toutes les classe de la session  en cour d'une ecole
 
-          Route::post('locale/getClasseEtablissement', [ClasseController::class, 'getClasseEtablissement']);
+  Route::post('locale/getClasseEtablissement', [ClasseController::class, 'getClasseEtablissement']);
 
-        // Recuperer toutes les infos d'une ecole 
+  // Recuperer toutes les infos d'une ecole
 
-        Route::post('locale/getEtabinfos', [EtablissementController::class, 'getEtabinfos']);
+  Route::post('locale/getEtabinfos', [EtablissementController::class, 'getEtabinfos']);
 
-        // Ajouter une session a une ecole 
+  // Ajouter une session a une ecole
 
-        Route::post('locale/addSession', [SessionController::class, 'addSession']);
+  Route::post('locale/addSession', [SessionController::class, 'addSession']);
 
 
-        // clotruer une session cloturerSession
+  // clotruer une session cloturerSession
 
-        Route::post('locale/cloturerSession', [SessionController::class, 'cloturerSession']);
+  Route::post('locale/cloturerSession', [SessionController::class, 'cloturerSession']);
 
 
   /* ROUTES POUR LES PARENTS */
 
 
-            // Ajouter un parent a une ecole 
+  // Ajouter un parent a une ecole
 
-          Route::post('locale/addParent', [ParentController::class, 'addParent']);
+  Route::post('locale/addParent', [ParentController::class, 'addParent']);
 
-          // Recuperer les parents d'une ecole 
+  // Recuperer les parents d'une ecole
 
-          Route::post('locale/getParent', [ParentController::class, 'getParent']);
-
-
-  /* Routes pour les enseignants  */  
+  Route::post('locale/getParent', [ParentController::class, 'getParent']);
 
 
-          // Ajouter un enseigant  a une ecole 
-
-          Route::post('locale/addEnseignant', [EnseignantController::class, 'addEnseignant']);
-
-          // Recuperer les enseignants  d'une ecole 
-
-          Route::post('locale/getParent', [ParentController::class, 'getParent']);
+  /* Routes pour les enseignants  */
 
 
-  /* ROUTES POUR LES MATIERS */ 
+  // Ajouter un enseigant  a une ecole
+
+  Route::post('locale/addEnseignant', [EnseignantController::class, 'addEnseignant']);
+
+  // Recuperer les enseignants  d'une ecole
+
+  Route::post('locale/getAllEnseignant', [EnseignantController::class, 'getAllEnseignant']);
 
 
-           // Ajouter un libelle 
+  // Recuperer les enseignants  d'une ecole pour affectation
 
-           Route::post('locale/addLibelle', [MatiereController::class, 'addLibelle']);
+  Route::post('locale/getAllEnseignantAffect', [EnseignantController::class, 'getAllEnseignantAffect']);
+
+  // Recuperer les enseignants  de l'ecole  avec enseigant respectifs
+
+  Route::post('locale/getAllEnseignantAffectMatieres', [EnseignantController::class, 'getAllEnseignantAffectMatieres']);
 
 
-           // Recuperer tous les  libelles 
+  /* ROUTES POUR LES MATIERS */
 
-           Route::post('locale/getLibelles', [MatiereController::class, 'getLibelles']);
 
-          // Ajouter une matiere  
+  // Ajouter un libelle
 
-          Route::post('locale/addMatiere', [MatiereController::class, 'addMatiere']);
+  Route::post('locale/addLibelle', [MatiereController::class, 'addLibelle']);
 
-          // Recuperer toutes les classes pour creer des matieres 
 
-          Route::post('locale/getClasses', [MatiereController::class, 'getClasses']);
+  // Recuperer tous les  libelles
+
+  Route::post('locale/getLibelles', [MatiereController::class, 'getLibelles']);
+
+  // Ajouter une matiere
+
+  Route::post('locale/addMatiere', [MatiereController::class, 'addMatiere']);
+
+  // Recuperer toutes les classes pour creer des matieres
+
+  Route::post('locale/getClasses', [MatiereController::class, 'getClasses']);
+
+
+  // Recuperer toutes les matieres d'une  classe precise
+
+  Route::post('locale/getMatieresClasse', [MatiereController::class, 'getMatieresClasse']);
+
+
+  // Recuperer toutes les matieres d'une  classe precise
+
+  Route::post('locale/affecterTeacher', [MatiereController::class, 'affecterTeacher']);
+
+
+
+  /*   ROUTES POUR LES ELEVES    */
+
+  // Recuperer un parent grace a son telephone
+
+  Route::post('locale/SearchParent', [StudentController::class,'SearchParent']);
+
+  // INCRIRE UN ELEVE
+
+  Route::post('locale/inscripEleve', [StudentController::class,'inscripEleve']);
+
+  Route::post('locale/getEleveclasse', [StudentController::class,'getEleveclasse']);
+
+
+  /* ROUTES POUR LES ENSEIGNANTS */
+
+  // Recuperer toutes les infos de cet enseigants avec ses classes
+
+  Route::post('locale/getInfosTeacher', [EnseignantController::class,'getInfosTeacher']);
+
+
+
+
+
+
+
+
+
+// });
+
+
 
 
 

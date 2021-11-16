@@ -16,8 +16,8 @@ class CreateAssignersTable extends Migration
         Schema::create('assigners', function (Blueprint $table) {
             $table->id();
             //$table->string('codeEtabAssisgn')->default("NULL");
-            $table->foreignId('etablissement_id')->constrained()->default('NULL')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->default('NULL')->onDelete('cascade');
+            $table->foreignId('etablissement_id')->constrained()->nullable()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enseignants;
-use App\Models\Session;
 use App\Models\User;
+use App\Models\Classe;
+use App\Models\Session;
+use App\Models\Matieres;
+use App\Models\Enseignants;
 use Illuminate\Http\Request;
 
 class EnseignantController extends Controller
@@ -14,21 +16,45 @@ class EnseignantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function getInfosTeacher(Request $request) {
+
+        $this->validate($request,[
+            'id'=>'required'
+        ]);
+
+        // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
+
+         $Ecole = Enseignants::Find($request->id);
+
+        // Prenons le codeEtab
+
+         $codeEtab = $Ecole->codeEtab;
+
+        //  Prenons  la session
+
+          $sessionEncour = $Ecole->session;
+
+        $Datas = Classe ::with('Enseignants')->get();
+
+        return  response()->json($Datas);
+
+     }
     public function addEnseignant( Request $request)
 
     {
 
-    
-         //  Recuperons le code etab 
+         //  Recuperons le code etab
 
          $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
 
-         // Recuperons les datas de la session en cour 
- 
+         // Recuperons les datas de la session en cour
+
          $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
- 
-         // Recuperons le libelle  de la session en cour 
-         
+
+         // Recuperons le libelle  de la session en cour
+
          $sessionEncour = $sessiondata[0]['libelle_sess'];
 
         // dd( $codeEtab);
@@ -43,10 +69,23 @@ class EnseignantController extends Controller
             'loginAdmin' => 'required',
             'passAdmin' => 'required',
             'CpassAdmin' => 'required',
+
         ]);
 
-       
+
         // Enregistrer dans la table User
+
+        if ($request->imageLogo == '') {
+
+            $request->imageLogo = 'elevedefault.png';
+        }
+
+
+         if($request->type==''){
+
+           $request->type=1; // titulaire enseigant par default
+
+         }
 
         $user = User::Create([
 
@@ -57,14 +96,14 @@ class EnseignantController extends Controller
             'telephone'=>$request->telAdmin,
             'password'=>bcrypt( $request->passAdmin),
             'photo'=>$request->imageLogo,
-            'type'=>'Enseignant'
+            'type'=>'Enseignant',
+
          ]);
 
-          
+
         // Enregistrer dans la table Enseignant
 
         $user = Enseignants::Create([
-
             'user_id' => $user->id,
             'nom' => $request->nomAdmin,
             'prenom'=>$request->PrenomAdmin,
@@ -75,11 +114,14 @@ class EnseignantController extends Controller
             'situation'=>$request->situation,
             'salaire'=>$request->salaire,
             'dateEmbauche'=>$request->embauche,
-            'type'=>$request->type
+            'type'=>$request->type,
+            'codeEtab'=>$codeEtab,
+            'session'=>$sessionEncour,
+            'nationalite'=>$request->natio
 
          ]);
 
-        
+
     }
 
     /**
@@ -98,10 +140,74 @@ class EnseignantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function getAllEnseignant(Request $request)
+
     {
-        //
+
+         //  Recuperons le code etab
+
+        $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
+
+        // Recuperons les datas de la session en cour
+
+        $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+
+        // Recuperons le libelle  de la session en cour
+
+        $sessionEncour = $sessiondata[0]['libelle_sess'];
+
+        // Recuperons tous les enseignants
+
+        $Datas = Enseignants ::where('session',$sessionEncour)->where('codeEtab',$codeEtab)->get();
+
+        return  response()->json($Datas);
+
     }
+
+
+    public function  getAllEnseignantAffectMatieres(Request $request){
+
+         //  Recuperons le code etab
+
+         $codeEtab = $request['codeEtabClasse'];
+
+         // Recuperons les datas de la session en cour
+
+         $sessionEncour = $request['sessionClasse'];
+
+         // Recuperons tous les enseignants de cette classe avec leurs matieres
+
+           $Datas = Matieres::with('Enseignants')->where('classe_id',$request->id)->where('codeEtab',$codeEtab)->where('session',$sessionEncour )->get();
+
+
+         return  response()->json($Datas);
+
+    }
+
+    public function getAllEnseignantAffect(Request $request)
+
+    {
+
+         //  Recuperons le code etab
+
+        $codeEtab = $request['codeEtabClasse'];
+
+        // Recuperons les datas de la session en cour
+
+        $sessionEncour = $request['sessionClasse'];
+
+        // Recuperons tous les enseignants
+
+         // $Datas = Matieres::with('Enseignants')->where('id', $request->id)->get();
+
+          $Datas = Enseignants::where('session',$sessionEncour)->where('codeEtab',$codeEtab)->get();
+
+
+        return  response()->json($Datas);
+
+    }
+
+
 
     /**
      * Display the specified resource.

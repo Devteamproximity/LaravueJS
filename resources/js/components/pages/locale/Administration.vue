@@ -8,11 +8,19 @@
                 <div class="container-full">
                     <section class="content">
                         <!-- START Card With Image -->
-                        <div class="card">
+
+                         <Alert type="light" closable class="card">
+
+                                         <div class="card-header">
+                                             <h4 class="card-title">  ADMINISTRATION </h4>
+
+                                         </div>
+                        </Alert>
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title"> ADMINISTRATION </h4>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
 
@@ -20,75 +28,84 @@
 
                                 <router-link to="matieres">
 
+
                                     <div class="card">
+
                                         <img
                                             class="card-img-top"
                                             src="images/cap.PNG"
                                             alt="Card image cap"
                                         />
-                                        <div class="card-body">
-                                            <h4 class="card-title"> MATIERES </h4>
-                                           
+
+                                        <div class="box-body py-25" style="text-align: center;">
+
+                                                <p class="font-weight-600"> SALLES  </p>
                                         </div>
-                                        
+
                                     </div>
 
                                 </router-link>
-                               
+
                             </div>
 
                             <div class="col-md-12 col-lg-4">
 
                                 <router-link to="classes">
 
-                                    <div class="card">
-                                          <img
-                                            class="card-img-top"
-                                            src="images/cap2.PNG"
-                                            alt="Card image cap"
-                                        />
-                                        <div class="card-body">
-                                            <h4 class="card-title"> CLASSES </h4>
-                                            
-                                        </div>
-                                        
-                                    </div>
+                                     <div class="card">
 
-                                </router-link>
-                               
-                            </div>
-                            
-                            <div class="col-md-12 col-lg-4">
-
-                                <router-link to="users">
-
-                                    <div class="card">
                                         <img
                                             class="card-img-top"
                                             src="images/cap.jpg"
                                             alt="Card image cap"
                                         />
-                                        <div class="card-body">
-                                            <h4 class="card-title"> UTILISATEURS </h4>
-                                           
+
+                                          <div class="box-body py-25" style="text-align: center;">
+
+                                                <p class="font-weight-600"> CLASSES  </p>
                                         </div>
-                                        
+
                                     </div>
 
                                 </router-link>
-                               
+
                             </div>
-                            
-                            
+
+                            <div class="col-md-12 col-lg-4">
+
+                                <router-link to="users">
+
+
+                                    <div class="card">
+
+                                        <img
+                                            class="card-img-top"
+                                            src="images/cap2.PNG"
+                                            alt="Card image cap"
+                                        />
+
+                                        <div class="box-body py-25" style="text-align: center;">
+
+                                                <p class="font-weight-600"> UTILISATEURS  </p>
+                                        </div>
+
+                                    </div>
+
+
+                                </router-link>
+
+                            </div>
+
+
                         </div>
-                        
+
                     </section>
                 </div>
             </div>
         </div>
         <Chats />
     </div>
-   
+
 </template>
 
 <script>
@@ -173,8 +190,8 @@ export default {
     async mounted() {
 
 
-    
-        // Recuperer toutes les infos de cette ecole 
+
+        // Recuperer toutes les infos de cette ecole
 
         const response = await this.callApi("get", "api/locale/getEtabinfos");
 
@@ -185,7 +202,7 @@ export default {
             this.users = JSON.parse(localStorage.getItem("users"));
         }
 
-        // Recuperer toutes les sessions de cette ecole 
+        // Recuperer toutes les sessions de cette ecole
 
         const response2 = await this.callApi("post", "api/locale/getSessionEtablissement", this.EtabInfos);
 
@@ -193,7 +210,7 @@ export default {
 
           console.log(this.sessions);
 
-        // Recuperer toutes les trimestres  de cette ecole 
+        // Recuperer toutes les trimestres  de cette ecole
 
         const response3 = await this.callApi("post", "api/locale/getTrimestreEtablissement", this.EtabInfos);
 
@@ -201,7 +218,7 @@ export default {
 
         console.log(this.trimestres);
 
-        
+
     },
 
 };

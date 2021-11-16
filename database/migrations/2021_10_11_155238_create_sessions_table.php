@@ -15,15 +15,15 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('etablissement_id')->constrained()->default('NULL')->onDelete('cascade');
-            $table->string('libelle_sess')->default("NULL");
-            $table->string('codeEtab_sess')->default("NULL");
-            $table->string('encours_sess')->default("NULL");
-            $table->string('status_sess')->default("NULL");
-            $table->string('type_sess')->default("NULL");
-            $table->string('datedeb_sess')->default("NULL");
-            $table->string('datefin_sess')->default("NULL");
-            $table->string('celendar_sess')->default("NULL");
+            $table->foreignId('etablissement_id')->constrained()->nullable()->onDelete('cascade');
+            $table->string('libelle_sess')->nullable();
+            $table->string('codeEtab_sess')->nullable();
+            $table->string('encours_sess')->nullable();
+            $table->string('status_sess')->nullable();
+            $table->string('type_sess')->nullable();
+            $table->string('datedeb_sess')->nullable();
+            $table->string('datefin_sess')->nullable();
+            $table->string('celendar_sess')->nullable();
             $table->timestamps();
         });
     }

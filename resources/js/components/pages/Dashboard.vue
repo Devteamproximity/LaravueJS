@@ -59,6 +59,7 @@ import Chats from '../navs/Chats.vue';
        async  mounted() {
             console.log('Component mounted.');
             if (localStorage.getItem('UserData'))
+
             {
                 let thedata = JSON.parse(localStorage.getItem('UserData'));
                 // console.log(thedata.data.data);
@@ -68,14 +69,7 @@ import Chats from '../navs/Chats.vue';
             }
 
         }
-        /*,
-    mounted(){
-      console.log('App Mounted');
-        // if (localStorage.getItem('UserData'))
-        //     this.UserData = JSON.parse(localStorage.getItem('UserData'));
 
-        //     console.log(this.UserData);
-    }*/
 
     }
 </script>

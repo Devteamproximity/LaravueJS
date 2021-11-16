@@ -14,10 +14,6 @@ class ParentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -26,16 +22,30 @@ class ParentController extends Controller
      */
     public function addParent( Request $request)
     {
-         //  Recuperons le code etab 
+
+
+        //dd($request->cni);
+
+        if($request->imageLogo==''){
+
+            $request->imageLogo = 'parentdefault.png';
+        }
+
+        // if($request->cni||$request->address||$request->natio==''){
+
+        //     $request->cni =  $request->address = $request->natio= 'RAS';
+
+        // }
+         //  Recuperons le code etab
 
          $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
 
-         // Recuperons les datas de la session en cour 
- 
+         // Recuperons les datas de la session en cour
+
          $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
- 
-         // Recuperons le libelle  de la session en cour 
-         
+
+         // Recuperons le libelle  de la session en cour
+
          $sessionEncour = $sessiondata[0]['libelle_sess'];
 
 
@@ -50,14 +60,12 @@ class ParentController extends Controller
             'passAdmin' => 'required',
             'CpassAdmin' => 'required',
             'profession'=>'required',
-            
-        
+
         ]);
 
-        // Enregistrer dans la table user 
+        // Enregistrer dans la table user
 
         $user = User::Create([
-
             'nom' => $request->nomAdmin,
             'prenom'=>$request->PrenomAdmin,
             'email'=>$request->emailAdmin,
@@ -68,7 +76,7 @@ class ParentController extends Controller
             'type'=>'Parent'
          ]);
 
-        // Enregistrer dans la table parent 
+        // Enregistrer dans la table parent
 
          $parent  = Parents::Create([
 
@@ -84,14 +92,14 @@ class ParentController extends Controller
             'addressParent'=>$request->address,
             'codeEtab'=>$codeEtab,
             'session'=>$sessionEncour,
-            
+
         ]);
 
 
 
 
 
-      
+
 
 
         // dd($request);
@@ -106,21 +114,21 @@ class ParentController extends Controller
     public function getParent (Request $request)
     {
 
-        //  Recuperons le code etab 
+        //  Recuperons le code etab
 
         $codeEtab = $request[0]['codeEtab'];
 
         // dd($request[0]['codeEtab']);
 
-        // Recuperons les datas de la session en cour 
+        // Recuperons les datas de la session en cour
 
            $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
 
-        // Recuperons le libelle  de la session en cour 
-        
+        // Recuperons le libelle  de la session en cour
+
            $sessionEncour = $sessiondata[0]['libelle_sess'];
 
-        // Recuperons les parents de cette ecole et et de la session en cour 
+        // Recuperons les parents de cette ecole et et de la session en cour
 
           $parents = Parents::where('codeEtab', $codeEtab)->where('session',$sessionEncour)->orderBy('id', 'desc')->get();
 

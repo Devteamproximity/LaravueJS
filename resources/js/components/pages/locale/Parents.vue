@@ -12,9 +12,9 @@
 
                             <div class="col-12">
 				<div class="box">
-					<div class="box-header">						
-						<h4 class="box-title"> Liste des parents 
-                            <span>  
+					<div class="box-header">
+						<h4 class="box-title"> Liste des parents
+                            <span>
                                 <router-link to="addParent">
 
                                     <button style="margin-left: 650px;"
@@ -22,21 +22,24 @@
                                                     class="btn btn-outline btn-info mb-5"
                                                     @click="modal6 = true"
                                                 >
-                                                    <Icon type="md-add" />
+                                                    <Icon type="md-person-add" />
 
                                                     Nouveau
                                                 </button>
 
                                 </router-link>
-                                                
+
                             </span>
                         </h4>
 					</div>
 					<div class="box-body">
 						<div class="table-responsive">
-							<table id="complex_header" class="table table-striped table-bordered display" style="width:100%">
-								<thead>
-									
+							<table   id="example"
+                                     class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable"
+                                    style="width:100%">
+
+								<thead >
+
 									<tr>
 										<th>Nom</th>
 										<th>Prenom</th>
@@ -55,26 +58,34 @@
 										<td>{{data.emailParent}}</td>
                                         <td>{{data.professionParent}}</td>
                                         <td style="text-align:center" class="center">
-                                                <span class="btn btn-xs" style="background-color:chocolate;color:white" title="">
-                                                    <i class="ti-view-grid"></i> 
+                                                <span class="btn btn-xs" style="background-color:green;color:white" title="">
+                                                    <i class="ti-pencil"></i>
                                                 </span>
                                                 <span class="btn btn-xs" style="background-color:red;color:white" title="">
-                                                    <i class="ti-loop"></i> 
+                                                    <i class="ti-trash"></i>
                                                 </span>
 
+                                                <router-link to="enfantsParent">
+                                                    <span class="btn btn-xs" style="background-color:gray;color:white" title="Voir ses enfants">
+                                                    <i class="ti-eye"></i>
+                                                </span>
+
+                                                </router-link>
+
+
                                         </td>
-                                       
-										
-									</tr>	
-				
+
+
+									</tr>
+
 								</tbody>
-								
+
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-                           
+
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
@@ -108,7 +119,7 @@ export default {
         return {
             UserData: [],
             EtabInfos:'',
-           
+
             data: {
                 sigleClasse:'',
                 MontantScol:'',
@@ -118,26 +129,26 @@ export default {
             },
 
             datas:[]
-          
+
         };
     },
-  
+
 
 
     methods: {
-        
+
     },
 
      async mounted() {
-        
+
         // Recuperer toutes les infos de cette ecole dans le storage
 
-        if (localStorage.EtabInfos)  {  
+        if (localStorage.EtabInfos)  {
 
-            this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));   
+            this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
         }
 
-        // Recuperer tous les parents de cette ecole 
+        // Recuperer tous les parents de cette ecole
 
        const response2 = await this.callApi(
             "post",
@@ -149,10 +160,10 @@ export default {
 
         console.log(this.datas);
 
-       
-       
+
+
     }
-    
+
 }
 
 

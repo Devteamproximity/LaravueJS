@@ -15,9 +15,9 @@ class CreateLibelleMatieresTable extends Migration
     {
         Schema::create('libelle_matieres', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle')->default("NULL");
-            $table->string('session')->default("NULL");
-            $table->string('codeEtab')->default("NULL");
+            $table->string('libelle')->nullable();
+            $table->string('session')->nullable();
+            $table->string('codeEtab')->nullable();
             $table->timestamps();
         });
     }

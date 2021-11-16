@@ -221,7 +221,6 @@ class EtablissementController extends Controller
         
         $assigner = Assigners::Create([
 
-            //'codeEtabAssisgn'=>$request->codeEtablissement,
             'user_id'=>$user->id, 
             'etablissement_id'=>$data->id
             

@@ -15,19 +15,19 @@ class CreateParentsTable extends Migration
     {
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->default('NULL')->onDelete('cascade');
-            $table->string('nomParent')->default("NULL");
-            $table->string('prenomParent')->default("NULL");
+            $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
+            $table->string('nomParent')->nullable();
+            $table->string('prenomParent')->nullable();
             $table->integer('telParent')->default("0");
-            $table->string('professionParent')->default("NULL");
-            $table->string('cniParent')->default("NULL");
-            $table->string('emailParent')->default("NULL");
-            $table->string('sexeParent')->default("NULL");
+            $table->string('professionParent')->nullable();
+            $table->string('cniParent')->nullable();
+            $table->string('emailParent')->nullable();
+            $table->string('sexeParent')->nullable();
             $table->integer('statutParent')->default("1");
-            $table->string('nationaliteParent')->default("NULL");
-            $table->string('addressParent')->default("NULL");
-            $table->string('codeEtab')->default("NULL");
-            $table->string('session')->default("NULL");
+            $table->string('nationaliteParent')->nullable();
+            $table->string('addressParent')->nullable();
+            $table->string('codeEtab')->nullable();
+            $table->string('session')->nullable();
             $table->timestamps();
         });
     }

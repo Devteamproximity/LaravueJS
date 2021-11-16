@@ -13,33 +13,33 @@
                                 <!-- /.box -->
 
                                 <div class="box">
-                                    <div class="box-header with-border">
+                                    <div class="box-header with-border" style="margin:auto;">
                                         <h3 class="box-title">
-                                            <span> Liste des classes 
+                                            <span> Liste des classes
+
+
+
                                                 <button style="margin-left: 650px;"
                                                     type="button"
                                                     class="waves-effect btn btn-outline btn-info mb-5"
-                                                    @click="modal6 = true"
-                                                >
-                                                    <Icon type="md-add" />
+                                                    @click="modal6=true"
+
+                                                    >
+                                                    <Icon type="md-person-add" />
 
                                                     Nouveau
                                                 </button>
+
+
+
                                             </span>
                                         </h3>
 
-                                        <!-- <h6 class="box-subtitle">
-                                            Export data to Copy, CSV, Excel, PDF
-                                            & Print
-                                        </h6> -->
-                                    </div>
 
-                                    <!-- Modal pour ajouter une classe -->
-
-                                    <Modal
+                                         <Modal
                                         v-model="modal6"
                                         title="Ajouter une classe "
-                                      
+
                                     >
                                         <div class="row">
                                             <div class="col-md-12">
@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
 
-                    
+
                                         <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="form-label">
@@ -140,7 +140,7 @@
                                                 </div>
                                             </Upload>
 
-                                           
+
                                          <div slot="footer">
                                                 <Button
                                                     type="primary"
@@ -152,22 +152,27 @@
                                             </div>
                                     </Modal>
 
-                                 
+
+                                    </div>
+
+
 
                                     <!-- /.box-header -->
                                     <div class="box-body">
+
+
                                         <div class="table-responsive">
                                             <table
                                                 id="example"
-                                                class="table table-bordered table-striped"
+                                                class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable"
                                                 style="width:100%"
                                             >
-                                                <thead>
+                                                <thead >
                                                     <tr>
-                                                        
+
                                                         <th>Classes</th>
                                                         <th>Effectifs</th>
-                                                        
+
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -187,7 +192,7 @@
                                                         </td>
 
                                                          <td>
-                                                          56
+                                                          {{data.eleves.length}}
                                                         </td>
 
                                                         <td >
@@ -195,25 +200,26 @@
                                                             <router-link to="matieres">
 
                                                                 <span class="btn btn-xs" style="background-color:green;color:white" title="Ajouter une matiere ">
-                                                                  <i class="ti-plus" @click="cloturer(data,i)"></i> 
+                                                                  <i class="ti-plus" @click="cloturer(data,i)"></i>
                                                                 </span>
-                                                                
+
                                                             </router-link>
-                                                            
-                                                             <span class="btn btn-xs" style="background-color:blue;color:white" title="Modifier la classe">
-                                                                <i class="ti-pencil"></i> 
+
+                                                             <span class="btn btn-xs" style="background-color:rgb(28, 163, 241);color:white" title="Modifier la classe">
+                                                                <i class="ti-pencil"></i>
                                                              </span>
                                                              <span class="btn btn-xs" style="background-color:red;color:white" title="Supprimer">
-                                                                 <i class="ti-loop"></i> 
+                                                                 <i class="ti-trash"></i>
                                                             </span>
 
-                                                            <span class="btn btn-xs" style="background-color:gray;color:white" title="Voir">
-                                                                 <i class="ti-eye"></i> 
-                                                            </span>
+                                                            <router-link to="listeEleve">
+                                                                <span  class="btn btn-xs" style="background-color:gray;color:white" title="Liste des eleves de cette classe ">
+                                                                     <i  @click="ListeEleve(data,i)" class="ti-eye"></i>
+                                                                </span>
+                                                            </router-link>
 
                                                       </td>
-                                       
-                                                      
+
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -269,15 +275,15 @@ export default {
 
             datas:[],
             classeItem:"",
+            classeId:"",
             visible: false,
             uploadList: []
         };
     },
-    //  Recuperer les donnees envoyees dans la store par computed:
-    computed: mapState(["datasUser"]),
 
 
     methods: {
+
         async handleRemove(file) {
             const image = this.data;
 
@@ -320,30 +326,30 @@ export default {
             return check;
         },
         async Submit() {
-            
+
             if (this.data.sigleClasse.trim()=="") {
 
-                 return this.e("Saisir un nom de la classe ");  
-            } 
+                 return this.e("Saisir un nom de la classe ");
+            }
 
             if (this.data.FraisInscrip.trim()=="") {
 
-                 return this.e("Saisir un chiffre pour  les frais d'incription ");  
-            } 
+                 return this.e("Saisir un chiffre pour  les frais d'incription ");
+            }
 
             if (this.data.MontantScolAffect.trim()=="") {
 
-                 return this.e("Saisir un chiffre le montant de la scolarite affecte");  
-            } 
+                 return this.e("Saisir un chiffre le montant de la scolarite affecte");
+            }
 
             if (this.data.MontantScol.trim()=="") {
 
-                 return this.e("Saisir un chiffre le montant de la scolarite ");  
-            } 
+                 return this.e("Saisir un chiffre le montant de la scolarite ");
+            }
 
             if(this.data.imageEmploiTmp.trim()==''){
 
-                 return this.e("Inserer l'emploi du temps");  
+                 return this.e("Inserer l'emploi du temps");
             }
 
              this.data.EcoleInfos = this.EtabInfos;
@@ -358,36 +364,46 @@ export default {
 
                     this.datas.unshift(res.data)
 
-                  
+
                 } else {
                     this.e("Une erreure est survenue");
                 }
-            
+
         },
 
        cloturer(data,i) {
 
-           
+
             this.classeItem = data
 
-            // Enregistrer les donnees du user dans le local storage 
+            // Enregistrer les donnees de la classe  dans le local storage
 
               localStorage.setItem('classeItem', JSON.stringify(data));
 
-            
-        }
+
+        },
+
+        ListeEleve(data,i) {
+
+             this.classeId = data
+
+            // mettre  id de la classe cliquee  dans le local storage
+
+              localStorage.setItem('classeId', JSON.stringify(data));
+
+        // console.log(data);
+
+    }
     },
 
-     async mounted() {
-        
+     async created() {
+
         // Recuperer toutes les infos de cette ecole dans le storage
 
-        if (localStorage.EtabInfos)  { 
+        if (localStorage.EtabInfos)  {
 
             this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
 
-           
- 
         }
 
          // Recuperer toutes les sessions de cette ecole
@@ -400,11 +416,12 @@ export default {
 
         this.datas = response2.data
 
-        console.log(this.datas);
-   
-       
-    }
-    
+        //console.log(this.datas);
+
+    },
+
+
+
 }
 </script>
 

@@ -13,7 +13,7 @@
                             <div class="col-12">
                                 <div class="box box-default">
                                     <div class="box-header with-border">
-                                        <h4 class="box-title">Session</h4>
+                                        <h4 class="box-title">Annee scolaire </h4>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
@@ -100,12 +100,7 @@
                                                         <div
                                                             class="box-header with-border"
                                                         >
-                                                            <h4
-                                                                class="box-title text-info"
-                                                            >
-                                                                Liste des trimestres de la session en cours 
-                                                                
-                                                            </h4>
+                                                           
                                                         </div>
 
                                                         <div
@@ -232,12 +227,7 @@
                                                         <div
                                                             class="box-header with-border"
                                                         >
-                                                            <h4
-                                                                class="box-title text-info"
-                                                            >
-                                                                Liste des trimestres 
-                                                                
-                                                            </h4>
+                                                            
                                                         </div>
 
                                                         <div
@@ -350,13 +340,7 @@
                                                         <div
                                                             class="box-header with-border"
                                                         >
-                                                            <h4
-                                                                class="box-title text-info"
-                                                            >
-                                                                Formulaire de
-                                                                création de la
-                                                                session
-                                                            </h4>
+                                                           
                                                         </div>
 
                                                         <div

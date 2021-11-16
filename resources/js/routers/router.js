@@ -10,7 +10,7 @@ import EtablissementDash from '../components/pages/admin/EtablissementDash';
 import Dashboard from '../components/pages/Dashboard';
 
 
-//  Routes pour admin local 
+//  Routes pour admin local
 
 import DashboardLocal from '../components/pages/locale/DashboardLocal';
 import Session from '../components/pages/locale/Session';
@@ -23,16 +23,72 @@ import Parents from '../components/pages/locale/Parents';
 import Addparent from '../components/pages/locale/addparent';
 import Enseignants from '../components/pages/locale/Enseignants';
 import Addenseignant from '../components/pages/locale/addenseignant';
-
-
+import Enseignements from '../components/pages/locale/Enseignements';
+import students from '../components/pages/locale/students';
+import inscriptionEleve from '../components/pages/locale/inscriptionEleve';
+import enfantsParent from '../components/pages/locale/enfantsParent';
+import listeEleve from '../components/pages/locale/listeEleve';
+import Sms from '../components/pages/locale/Sms';
+import messageDash from '../components/pages/locale/messageDash'
+import Dashteacher from '../components/pages/teacher/Dashteacher'
 
 const routes=[
 
+    {
+        name: 'Dashteacher',
+        path: '/Dashteacher',
+        component: Dashteacher
+    },
+
+    {
+        name: 'messageDash',
+        path: '/messageDash',
+        component: messageDash
+    },
+
+    {
+        name: 'Sms',
+        path: '/Sms',
+        component: Sms
+    },
+
+    {
+        name: 'listeEleve',
+        path: '/listeEleve',
+        component: listeEleve
+    },
+
+    {
+        name: 'enfantsParent',
+        path: '/enfantsParent',
+        component: enfantsParent
+    },
+
+
+    {
+        name: 'inscriptionEleve',
+        path: '/inscriptionEleve',
+        component: inscriptionEleve
+    },
+
+
+    {
+        name: 'students',
+        path: '/students',
+        component: students
+    },
 
     {
         name: 'Enseignants',
         path: '/Enseignants',
         component: Enseignants
+    },
+
+
+    {
+        name: 'Enseignements',
+        path: '/Enseignements',
+        component: Enseignements
     },
 
     {
@@ -88,12 +144,25 @@ const routes=[
         component: DashboardLocal
     },
 
-    
+
 
     {
         name: 'Session',
         path: '/session',
-        component: Session
+        component: Session,
+        beforeEnter:(to,form,next)=>{
+
+            if(!localStorage.users) {
+                next('/')
+            }
+
+            else {
+                next()
+            }
+
+        }
+
+
     },
 
 

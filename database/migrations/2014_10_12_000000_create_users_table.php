@@ -25,7 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('fonction')->default("NULL");
             $table->string('login')->default("NULL");
             $table->string('password')->default("NULL");
-            $table->boolean('statut')->default(0);            $table->string('photo')->default("NULL");
+            $table->boolean('statut')->default(0);
+            $table->string('photo')->default("NULL");
             $table->string('online')->default(0);
             $table->string('type')->default("NULL");
             $table->string('adresse')->default("NULL");

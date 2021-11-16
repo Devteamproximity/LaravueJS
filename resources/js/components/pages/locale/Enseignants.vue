@@ -10,11 +10,11 @@
                     <section class="content">
                         <div class="row">
 
-                            <div class="col-12"> 
+                            <div class="col-12">
 				<div class="box">
-					<div class="box-header">						
-						<h4 class="box-title"> Liste des enseignants
-                            <span>  
+					<div class="box-header">
+						<h4 class="box-title" style="marging:auto"> Liste des enseignants
+                            <span>
                                 <router-link to="addenseignant">
 
                                     <button style="margin-left: 650px;"
@@ -22,23 +22,24 @@
                                                     class="waves-effect btn btn-outline btn-info mb-5"
                                                     @click="modal6 = true"
                                                 >
-                                                    <Icon type="md-add" />
+                                                  <Icon type="md-person-add" />
 
                                                     Nouveau
                                                 </button>
 
                                 </router-link>
-                                                
+
                             </span>
                         </h4>
 					</div>
 					<div class="box-body">
 						<div class="table-responsive">
-							<table id="complex_header" class="table table-striped table-bordered display" style="width:100%">
-								<thead>
-									
+							<table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable" style="width:100%">
+								<thead >
+
+
 									<tr>
-										<th>Nom</th>
+                                        <th>Nom</th>
 										<th>Prenom</th>
 										<th>Telephone</th>
 										<th>E-mail</th>
@@ -47,25 +48,39 @@
 								</thead>
 								<tbody>
 
-									<tr>
-										<td>Gavin Cortez</td>
-										<td>Team Leader</td>
-										<td>San Francisco</td>
-										<td>22</td>
-										<td>2008/10/26</td>
-										
+								    <tr  v-for="(data,  i) in Enseignants" :key="i">
+										<td> {{data.nom}}</td>
+									    <td> {{data.prenom}}</td>
+										<td> {{data.tel}}</td>
+										<td> {{data.email}}</td>
+									   <td >
+
+
+
+                                                <span class="btn btn-xs" style="background-color:#2D8CF0;color:white" title="Modifier"> <i class="ti-pencil"></i>   </span>
+
+
+                                                <span class="btn btn-xs" style="background-color:red;color:white" title="Supprimer"> <i class="ti-trash"></i> </span>
+
+
+                                              <span class="btn btn-xs" style="background-color:gray;color:white" title="Voir"> <i class="ti-eye"></i>  </span>
+
+
+
+                                        </td>
+
 									</tr>
-						
-									
-				
+
+
+
 								</tbody>
-								
+
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-                           
+
                             <!-- /.col -->
                         </div>
                         <!-- /.row -->
@@ -113,11 +128,12 @@ export default {
             datas:[],
 
             visible: false,
-            uploadList: []
+            uploadList: [],
+            Enseignants:[]
+
         };
     },
-    //  Recuperer les donnees envoyees dans la store par computed:
-    computed: mapState(["datasUser"]),
+
 
 
     methods: {
@@ -163,30 +179,30 @@ export default {
             return check;
         },
         async Submit() {
-            
+
             if (this.data.sigleClasse.trim()=="") {
 
-                 return this.e("Saisir un nom de la classe ");  
-            } 
+                 return this.e("Saisir un nom de la classe ");
+            }
 
             if (this.data.FraisInscrip.trim()=="") {
 
-                 return this.e("Saisir un chiffre pour  les frais d'incription ");  
-            } 
+                 return this.e("Saisir un chiffre pour  les frais d'incription ");
+            }
 
             if (this.data.MontantScolAffect.trim()=="") {
 
-                 return this.e("Saisir un chiffre le montant de la scolarite affecte");  
-            } 
+                 return this.e("Saisir un chiffre le montant de la scolarite affecte");
+            }
 
             if (this.data.MontantScol.trim()=="") {
 
-                 return this.e("Saisir un chiffre le montant de la scolarite ");  
-            } 
+                 return this.e("Saisir un chiffre le montant de la scolarite ");
+            }
 
             if(this.data.imageEmploiTmp.trim()==''){
 
-                 return this.e("Inserer l'emploi du temps");  
+                 return this.e("Inserer l'emploi du temps");
             }
 
              this.data.EcoleInfos = this.EtabInfos;
@@ -201,41 +217,39 @@ export default {
 
                     this.datas.unshift(res.data)
 
-                  
+
                 } else {
                     this.e("Une erreure est survenue");
                 }
-            
+
         }
     },
 
      async mounted() {
-        
+
         // Recuperer toutes les infos de cette ecole dans le storage
 
-        if (localStorage.EtabInfos)  { 
+        if (localStorage.EtabInfos)  {
 
             this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
 
-           
- 
+
+
         }
 
-         // Recuperer toutes les sessions de cette ecole
+         // Recuperer toutes les enseigants de cette  ecole
 
-        const response2 = await this.callApi(
-            "post",
-            "api/locale/getClasseEtablissement",
-             this.EtabInfos
-        );
+         // Je rajoute les  information de l'ecole appartenant a l'utulisateur qui s'est logger a ma data qui ira dans l'api de creation de la session
 
-        this.datas = response2.data
+                this.data.EcoleInfos = this.EtabInfos;
 
-        console.log(this.datas);
-   
-       
+                const res = await this.callApi("post", "api/locale/getAllEnseignant", this.data);
+
+                this.Enseignants =  res.data
+
+
     }
-    
+
 }
 </script>
 
