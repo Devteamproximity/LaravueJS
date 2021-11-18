@@ -38,7 +38,7 @@
 
                             <div class="col-md-12 col-lg-4">
 
-                                <router-link to="classes">
+                                <router-link to="emploiDutemps">
 
                                    <div class="card">
 

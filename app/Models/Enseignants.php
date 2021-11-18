@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Classe;
 use App\Models\Matieres;
 use Illuminate\Database\Eloquent\Model;
@@ -42,8 +43,8 @@ class Enseignants extends Model
         return $this->belongsToMany(Classe::class);
     }
 
-    // public function Classe () {
-    //     return $this->hasMany(Classe::class);
-    // }
+    public function User () {
+        return $this->hasOne(User::class);
+    }
 
 }

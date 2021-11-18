@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Classe;
 use App\Models\Session;
+use App\Models\Student;
 use App\Models\Matieres;
 use App\Models\Enseignants;
 use Illuminate\Http\Request;
@@ -18,6 +19,30 @@ class EnseignantController extends Controller
      */
 
 
+     public function getEleveclasseByTeacher(Request $request){
+
+          // Recuperer l'id de la classe
+
+          $idclasse = $request->classe_id;
+
+          // Recuperer le code de l'ecole
+
+          $codeEtab  = $request->codeEtab;
+
+          // Recuperer la session en cour
+
+          $sessionEncour  = $request->session;
+
+          // Recuperer les eleves d'une classes
+
+           // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+
+           $EleveData = Student::where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+
+          return response()->json($EleveData);
+     }
+
+
      public function getInfosTeacher(Request $request) {
 
         $this->validate($request,[
@@ -26,17 +51,24 @@ class EnseignantController extends Controller
 
         // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
 
-         $Ecole = Enseignants::Find($request->id);
+        $Ecole = Enseignants::where('user_id',$request->id)->first();
+
+        // id du prof dan la table enseignant
+
+        $idProf = $Ecole->id;
+
 
         // Prenons le codeEtab
 
-         $codeEtab = $Ecole->codeEtab;
+        $codeEtab = $Ecole->codeEtab;
 
         //  Prenons  la session
 
-          $sessionEncour = $Ecole->session;
+        $sessionEncour = $Ecole->session;
 
-        $Datas = Classe ::with('Enseignants')->get();
+        $Datas = Matieres::with('Classe')->where('enseignants_id', $idProf)
+                                        ->where('codeEtab', $codeEtab)
+                                        ->where('session',$sessionEncour)->orderBy('id', 'desc')->get();
 
         return  response()->json($Datas);
 

@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Classe;
+use App\Models\Parents;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -37,5 +40,12 @@ class Student extends Model
 
         return $this->belongsTo(User::class);
 
+    }
+
+    public function parent(){
+        return $this->belongsTo(Parents::class);
+    }
+    public function classe(){
+        return $this->belongsTo(Classe::class);
     }
 }

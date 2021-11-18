@@ -12,14 +12,14 @@
 
                             <div class="col-12">
 				<div class="box">
-					<div class="box-header">
-						<h4 class="box-title"> Liste des parents
+					<div class="box-header bg-primary">
+						<h4 class="box-title"  style="marging:auto"> Liste des parents
                             <span>
                                 <router-link to="addParent">
 
                                     <button style="margin-left: 650px;"
                                                     type="button"
-                                                    class="btn btn-outline btn-info mb-5"
+                                                    class="btn  btn-primary mb-5"
                                                     @click="modal6 = true"
                                                 >
                                                     <Icon type="md-person-add" />
@@ -35,7 +35,7 @@
 					<div class="box-body">
 						<div class="table-responsive">
 							<table   id="example"
-                                     class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable"
+                                     class="table simple mb-0"
                                     style="width:100%">
 
 								<thead >

@@ -13,30 +13,39 @@
                                 <!-- /.box -->
 
                                 <div class="box">
-                                    <div class="box-header with-border" style="margin:auto;">
-                                        <h3 class="box-title">
-                                            <span> Liste des classes
 
 
 
-                                                <button style="margin-left: 650px;"
+                                    <div class="box-header bg-primary">
+
+                            <h4 class="box-title"  style="marging:auto">  Liste des classes
+                                            <span>
+                                                <button style="margin-left:650px;"
                                                     type="button"
-                                                    class="waves-effect btn btn-outline btn-info mb-5"
-                                                    @click="modal6=true"
-
-                                                    >
-                                                    <Icon type="md-person-add" />
+                                                     class="waves-effect btn  btn-primary mb-5"
+                                                    @click="modal6 = true"
+                                                >
+                                                    <Icon type="md-add" />
 
                                                     Nouveau
                                                 </button>
-
-
-
                                             </span>
-                                        </h3>
+                                        </h4>
+
+					</div>
 
 
-                                         <Modal
+
+
+
+
+
+
+
+
+                                    <!-- Modal pour ajouter une classe -->
+
+                                    <Modal
                                         v-model="modal6"
                                         title="Ajouter une classe "
 
@@ -152,19 +161,13 @@
                                             </div>
                                     </Modal>
 
-
-                                    </div>
-
-
-
                                     <!-- /.box-header -->
                                     <div class="box-body">
-
 
                                         <div class="table-responsive">
                                             <table
                                                 id="example"
-                                                class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable"
+                                                class="table simple mb-0"
                                                 style="width:100%"
                                             >
                                                 <thead >
@@ -192,7 +195,10 @@
                                                         </td>
 
                                                          <td>
-                                                          {{data.eleves.length}}
+                                                             <span class="btn btn-xs" style="background-color:rgba(105, 21, 98, 0.829);color:white" title="Ajouter une matiere ">
+                                                                   {{data.eleves.length}}
+                                                                </span>
+
                                                         </td>
 
                                                         <td >
@@ -205,7 +211,7 @@
 
                                                             </router-link>
 
-                                                             <span class="btn btn-xs" style="background-color:rgb(28, 163, 241);color:white" title="Modifier la classe">
+                                                             <span class="btn btn-xs" style="background-color:rgb(18, 114, 240);color:white" title="Modifier la classe">
                                                                 <i class="ti-pencil"></i>
                                                              </span>
                                                              <span class="btn btn-xs" style="background-color:red;color:white" title="Supprimer">
@@ -219,6 +225,7 @@
                                                             </router-link>
 
                                                       </td>
+
 
                                                     </tr>
                                                 </tbody>

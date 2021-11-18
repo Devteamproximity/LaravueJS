@@ -12,14 +12,14 @@
 
                             <div class="col-12">
 				<div class="box">
-					<div class="box-header">
+					<div class="box-header bg-primary">
 						<h4 class="box-title" style="marging:auto"> Liste des enseignants
                             <span>
                                 <router-link to="addenseignant">
 
                                     <button style="margin-left: 650px;"
                                                     type="button"
-                                                    class="waves-effect btn btn-outline btn-info mb-5"
+                                                    class="waves-effect btn  btn-primary mb-5"
                                                     @click="modal6 = true"
                                                 >
                                                   <Icon type="md-person-add" />
@@ -34,7 +34,7 @@
 					</div>
 					<div class="box-body">
 						<div class="table-responsive">
-							<table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable" style="width:100%">
+							<table id="example" class="table simple mb-0" style="width:100%">
 								<thead >
 
 

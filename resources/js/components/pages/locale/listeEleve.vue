@@ -7,104 +7,78 @@
             <div class="content-wrapper" style="min-height: 653px; background-color:#FAFBFD">
                 <div class="container-full">
                     <!-- Main content -->
+
                     <section class="content">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- /.box -->
 
-                                <div class="box">
-                                    <div class="box-header with-border" style="margin:auto;">
-                                        <h2 class="box-title center" >
+		  <div class="row">
+			  <div class="col-12 ">
+				<div class="box">
 
-                                                 {{data.classeId.libelleClasse}}
+                    <div class="box-header bg-primary">
+                        <h4 class="box-title" style="marging:auto"><strong>{{data.classeId.libelleClasse}}
+                             <button style="margin-left: 650px;"
+                                                    type="button"
+                                                    class="waves-effect btn  btn-primary mb-5"
 
-                                                 <router-link to="inscriptionEleve">
-
-                                                    <button style="margin-left: 450px;"
-                                                            type="button"
-                                                            class="waves-effect btn btn-outline btn-info mb-5"
-
-                                                            >
-                                                            <Icon type="md-add" />
-
-                                                            Nouveau
-                                                    </button>
-
-                                                 </router-link>
-
-                                                 <router-link to="inscriptionEleve">
-
-                                                    <button style="margin-left:0px;"
-                                                            type="button"
-                                                            class="waves-effect btn btn-outline btn-warning mb-5"
-
-                                                            >
-                                                            <Icon type="ios-print-outline" />
-
-                                                            Liste en pdf
-                                                    </button>
-
-                                                 </router-link>
-
-                                        </h2>
-
-
-                                    </div>
-
-                                    <!-- Modal pour ajouter une classe -->
-
-
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-
-
-                                        <div class="table-responsive">
-                                            <table
-                                                id="example"
-                                                class="table table-bordered table-hover display nowrap margin-top-10 w-p100 dataTable"
-                                                style="width:100%"
-                                            >
-                                                <thead >
-                                                    <tr >
-
-                                                        <th> Photo </th>
-                                                        <th> Noms </th>
-                                                        <th>Prénoms</th>
-                                                        <th> Matricule </th>
-                                                        <th> Email</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody
-                                                    name="fruit-table"
-                                                    is="transition-group"
                                                 >
-                                                   <tr  v-for="(data,
-                                                        i) in classeListe"
-                                                        :key="i">
-                                                       <td>
-                                                           <img :src="`/Photos/Logos/${data.user.photo}` "
+                                                  <i class="ti-printer"></i> Liste de la classe
+                             </button>
 
-                                                             style="width:50px;height:50px"
-                                                             />
 
-                                                        </td>
-                                                       <td> {{data.nom}}</td>
-                                                       <td>{{data.prenom }}</td>
-                                                       <td>{{data.matricule }}</td>
-                                                       <td>{{data.email }}</td>
-                                                   </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                                <!-- /.box -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </section>
+                        </strong></h4>
+					</div>
+
+
+				  <div class="box-body">
+					<div class="table-responsive">
+
+						<table class="table product-overview">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Noms et prénoms </th>
+                                    <th>Matricule</th>
+									<th>Email</th>
+									<th >N/A</th>
+									<th >Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(data,  i) in classeListe"  :key="i">
+									<td><img src="/Photos/Logos/elevedefault.jpg" alt="" width="60"></td>
+									<td class="font-weight-900"><h5>{{data.nom}} {{data.prenom}}</h5></td>
+									<td> {{data.matricule}}</td>
+									<td >{{data.email}}</td>
+                                    <td>{{data.doublant}}</td>
+									<td align="center">
+                                        <router-link to="detailsEleve">
+
+                                           <button @click="ParentEleve(data,i)" class="btn btn-circle btn-primary btn-xs" title="Les details sur cet eleve "><i class="ti-eye"></i></button>
+
+                                        </router-link>
+
+
+
+                                            <button class="btn btn-circle btn-warning btn-xs"><i class="ti-printer" title="Imprimer la CNI en PDF "></i></button>
+
+
+                                    </td>
+                                </tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				  </div>
+				</div>
+			  </div>
+
+		  </div>
+
+		</section>
+
+
+
                     <!-- /.content -->
                 </div>
             </div>
@@ -137,14 +111,20 @@ export default {
                 classeId:'',
             },
             classeListe:[],
-            EtabInfos:[]
+            EtabInfos:[],
+            parentEleveInfos:[]
         };
     },
 
 
     methods: {
 
+            ParentEleve(data,i) {
 
+
+              localStorage.setItem('parentEleveInfos', JSON.stringify(data));
+
+            }
 
 
     },

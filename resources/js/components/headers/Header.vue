@@ -146,8 +146,8 @@
 
           <!-- Control Sidebar Toggle Button -->
           <li>
-              <a href="#" data-toggle="control-sidebar" title="Setting" class="waves-effect waves-light">
-			  	<i class="icon-Settings"><span class="path1"></span><span class="path2"></span></i>
+              <a href="#"  title="Synchroniser" @click="Actualiser">
+			  	<i class="ti-stats-up"></i>
 			  </a>
           </li>
 
@@ -163,7 +163,14 @@
 
         mounted() {
             // console.log('Component mounted.')
-        }
+        },
+
+       methods : {
+
+           Actualiser() {
+                 this.$router.go();
+           }
+       }
     }
 </script>
 

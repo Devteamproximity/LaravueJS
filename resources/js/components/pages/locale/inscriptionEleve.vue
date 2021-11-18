@@ -474,7 +474,7 @@
                                             </div>
                                              <div class="col-md-6">
                                                 <label for="">
-                                                    Nouveau ?
+                                                    Situation de l'eleve dans la classe
                                                 </label>
 
                                                 <div class="form-group">
@@ -484,10 +484,10 @@
                                                         button-style="solid"
                                                     >
                                                         <Radio
-                                                            label="Oui"
+                                                            label="Nouveau"
                                                         ></Radio>
                                                         <Radio
-                                                            label="Non"
+                                                            label="Redoublant"
                                                         ></Radio>
                                                     </RadioGroup>
                                                 </div>
@@ -978,7 +978,7 @@ export default {
                 emailParent: "",
                 idParent:"",
                 telSeach: "",
-                redoubl:"Oui"
+                redoubl:"Nouveau"
             },
             EtabInfos: "",
             EcoleInfos: "",

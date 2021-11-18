@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Classe;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Matieres extends Model
 {
@@ -21,7 +22,7 @@ class Matieres extends Model
 
     public function Classe () {
 
-        return $this->belongsTo(Enseignants::class);
+        return $this->belongsTo(Classe::class);
 
     }
 

@@ -16,7 +16,7 @@ class CreateMatieresTable extends Migration
         Schema::create('matieres', function (Blueprint $table) {
             $table->id();
             $table->foreignId('classe_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('enseignants_id')->constrained()->nullable()->onDelete('cascade');
+            $table->foreignId('enseignants_id')->constrained()->default('NULL')->onDelete('cascade');
             $table->string('libelle')->nullable();
             $table->string('codeEtab')->nullable();
             $table->string('session')->default("0");

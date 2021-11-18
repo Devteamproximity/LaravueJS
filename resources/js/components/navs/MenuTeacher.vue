@@ -45,7 +45,7 @@
                             <!-- Menu gestion eleve   -->
 
                              <li class="treeview">
-                                <router-link to="students">
+                                <router-link to="teacher.classe">
                                     <i class="icon-User"
                                         ><span class="path1"></span
                                         ><span class="path2"></span

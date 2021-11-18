@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Classe;
 use App\Models\Session;
+use App\Models\Student;
+use App\Models\Enseignants;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -13,6 +15,33 @@ class ClasseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function getAcllasseTeacher (Request $request) {
+
+         // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
+
+         $Enseignants = Enseignants::where('user_id',$request->id)->first();
+
+         // id du prof dan la table enseignant
+
+         $idProf = $Enseignants->id;
+
+
+         // Prenons le codeEtab
+
+         $codeEtab = $Enseignants->codeEtab;
+
+         //  Prenons  la session
+
+         $sessionEncour = $Enseignants->session;
+
+         // Recuperons les classes de cet enseigants
+
+         $Datas =   Classe::with('Enseignants')->where('id', $idProf)->where('codeEtabClasse', $codeEtab)->where('sessionClasse',$sessionEncour )->orderBy('id', 'desc')->get();
+
+         return response()->json($Datas[0]['classe']);
+         //return response()->json($Datas);
+
+    }
 
     public function getClasseEtablissement (Request $request)  {
 

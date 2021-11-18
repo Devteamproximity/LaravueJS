@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Classe;
 use Illuminate\Http\Request;
 use App\Models\Etablissement;
 use App\Http\Middleware\Authenticate;
@@ -177,6 +178,18 @@ Route::post('/login', [AuthController::class, 'login']);
   // Recuperer toutes les infos de cet enseigants avec ses classes
 
   Route::post('locale/getInfosTeacher', [EnseignantController::class,'getInfosTeacher']);
+
+  // Recuperer toutes les classes d'un enseignant
+
+  Route::post('teacher/getAcllasseTeacher', [ClasseController::class,'getAcllasseTeacher']);
+
+  // Recuperes les eleves  des classes par un enseignants (ses classes )
+
+  Route::post('locale/getEleveclasseByTeacher', [EnseignantController::class,'getEleveclasseByTeacher']);
+
+  // Recuperes les info eleve et son parent
+
+  Route::post('locale/getEleveAndParentInfos', [StudentController::class,'getEleveAndParentInfos']);
 
 
 

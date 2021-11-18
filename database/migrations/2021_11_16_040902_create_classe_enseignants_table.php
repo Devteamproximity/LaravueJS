@@ -16,7 +16,7 @@ class CreateClasseEnseignantsTable extends Migration
         Schema::create('classe_enseignants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('classe_id')->constrained()->nullable()->onDelete('cascade');
-            $table->foreignId('enseignants_id')->constrained()->nullable()->onDelete('cascade');
+            $table->foreignId('enseignants_id')->constrained()->default('NULL')->onDelete('cascade');
             $table->string('codeEtab')->nullable();
             $table->string('session')->default("0");
             $table->timestamps();
