@@ -12,7 +12,13 @@
                          <Alert type="light" closable class="card">
 
                                          <div class="card-header">
-                                             <h4 class="card-title">  ADMINISTRATION </h4>
+                                             <h4 class="card-title">  ADMINISTRATION
+                                                  <p
+                                                class="subtitle font-size-14 mb-0"
+                                            >
+                                               Gestion des salles, des classes et de tous comptes utulisateurs
+                                            </p>
+                                             </h4>
 
                                          </div>
                         </Alert>

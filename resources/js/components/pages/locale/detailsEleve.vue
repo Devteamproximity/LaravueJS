@@ -9,8 +9,14 @@
                         <div type="light" closable class="card">
                             <div class="card-header">
                                 <h4 class="card-title">
-                                    INFORMATIONS SUR L'ELEVE ET SON PARENT      <button class=" btn btn-warning" > <i class="ti-printer"></i>  CNI DE LELEVE </button>
+                                    INFORMATIONS
+
                                 </h4>
+                                <p>
+
+                                         <button class=" btn-circle btn-primary" title="Imprimer la carte scolaire"> <i class="ti-printer"></i> </button>
+
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -40,7 +46,7 @@
                                                 <table
                                                     class="table simple mb-0"
                                                 >
-                                                    <tbody>
+                                                    <tbody> <br><br>
 
                                                          <tr>
                                                             <td>
@@ -140,7 +146,7 @@
                                                     class="table simple mb-0"
                                                 >
                                                     <tbody>
-                                                        <br>
+                                                        <br> <br>
                                                         <tr>
                                                             <td>
                                                                 Noms et prénoms
@@ -260,11 +266,6 @@ export default {
         this.InfoEleveParent = response2.data
 
         }
-
-
-
-
-
 
     },
 

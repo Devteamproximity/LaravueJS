@@ -30,20 +30,33 @@ import enfantsParent from '../components/pages/locale/enfantsParent';
 import listeEleve from '../components/pages/locale/listeEleve';
 import Sms from '../components/pages/locale/Sms';
 import messageDash from '../components/pages/locale/messageDash'
-//import emploiDuTemps from '../components/pages/locale/emploiDuTemps'
+import emploiDuTemps from '../components/pages/locale/emploiDuTemps'
 import detailsEleve from '../components/pages/locale/detailsEleve'
 import Dashteacher from '../components/pages/teacher/Dashteacher'
 import classe from '../components/pages/teacher/classe'
 import listeEleveTeacher from '../components/pages/teacher/listeEleveTeacher'
+import detailEleveTeacher from '../components/pages/teacher/detailEleveTeacher'
+import emploiTempteacher from '../components/pages/teacher/emploiTempteacher'
 
-const routes=[
+const routes= [
 
+    {
+        name: 'emploiTempteacher',
+        path: '/emploiTempteacher',
+        component: emploiTempteacher
+    },
 
-    // {
-    //     name: 'emploiDuTemps',
-    //     path: '/emploiDuTemps',
-    //     component: emploiDuTemps
-    // },
+    {
+        name: 'detailEleveTeacher',
+        path: '/detailEleveTeacher',
+        component: detailEleveTeacher
+    },
+
+    {
+        name: 'emploiDuTemps',
+        path: '/emploiDuTemps',
+        component: emploiDuTemps
+    },
 
     {
         name: 'listeEleveTeacher',

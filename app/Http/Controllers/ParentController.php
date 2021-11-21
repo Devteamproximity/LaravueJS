@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Parents;
 use App\Models\Session;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,21 @@ class ParentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function getAllStudentofeParentByLocal(Request $request) {
+
+        // Recuperrons l'id du parent
+
+        $parentId = $request->id;
+
+        $studentsParent = Student::with('classe','user')->where('parent_id', $parentId)
+                                                 ->where('session',$request->session)
+                                                 ->where('codeEtab',$request->codeEtab)->orderBy('id', 'desc')->get();
+
+        return  response()->json($studentsParent);
+
+    }
     public function addParent( Request $request)
     {
 
@@ -134,7 +150,7 @@ class ParentController extends Controller
 
            // $parents  = Parents::all();
 
-           return $parents ;
+           return response()->json($parents) ;
 
 
     }

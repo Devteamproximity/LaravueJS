@@ -46,6 +46,33 @@ class StudentController extends Controller
 
      }
 
+     public function getEleveAndParentInfosTeacher(Request $request){
+
+        // Recuperer l'id de la classe
+
+        $idEleve = $request->id;
+
+
+
+        // Recuperer le code de l'ecole
+
+        $codeEtab  = $request->codeEtab;
+
+        // Recuperer la session en cour
+
+        $sessionEncour  = $request->session;
+
+        // Recuperer les eleves d'une classes
+
+         // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+
+         $EleveData = Student::with('parent','user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('id', $idEleve)->orderBy('id', 'desc')->get();
+
+             return $EleveData[0];
+
+
+  }
+
     public function getEleveclasse(Request $request)
     {
 
@@ -61,11 +88,11 @@ class StudentController extends Controller
 
         $sessionEncour  = $request->classeId['sessionClasse'];
 
-        // Recuperer les eleves d'une classes
+        // Recuperer les eleves d'une classes, on couple avec la table user pour pouvoir recuperer les photos
 
-         // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+        // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-         $EleveData = Student::where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+         $EleveData = Student::with('user')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
         return response()->json($EleveData);
 
@@ -117,13 +144,21 @@ class StudentController extends Controller
 
         if ($request->imageLogo == '') {
 
+            if($request->sexe='M'){
+
+                $request->imageLogo = 'elevedefaultfille.png';
+
+            }
+
+            else {
+
+                $request->imageLogo = 'elevedefaultgarcon.png';
+
+            }
+
             $request->imageLogo = 'elevedefault.png';
         }
 
-        // if ($request->email||$request->natio=='') {
-
-        //     $request->email = $request->natio = 'RAS';
-        // }
 
         $this->validate($request, [
 

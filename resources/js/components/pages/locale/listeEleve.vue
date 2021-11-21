@@ -45,7 +45,9 @@
 							</thead>
 							<tbody>
 								<tr v-for="(data,  i) in classeListe"  :key="i">
-									<td><img src="/Photos/Logos/elevedefault.jpg" alt="" width="60"></td>
+									<td><img  :src="
+                                                     `/Photos/Logos/${data.user.photo}`
+                                                " alt="" width="60"></td>
 									<td class="font-weight-900"><h5>{{data.nom}} {{data.prenom}}</h5></td>
 									<td> {{data.matricule}}</td>
 									<td >{{data.email}}</td>

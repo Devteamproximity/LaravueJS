@@ -10,7 +10,14 @@
                         <!-- START Card With Image -->
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> ENSEIGNEMENTS </h4>
+                                <h4 class="card-title"> ENSEIGNEMENTS
+                                     <p
+                                                class="subtitle font-size-14 mb-0"
+                                            >
+                                               Gestion de l'annee scolaire, des emplois du temps et des documents
+                                            </p>
+                                </h4>
+
                             </div>
                         </div>
 
@@ -55,6 +62,29 @@
                                 </router-link>
 
                             </div>
+
+                             <div class="col-md-12 col-lg-4">
+
+                                <router-link to="Enseignants">
+
+                                    <div class="card">
+
+                                        <Icon type="ios-folder" style="margin-top: 50px;font-size: 50px;" />
+
+                                         <div class="box-body py-25" style="text-align: center;">
+
+                                                <p class="font-weight-600"> DOCUMENTS</p>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </router-link>
+
+                            </div>
+
 
 
                         </div>

@@ -66,7 +66,7 @@
                                                 </span>
 
                                                 <router-link to="enfantsParent">
-                                                    <span class="btn btn-xs" style="background-color:gray;color:white" title="Voir ses enfants">
+                                                    <span  @click="Details(data,i)" class="btn btn-xs" style="background-color:gray;color:white" title="Voir ses enfants">
                                                     <i class="ti-eye"></i>
                                                 </span>
 
@@ -128,7 +128,8 @@ export default {
                 imageEmploiTmp:''
             },
 
-            datas:[]
+            datas:[],
+            IdParentInfolocal:''
 
         };
     },
@@ -137,11 +138,21 @@ export default {
 
     methods: {
 
+        Details(data,i){
+
+
+             localStorage.setItem('IdParentInfolocal', JSON.stringify(data));
+        }
+
+
+
     },
 
      async mounted() {
 
         // Recuperer toutes les infos de cette ecole dans le storage
+
+
 
         if (localStorage.EtabInfos)  {
 

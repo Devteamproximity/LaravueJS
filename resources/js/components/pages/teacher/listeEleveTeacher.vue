@@ -2,7 +2,7 @@
     <div>
         <div class="wrapper">
             <Header />
-            <MenuLocal />
+            <MenuTeacher />
 
             <div class="content-wrapper" style="min-height: 653px; background-color:#FAFBFD">
                 <div class="container-full">
@@ -40,20 +40,24 @@
                                     <th>Matricule</th>
 									<th>Email</th>
 									<th >N/A</th>
-									<th >Action</th>
+									<th ></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr v-for="(data,  i) in EleveClasse"  :key="i">
-									<td><img src="/Photos/Logos/elevedefault.jpg" alt="" width="80"></td>
+									<td><img  :src="
+                                                     `/Photos/Logos/${data.user.photo}`
+                                                " alt="" width="80"></td>
 									<td class="font-weight-900"><h5>{{data.nom}} {{data.prenom}}</h5></td>
 									<td> {{data.matricule}}</td>
 									<td >{{data.email}}</td>
                                     <td>{{data.doublant}}</td>
 									<td align="center">
-                                        <button class="btn btn-circle btn-danger btn-xs"><i class="ti-trash"></i></button>
-                                        <button class="btn btn-circle btn-warning btn-xs"><i class="ti-trash"></i></button>
-                                        <button class="btn btn-circle btn-success btn-xs"><i class="ti-trash"></i></button>
+
+                                        <router-link to="detailEleveTeacher">
+
+                                            <button @click="ParentEleve(data,i)" class="btn btn-circle btn-primary btn-xs"><i class="ti-eye"></i></button>
+                                        </router-link>
                                     </td>
                                 </tr>
 							</tbody>
@@ -81,7 +85,7 @@
 
 <script>
 import Header from "../../headers/Header.vue";
-import MenuLocal from "../../navs/MenuLocal.vue";
+import MenuTeacher from "../../navs/MenuTeacher.vue";
 import Chats from "../../navs/Chats.vue";
 import { mapState } from "vuex";
 import {
@@ -95,7 +99,7 @@ import {
 import { log } from "util";
 
 export default {
-    components: { Header, MenuLocal, Chats },
+    components: { Header, MenuTeacher, Chats },
     data() {
         return {
 
@@ -103,7 +107,8 @@ export default {
                 classeInfos:'',
             },
             EleveClasse:[],
-            EtabInfos:[]
+            EtabInfos:[],
+            parentEleveInfosTeacher:[]
         };
     },
 
@@ -132,7 +137,17 @@ export default {
 
         console.log( this.EleveClasse);
 
+    },
 
+    methods:{
+
+         ParentEleve(data,i) {
+
+
+              localStorage.setItem('parentEleveInfosTeacher', JSON.stringify(data));
+
+
+            }
 
     }
 

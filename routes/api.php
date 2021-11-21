@@ -127,6 +127,11 @@ Route::post('/login', [AuthController::class, 'login']);
 
   Route::post('locale/getAllEnseignantAffectMatieres', [EnseignantController::class, 'getAllEnseignantAffectMatieres']);
 
+  // Recuperer les enfants d'un parent dans le compte admin
+
+  Route::post('locale/getAllStudentofeParentByLocal', [ParentController::class, 'getAllStudentofeParentByLocal']);
+
+
 
   /* ROUTES POUR LES MATIERS */
 
@@ -157,7 +162,9 @@ Route::post('/login', [AuthController::class, 'login']);
   // Recuperer toutes les matieres d'une  classe precise
 
   Route::post('locale/affecterTeacher', [MatiereController::class, 'affecterTeacher']);
+// Recuperer tous les emplois du temps
 
+Route::post('locale/getAllTimetable', [ClasseController::class, 'getAllTimetable']);
 
 
   /*   ROUTES POUR LES ELEVES    */
@@ -175,6 +182,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
   /* ROUTES POUR LES ENSEIGNANTS */
 
+  // Recuperer les emplois du temps de chaque enseigant
+
+  Route::post('locale/getAllTimetableTeacher', [ClasseController::class, 'getAllTimetableTeacher']);
+
   // Recuperer toutes les infos de cet enseigants avec ses classes
 
   Route::post('locale/getInfosTeacher', [EnseignantController::class,'getInfosTeacher']);
@@ -187,9 +198,13 @@ Route::post('/login', [AuthController::class, 'login']);
 
   Route::post('locale/getEleveclasseByTeacher', [EnseignantController::class,'getEleveclasseByTeacher']);
 
-  // Recuperes les info eleve et son parent
+  // Recuperes les info eleve et son parent dans le compte local
 
   Route::post('locale/getEleveAndParentInfos', [StudentController::class,'getEleveAndParentInfos']);
+
+  // Recuperes les info eleve et son parent dans le compte teacher
+
+  Route::post('teacher/getEleveAndParentInfosTeacher', [StudentController::class,'getEleveAndParentInfosTeacher']);
 
 
 

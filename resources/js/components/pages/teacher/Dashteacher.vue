@@ -38,7 +38,7 @@
                             <div class="col-12">
                                 <div class="box no-shadow mb-0 bg-transparent">
                                     <div class="box-header no-border px-0">
-                                        <h4 class="box-title">Liste de vos classes et matieres enseignées</h4>
+                                        <p class="box-title">Liste des matieres que vous dispensez dans chaque classe  </p>
                                     </div>
                                 </div>
                             </div>
@@ -55,18 +55,20 @@
 				  </div>
 
 				  <div class="box-body" style="display: block;text-align: center">
-					<div class="callout callout-primary mb-0" role="alert">
-					 {{data.libelle}}
-					</div>
+
 					<div class="box-body" style="display: block;">
 					  <div class="dropdown">
-									<button class="btn btn-rounded btn-outline btn-primary dropdown-toggle"
-                                     type="button" data-toggle="dropdown" aria-expanded="false" @click="SaveID(data,i)" > Détails </button>
-									<div class="dropdown-menu" style="">
+
+									<button  @click="SaveID(data,i)"  class="btn btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><i class="icon ti-menu"></i>
+                                      Détails </button>
+									<div class="dropdown-menu dropdown-menu dropdown-menu-left" style="">
                                             <router-link class="dropdown-item" to="listeEleveTeacher"> Liste des éleves </router-link>
-                                            <router-link class="dropdown-item" to="teacher.emploiTemp">Emploi du temps </router-link>
+                                            <router-link class="dropdown-item" to="emploiTempteacher">Emploi du temps </router-link>
 									</div>
 						</div>
+					</div>
+                    <div class="callout callout-primary mb-0" role="alert">
+					 {{data.libelle}}
 					</div>
 				  </div>
 				</div>

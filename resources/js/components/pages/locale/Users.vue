@@ -10,7 +10,13 @@
                         <!-- START Card With Image -->
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"> UTILISATEURS</h4>
+                                <h4 class="card-title"> UTILISATEURS
+                                     <p
+                                                class="subtitle font-size-14 mb-0"
+                                            >
+                                               Gestion de tous les comptes utulisateurs
+                                            </p>
+                                </h4>
                             </div>
                         </div>
 

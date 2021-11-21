@@ -17,7 +17,7 @@
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
 	  <div class="app-menu">
-		<ul class="header-megamenu nav">
+		<!-- <ul class="header-megamenu nav">
 			<li class="btn-group nav-item d-md-none">
 				<a href="#" class="waves-effect waves-light nav-link push-btn" data-toggle="push-menu" role="button">
 					<span class="icon-Align-left"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
@@ -38,17 +38,17 @@
 					<i class="icon-Clipboard-check"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
 			    </a>
 			</li>
-		</ul>
+		</ul> -->
 	  </div>
 
       <div class="navbar-custom-menu r-side">
         <ul class="nav navbar-nav">
-			<li class="btn-group nav-item d-lg-inline-flex d-none">
+			<!-- <li class="btn-group nav-item d-lg-inline-flex d-none">
 				<a href="#" data-provide="fullscreen" class="waves-effect waves-light nav-link full-screen" title="Full Screen">
 					<i class="icon-Expand-arrows"><span class="path1"></span><span class="path2"></span></i>
 			    </a>
-			</li>
-			<li class="btn-group d-lg-inline-flex d-none">
+			</li> -->
+			<!-- <li class="btn-group d-lg-inline-flex d-none">
 				<div class="app-menu">
 					<div class="search-bx mx-5">
 						<form>
@@ -61,8 +61,9 @@
 						</form>
 					</div>
 				</div>
-			</li>
-		  <!-- Notifications -->
+			</li> -->
+
+          <!-- Notifications -->
 		  <li class="dropdown notifications-menu">
 			<a href="#" class="waves-effect waves-light dropdown-toggle" data-toggle="dropdown" title="Notifications">
 			  <i class="icon-Notifications"><span class="path1"></span><span class="path2"></span></i>

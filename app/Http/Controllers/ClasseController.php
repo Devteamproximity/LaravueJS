@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use App\Models\Classe;
 use App\Models\Session;
 use App\Models\Student;
@@ -14,6 +15,25 @@ class ClasseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     public function getAllTimetableTeacher(Request $request) {
+
+        // Recuperons l'id de cet enseigant dans la table enseignant car les donnes qui arrivent viennent de user
+
+            $dataProf = Enseignants::where('user_id',$request->id)->first();
+
+            $data = Enseignants::with('classe')->where('id',$dataProf->id)->get();
+
+            return response()->json($data[0]['classe']);
+
+     }
+     public function getAllTimetable(){
+
+        $data = Classe::All();
+
+         return response()->json($data);
+     }
 
     public function getAcllasseTeacher (Request $request) {
 
