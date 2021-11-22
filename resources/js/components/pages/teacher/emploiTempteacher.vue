@@ -16,7 +16,7 @@
                                                 class="subtitle font-size-14 mb-0"
                                             >
                                                 Emploi du temps de toutes les
-                                                classes danlesquelles vous avez des cours
+                                                classes dans lesquelles vous avez des cours
                                             </p>
                                         </h4>
                                     </div>
@@ -49,7 +49,7 @@
                                         </p>
                                     </div>
                                         <a  :download="data.libelleClasse" :href="`/Photos/Logos/${data.emp_Classe}`">
-                                             <Button type="primary" style="width:100%"><i class="ti-import"></i>Télécharger</Button>
+                                             <Button type="primary" style="width:100%"><i class="ti-import"></i> Télécharger</Button>
                                         </a>
 
                                 </div>

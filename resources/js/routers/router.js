@@ -37,8 +37,32 @@ import classe from '../components/pages/teacher/classe'
 import listeEleveTeacher from '../components/pages/teacher/listeEleveTeacher'
 import detailEleveTeacher from '../components/pages/teacher/detailEleveTeacher'
 import emploiTempteacher from '../components/pages/teacher/emploiTempteacher'
+import EnseignementTeacher from '../components/pages/teacher/EnseignementTeacher'
+import absenceDashTeacher from '../components/pages/teacher/absenceDashTeacher'
+import appelTeacher from '../components/pages/teacher/appelTeacher'
+import teacherclasse from '../components/pages/teacher/teacherclasse'
 
 const routes= [
+
+
+
+    {
+        name: 'appelTeacher',
+        path: '/appelTeacher',
+        component: appelTeacher
+    },
+
+    {
+        name: 'absenceDashTeacher',
+        path: '/absenceDashTeacher',
+        component: absenceDashTeacher
+    },
+
+    {
+        name: 'EnseignementTeacher',
+        path: '/EnseignementTeacher',
+        component: EnseignementTeacher
+    },
 
     {
         name: 'emploiTempteacher',
@@ -64,9 +88,9 @@ const routes= [
         component: listeEleveTeacher
     },
     {
-        name: 'classe',
-        path: '/teacher.classe',
-        component: classe
+        name: 'teacherclasse',
+        path: '/teacherclasse',
+        component:teacherclasse
     },
 
     {

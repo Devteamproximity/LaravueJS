@@ -8,8 +8,11 @@
 		<a href="index.html" class="logo">
 		  <!-- logo-->
 		  <div class="logo-lg">
-			  <span class="light-logo"><img src="assets/images/logo-dark.svg" alt="logo"></span>
-			  <span class="dark-logo"><img src="assets/images/logo-dark.svg" alt="logo"></span>
+			  <!-- <span class="light-logo"><img src="assets/images/logo-dark.svg" alt="logo"></span>
+			  <span class="dark-logo"><img src="assets/images/logo-dark.svg" alt="logo"></span> -->
+
+              <span class="light-logo"><img src="assets/images/logo-dark.PNG" alt="logo"></span>
+			  <span class="dark-logo"><img src="assets/images/logo-dark.PNG" alt="logo"></span>
 		  </div>
 		</a>
 	</div>

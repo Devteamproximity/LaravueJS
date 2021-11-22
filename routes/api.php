@@ -109,6 +109,9 @@ Route::post('/login', [AuthController::class, 'login']);
 
   /* Routes pour les enseignants  */
 
+  // Faire l'appel pour une classe
+
+  Route::post('teacher/DoAppelByTeacher', [EnseignantController::class, 'DoAppelByTeacher']);
 
   // Ajouter un enseigant  a une ecole
 
@@ -177,7 +180,13 @@ Route::post('locale/getAllTimetable', [ClasseController::class, 'getAllTimetable
 
   Route::post('locale/inscripEleve', [StudentController::class,'inscripEleve']);
 
+  // Recuperer tous les eleves d'une classe
+
   Route::post('locale/getEleveclasse', [StudentController::class,'getEleveclasse']);
+
+  // Recuperer tous les eleves d'une classe pour faure l'appel
+
+  Route::post('teacher/getStudentByTeacherForAppel', [StudentController::class,'getStudentByTeacherForAppel']);
 
 
   /* ROUTES POUR LES ENSEIGNANTS */
@@ -193,6 +202,13 @@ Route::post('locale/getAllTimetable', [ClasseController::class, 'getAllTimetable
   // Recuperer toutes les classes d'un enseignant
 
   Route::post('teacher/getAcllasseTeacher', [ClasseController::class,'getAcllasseTeacher']);
+
+  // Recuperer tous les classes d'un enseignant avec les eleves a l'interieur
+
+  Route::post('teacher/getAllasseByATeacher', [ClasseController::class,'getAllasseByATeacher']);
+
+
+
 
   // Recuperes les eleves  des classes par un enseignants (ses classes )
 

@@ -35,11 +35,43 @@ class ClasseController extends Controller
          return response()->json($data);
      }
 
+
+
+     public function getAllasseByATeacher(Request $request) {
+
+        // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
+
+        $Enseignants = Enseignants::with('classe')->where('user_id',$request->id)->first();
+
+        // id du prof dans  la table enseignant
+
+        $idProf = $Enseignants->id;
+
+
+        // Prenons le codeEtab
+
+        $codeEtab = $Enseignants->codeEtab;
+
+        //  Prenons  la session
+
+        $sessionEncour = $Enseignants->session;
+
+        // Recuperons les classes de cet enseigants
+
+        $Datas =   Classe::with('eleves')->where('codeEtabClasse', $codeEtab)->where('sessionClasse',$sessionEncour )->orderBy('id', 'desc')->get();
+
+        return response()->json($Datas);
+
+
+
+   }
+
+
     public function getAcllasseTeacher (Request $request) {
 
          // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
 
-         $Enseignants = Enseignants::where('user_id',$request->id)->first();
+         $Enseignants = Enseignants::with('classe')->where('user_id',$request->id)->first();
 
          // id du prof dan la table enseignant
 
@@ -56,10 +88,11 @@ class ClasseController extends Controller
 
          // Recuperons les classes de cet enseigants
 
-         $Datas =   Classe::with('Enseignants')->where('id', $idProf)->where('codeEtabClasse', $codeEtab)->where('sessionClasse',$sessionEncour )->orderBy('id', 'desc')->get();
+         $Datas =   Enseignants::with('Classe')->where('id', $idProf)->where('codeEtab', $codeEtab)->where('session',$sessionEncour )->orderBy('id', 'desc')->get();
 
          return response()->json($Datas[0]['classe']);
-         //return response()->json($Datas);
+
+
 
     }
 

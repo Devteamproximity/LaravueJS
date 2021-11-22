@@ -18,6 +18,17 @@ class EnseignantController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function DoAppelByTeacher(Request $request){
+
+        // Recuperer les ID des eleves absents
+
+        $Eleves = $request->checkBoxs;
+
+        // Envoyer le mail aux parents de ces enfants
+
+
+
+    }
 
      public function getEleveclasseByTeacher(Request $request){
 
@@ -37,7 +48,7 @@ class EnseignantController extends Controller
 
            // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-           $EleveData = Student::with('user')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+           $EleveData = Student::with('user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
           return response()->json($EleveData);
      }

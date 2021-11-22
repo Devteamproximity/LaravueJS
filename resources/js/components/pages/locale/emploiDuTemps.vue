@@ -2,7 +2,7 @@
     <div>
         <div class="wrapper">
             <Header />
-            <MenuTeacher />
+            <MenuLocal />
             <div class="content-wrapper">
                 <div class="container-full">
                     <section class="content">
@@ -65,12 +65,12 @@
 
 <script>
 import Header from "../../headers/Header.vue";
-import MenuTeacher from "../../navs/MenuTeacher.vue";
+import MenuLocal from "../../navs/MenuLocal.vue";
 import Chats from "../../navs/Chats.vue";
 import { mapState } from "vuex";
 
 export default {
-    components: { Header, MenuTeacher, Chats },
+    components: { Header, MenuLocal, Chats },
     data() {
         return {
             TimeTables: []

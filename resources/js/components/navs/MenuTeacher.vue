@@ -21,7 +21,7 @@
                             <!-- Menu local session   -->
 
                             <li class="treeview">
-                                <router-link to="enseignements">
+                                <router-link to="enseignementTeacher">
                                     <i class="icon-Write"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
@@ -33,19 +33,19 @@
                              <!-- Menu local administration   -->
 
                              <li class="treeview">
-                                <router-link to="administration">
+                                <router-link to="absenceDashTeacher">
                                     <i class="icon-File"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
                                     ></i>
-                                    <span> Administration</span>
+                                    <span> Absenses</span>
                                 </router-link>
                             </li>
 
                             <!-- Menu gestion eleve   -->
 
                              <li class="treeview">
-                                <router-link to="teacher.classe">
+                                <router-link to="teacherclasse">
                                     <i class="icon-User"
                                         ><span class="path1"></span
                                         ><span class="path2"></span
@@ -57,7 +57,7 @@
                              <!-- Menu gestion des messsages  -->
 
                              <li class="treeview">
-                                <router-link to="messageDash">
+                                <router-link to="messageDashTeacher">
                                     <i class="icon-Mail"
                                         ><span class="path1"></span
                                         ><span class="path2"></span

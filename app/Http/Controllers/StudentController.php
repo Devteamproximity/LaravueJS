@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\User;
 use App\Models\Parents;
 use App\Models\Session;
@@ -18,6 +19,14 @@ class StudentController extends Controller
      *
      *
      */
+
+     public function getStudentByTeacherForAppel(Request $request)  {
+
+       $datas = Student::with('user')->where('classe_id',$request->classeName)->orderBy('nom', 'asc')->get();
+
+       return response()->json( $datas);
+
+     }
 
      public function getEleveAndParentInfos(Request $request){
 
@@ -39,10 +48,9 @@ class StudentController extends Controller
 
             // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-            $EleveData = Student::with('parent','user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('id', $idEleve)->orderBy('id', 'desc')->get();
+            $EleveData = Student::with('parent','user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('id', $idEleve)->orderBy('nom', 'asc')->get();
 
-                return $EleveData[0];
-
+                return response()->json($EleveData[0]);
 
      }
 
@@ -66,9 +74,9 @@ class StudentController extends Controller
 
          // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-         $EleveData = Student::with('parent','user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('id', $idEleve)->orderBy('id', 'desc')->get();
+         $EleveData = Student::with('parent','user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('id', $idEleve)->orderBy('nom', 'asc')->get();
 
-             return $EleveData[0];
+        return response()->json($EleveData[0]);
 
 
   }
