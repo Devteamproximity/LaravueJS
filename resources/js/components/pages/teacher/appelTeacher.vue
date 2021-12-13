@@ -3,6 +3,20 @@
         <div class="wrapper">
             <Header />
             <MenuTeacher />
+
+              <Modal v-model="showDelateModal" width="360">
+                    <p slot="header" style="color:rgb(61, 139, 228);text-align:center">
+                    <Icon type="ios-information-circle"></Icon>
+                    <span> Validation  </span>
+                    </p>
+                    <div style="text-align:center">
+                    <p> Etes vous sure d'avoir coché uniquement les absents  ?  </p>
+                    <p> Vous pouvez annuler en fermant la modal  ?  </p>
+                    </div>
+                    <div slot="footer">
+                        <Button type="primary" size="large" long  @click="Presence">Confirmer</Button>
+                    </div>
+             </Modal>
             <div class="content-wrapper">
                 <div class="container-full">
                     <section class="content">
@@ -29,11 +43,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for=""> Date du jour </label>
+                                            <label for=""> Date et heure du cour  </label>
                                             <input
                                                 v-model="datas.dateJour"
                                                 class="form-control"
-                                                type="date"
+                                                type="datetime-local"
                                             />
                                         </div>
                                     </div>
@@ -41,30 +55,46 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for=""> Classe </label>
-                                            <select
+                                            <select   @change="onChange($event)"
+
                                                 v-model="datas.classeName"
                                                 class="custom-select form-control required"
                                             >
                                                 <option
                                                     v-for="(data, i) in ClassListes"
                                                     :key="i"
-                                                    :value="data.id"
+                                                    :value="data.classe.id"
                                                 >
-                                                    {{ data.libelleClasse }}
+                                                    {{ data.classe.libelleClasse }}
                                                 </option>
                                             </select>
                                         </div>
                                     </div>
+<!--
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">
+                                                Heure du cour
+                                            </label>
+                                            <input
+                                                v-model="datas.heure"
+                                                class="form-control"
+                                                type="time"
+                                                name=""
+                                                id=""
+                                            />
+                                        </div>
+                                    </div> -->
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">
-                                                Heure de début
+                                               Durée  du cour en heure
                                             </label>
                                             <input
-                                                v-model="datas.heureDeb"
+                                                v-model="datas.duree"
                                                 class="form-control"
-                                                type="time"
+                                                type="number"
                                                 name=""
                                                 id=""
                                             />
@@ -73,18 +103,31 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for=""> heure de fin </label>
-                                            <input
-                                                v-model="datas.heureFin"
-                                                class="form-control"
-                                                type="time"
-                                                name=""
-                                                id=""
-                                            />
+                                            <label for=""> Matiere </label>
+
+                                            <select
+
+                                                v-model="datas.matiere"
+                                                class="custom-select form-control required"
+                                            >
+                                                <option
+                                                    v-for="(data, i) in LIbelleMatiereclasse"
+                                                    :key="i"
+                                                    :value="data.libelle"
+                                                >
+                                                    {{ data.libelle}}
+                                                </option>
+                                            </select>
+
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+
+                                </div>
+
+                                <div class="row">
+
+                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <button
                                                 @click="afficher"
@@ -94,6 +137,7 @@
                                             </button>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -171,7 +215,7 @@
                                     <button
                                         type="button"
                                         class="waves-effect waves-light btn mb-5 btn btn-primary"
-                                        @click="Presence"
+                                        @click="ShowModal"
                                     >
                                         Terminer
                                     </button>
@@ -207,60 +251,95 @@ export default {
         return {
             datas: {
                 classeName: "",
-                heureDeb: "",
-                heureFin: "",
+                heure: "",
+                matiere: "",
                 dateJour: "",
+                duree:"",
+                idClasse:""
 
 
             },
 
+            showDelateModal: false,
+            LIbelleMatiereclasse:"",
             checkedNames:[],
             checkBoxs:[],
             rempli:false,
             users: [],
             ClassListes: [],
+            MatieresListes:[],
             Classes: [],
 
         };
     },
 
     async mounted() {
+
         if (localStorage.users) {
             this.users = JSON.parse(localStorage.getItem("users"));
         }
 
-        // Allons chercher la session et le code etablissement ce cet enseigant
-
         const response = await this.callApi(
             "post",
-            "api/teacher/getAcllasseTeacher",
+            "api/teacher/getAllClasseOfTeacher",
             this.users
         );
 
         this.ClassListes = response.data;
 
+        // const response2 = await this.callApi(
+        //     "post",
+        //     "api/locale/getInfosTeacher",
+        //     this.users
+        // );
+        // this.MatieresListes = response2.data;
+
     },
 
     methods: {
 
+         async onChange(event) {
+
+            this.datas.idClasse = event.target.value;
+
+            this.datas.users= this.users;
+
+
+              // Recuperer toutes les matieres de cette  classe
+
+            const response3 = await this.callApi(
+            "post",
+            "api/teacher/getLibelleMatiereclasseById",this.datas
+         );
+
+         this.LIbelleMatiereclasse = response3.data
+
+        },
+
+        ShowModal(){
+
+             this.showDelateModal=true
+
+
+        },
+
         async afficher() {
 
             if (this.datas.dateJour.trim() == "") {
-                return this.e("Choissir la date du jour  ");
+                return this.e("Choissir la date et l'heure du cour ");
             }
 
             if (this.datas.classeName == "") {
                 return this.e("Selectionner une classe ");
             }
 
-            if (this.datas.heureDeb.trim() == "") {
-                return this.e("Saisir l'heure de debut du cour ");
+            if (this.datas.matiere.trim() == "") {
+                return this.e("Saisir la matiere");
             }
 
-            if (this.datas.heureFin.trim() == "") {
-                return this.e("Saisir l'heure de la fin ");
+            if (this.datas.duree.trim() == "") {
+                return this.e("Saisir la duree de votre  cour correctement ");
             }
-
 
                 const response2 = await this.callApi(
                     "post",
@@ -282,11 +361,28 @@ export default {
 
         },
 
-        async Presence(){
+        async Presence() {
+
+            // var message ="Salut test"
+
+            // var send = "https://api.whatsapp.com/send?phone=+237673000865&text=" + message;
+
+            // window.open(send);
 
             this.datas.checkBoxs = this.checkedNames
 
-             // Allons chercher la session et le code etablissement ce cet enseigant
+            //  this.datas.users = this.users
+
+            // Exeptionnellement ici on envoie le message de felicitation
+            // avant d'envoyer le mail car l'envoie prend du temps
+
+             this.showDelateModal=false
+
+             this.$Notice.success({
+                             title: "Felecitations",
+                             desc: " Vous avez correctement effectuer l'appel."
+                             })
+
 
             const response = await this.callApi(
                 "post",
@@ -294,6 +390,7 @@ export default {
                 this.datas
             );
 
+           this.$router.go();
 
 
         }

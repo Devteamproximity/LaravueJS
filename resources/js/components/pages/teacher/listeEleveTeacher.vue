@@ -11,11 +11,11 @@
                     <section class="content">
 
 		  <div class="row">
-			  <div class="col-12 ">
+			  <div class="col-md-12 ">
 				<div class="box">
 
                     <div class="box-header bg-primary">
-                        <h4 class="box-title" style="marging:auto"><strong> Liste de la classe
+                        <h4 class="box-title" style="margin:auto"><strong> Liste de la classe
                              <button style="margin-left: 650px;"
                                                     type="button"
                                                     class="waves-effect btn  btn-primary mb-5"
@@ -114,7 +114,12 @@ export default {
 
 
 
+
+
+
      async mounted() {
+
+
 
         // Recuperer les infos de cette classe  dans le storage. classdId  contient toutes les classes et leur eleves respectivement
 

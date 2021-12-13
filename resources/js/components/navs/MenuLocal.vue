@@ -66,6 +66,30 @@
                                 </router-link>
                             </li>
 
+                             <!-- Menu gestion des absences   -->
+
+                             <li class="treeview">
+                                <router-link to="absencesDash">
+                                    <i class="icon-Notifications"
+                                        ><span class="path1"></span
+                                        ><span class="path2"></span
+                                    ></i>
+                                    <span> Absences  </span>
+                                </router-link>
+                            </li>
+
+                             <!-- Menu gestion des finances    -->
+
+                             <li class="treeview">
+                                <router-link to="financesDash">
+                                    <i class="icon-Cart"
+                                        ><span class="path1"></span
+                                        ><span class="path2"></span
+                                    ></i>
+                                    <span> Finances   </span>
+                                </router-link>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

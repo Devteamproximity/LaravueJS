@@ -4,7 +4,10 @@
             <Header />
             <MenuLocal />
 
-            <div class="content-wrapper" style="min-height: 653px; background-color:#FAFBFD">
+            <div
+                class="content-wrapper"
+                style="min-height: 653px; background-color:#FAFBFD"
+            >
                 <div class="container-full">
                     <!-- Main content -->
                     <section class="content">
@@ -13,16 +16,19 @@
                                 <!-- /.box -->
 
                                 <div class="box">
-
-
-
                                     <div class="box-header bg-primary">
+                                        <h4
+                                            class="box-title"
+                                            style="margin:auto"
+                                        > Liste des classes
 
-                            <h4 class="box-title"  style="marging:auto">  Liste des classes
+                                        </h4>
+
                                             <span>
-                                                <button style="margin-left:650px;"
+                                                <button
+
                                                     type="button"
-                                                     class="waves-effect btn  btn-primary mb-5"
+                                                    class=" pull-right btn btn-primary "
                                                     @click="modal6 = true"
                                                 >
                                                     <Icon type="md-add" />
@@ -30,149 +36,129 @@
                                                     Nouveau
                                                 </button>
                                             </span>
-                                        </h4>
-
-					</div>
-
-
-
-
-
-
-
-
-
+                                    </div>
 
                                     <!-- Modal pour ajouter une classe -->
 
                                     <Modal
                                         v-model="modal6"
                                         title="Ajouter une classe "
-
                                     >
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label class="form-label"
-                                                    >Nom de la classe
+                                                    > Nom de la classe
                                                 </label>
                                                 <input
                                                     type="text"
                                                     class="form-control"
                                                     v-model.trim="
-                                                            data.sigleClasse
-                                                        "
+                                                        data.sigleClasse
+                                                    "
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="form-label">
+                                                    Montant de la premiere tranche
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    v-model.trim="
+                                                        data.MontantScol
+                                                    "
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label class="form-label"
+                                                    >  Montant de la deuxieme  tranche </label
+                                                >
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    v-model.trim="
+                                                        data.FraisInscrip
+                                                    "
                                                 />
                                             </div>
                                         </div>
 
 
-                                        <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="form-label">
-                                                        Montant de la scolarité
-                                                    </label>
-                                                    <input
-                                                        type="number"
-                                                        class="form-control"
-                                                        v-model.trim="
-                                                            data.MontantScol
-                                                        "
-                                                    />
-                                                </div>
-                                        </div>
-
 
                                         <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="form-label">
-                                                        Montant de l'APE
-                                                    </label>
-                                                    <input
-                                                        type="number"
-                                                        class="form-control"
-                                                        v-model.trim="
-                                                            data.MontantScolAffect
-                                                        "
-                                                    />
-                                                </div>
-                                        </div>
-
-                                        <div class="row">
-                                                <div class="col-md-12">
-                                                    <label class="form-label"
-                                                        >Frais
-                                                        d'insription</label
-                                                    >
-                                                    <input
-                                                        type="number"
-                                                        class="form-control"
-                                                        v-model.trim="
-                                                            data.FraisInscrip
-                                                        "
-                                                    />
-
-                                                </div>
-                                        </div>
-
-                                            <br />
-                                            <Upload
-                                                multiple
-                                                type="drag"
-                                                action="api/admin/upload"
-                                                :on-success="handleSuccess"
-                                                :on-error="handleError"
-                                                :format="['jpg', 'jpeg', 'png']"
-                                                :max-size="2048"
-                                                :on-format-error="
-                                                    handleFormatError
-                                                "
-                                                :on-exceeded-size="
-                                                    handleMaxSize
-                                                "
-                                                :headers="{
-                                                    'X-Requested-With':
-                                                        'XMLHttpRequest'
-                                                }"
-                                            >
-                                                <div style="padding: 20px 0">
-                                                    <Icon
-                                                        type="ios-cloud-upload"
-                                                        size="52"
-                                                        style="color: #3399ff"
-                                                    ></Icon>
-                                                    <p class="text-center">
-                                                        Cliquer ou glisser
-                                                        deposer pour inserer
-                                                        l'emploi du temps de la
-                                                        classe
-                                                    </p>
-                                                </div>
-                                            </Upload>
-
-
-                                         <div slot="footer">
-                                                <Button
-                                                    type="primary"
-                                                    size="large"
-                                                    long
-                                                    @click="Submit()"
-                                                    >Enregistrer</Button
-                                                >
+                                            <div class="col-md-12">
+                                                <label class="form-label">
+                                                    Montant de l'APE
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    class="form-control"
+                                                    v-model.trim="
+                                                        data.MontantScolAffect
+                                                    "
+                                                />
                                             </div>
+                                        </div>
+
+
+
+                                        <br />
+                                        <Upload
+                                            multiple
+                                            type="drag"
+                                            action="api/admin/upload"
+                                            :on-success="handleSuccess"
+                                            :on-error="handleError"
+                                            :format="['jpg', 'jpeg', 'png','pdf','doc','docx']"
+                                            :max-size="2048"
+                                            :on-format-error="handleFormatError"
+                                            :on-exceeded-size="handleMaxSize"
+                                            :headers="{
+                                                'X-Requested-With':
+                                                    'XMLHttpRequest'
+                                            }"
+                                        >
+                                            <div style="padding: 20px 0">
+                                                <Icon
+                                                    type="ios-cloud-upload"
+                                                    size="52"
+                                                    style="color: #3399ff"
+                                                ></Icon>
+                                                <p class="text-center">
+                                                    Cliquer ou glisser deposer
+                                                    pour inserer l'emploi du
+                                                    temps de la classe
+                                                </p>
+                                            </div>
+                                        </Upload>
+
+                                        <div slot="footer">
+                                            <Button
+                                                type="primary"
+                                                size="large"
+                                                long
+                                                @click="Submit()"
+                                                >Enregistrer</Button
+                                            >
+                                        </div>
                                     </Modal>
 
                                     <!-- /.box-header -->
                                     <div class="box-body">
-
                                         <div class="table-responsive">
                                             <table
                                                 id="example"
                                                 class="table simple mb-0"
                                                 style="width:100%"
                                             >
-                                                <thead >
+                                                <thead>
                                                     <tr>
-
                                                         <th>Classes</th>
                                                         <th>Effectifs</th>
 
@@ -188,45 +174,85 @@
                                                         i) in datas"
                                                         :key="i"
                                                     >
-
+                                                        <td>
+                                                            {{
+                                                                data.libelleClasse
+                                                            }}
+                                                        </td>
 
                                                         <td>
-                                                           {{data.libelleClasse}}
+                                                            <span
+                                                                class="btn btn-xs"
+                                                                style="background-color:rgba(105, 21, 98, 0.829);color:white"
+                                                                title="Ajouter une matiere "
+                                                            >
+                                                                {{
+                                                                    data.eleves
+                                                                        .length
+                                                                }}
+                                                            </span>
                                                         </td>
 
-                                                         <td>
-                                                             <span class="btn btn-xs" style="background-color:rgba(105, 21, 98, 0.829);color:white" title="Ajouter une matiere ">
-                                                                   {{data.eleves.length}}
+                                                        <td>
+                                                            <router-link
+                                                                to="matieres"
+                                                            >
+                                                                <span
+                                                                    class="btn btn-xs"
+                                                                    style="background-color:green;color:white"
+                                                                    title="Ajouter une matiere "
+                                                                >
+                                                                    <i
+                                                                        class="ti-plus"
+                                                                        @click="
+                                                                            cloturer(
+                                                                                data,
+                                                                                i
+                                                                            )
+                                                                        "
+                                                                    ></i>
                                                                 </span>
-
-                                                        </td>
-
-                                                        <td >
-
-                                                            <router-link to="matieres">
-
-                                                                <span class="btn btn-xs" style="background-color:green;color:white" title="Ajouter une matiere ">
-                                                                  <i class="ti-plus" @click="cloturer(data,i)"></i>
-                                                                </span>
-
                                                             </router-link>
 
-                                                             <span class="btn btn-xs" style="background-color:rgb(18, 114, 240);color:white" title="Modifier la classe">
-                                                                <i class="ti-pencil"></i>
-                                                             </span>
-                                                             <span class="btn btn-xs" style="background-color:red;color:white" title="Supprimer">
-                                                                 <i class="ti-trash"></i>
+                                                            <span
+                                                                class="btn btn-xs"
+                                                                style="background-color:rgb(18, 114, 240);color:white"
+                                                                title="Modifier la classe"
+                                                            >
+                                                                <i
+                                                                    class="ti-pencil"
+                                                                ></i>
+                                                            </span>
+                                                            <span
+                                                                class="btn btn-xs"
+                                                                style="background-color:red;color:white"
+                                                                title="Supprimer"
+                                                            >
+                                                                <i
+                                                                    class="ti-trash"
+                                                                ></i>
                                                             </span>
 
-                                                            <router-link to="listeEleve">
-                                                                <span  class="btn btn-xs" style="background-color:gray;color:white" title="Liste des eleves de cette classe ">
-                                                                     <i  @click="ListeEleve(data,i)" class="ti-eye"></i>
+                                                            <router-link
+                                                                to="listeEleve"
+                                                            >
+                                                                <span
+                                                                    class="btn btn-xs"
+                                                                    style="background-color:gray;color:white"
+                                                                    title="Liste des eleves de cette classe "
+                                                                >
+                                                                    <i
+                                                                        @click="
+                                                                            ListeEleve(
+                                                                                data,
+                                                                                i
+                                                                            )
+                                                                        "
+                                                                        class="ti-eye"
+                                                                    ></i>
                                                                 </span>
                                                             </router-link>
-
-                                                      </td>
-
-
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -269,28 +295,26 @@ export default {
         return {
             UserData: [],
             BtnDisabled: "",
-            EtabInfos:'',
+            EtabInfos: "",
             Modal: false,
             modal6: false,
             data: {
-                sigleClasse:'',
-                MontantScol:'',
-                FraisInscrip:'',
-                MontantScolAffect:'',
-                imageEmploiTmp:''
+                sigleClasse: "",
+                MontantScol: "",
+                FraisInscrip: "",
+                MontantScolAffect: "",
+                imageEmploiTmp: ""
             },
 
-            datas:[],
-            classeItem:"",
-            classeId:"",
+            datas: [],
+            classeItem: "",
+            classeId: "",
             visible: false,
             uploadList: []
         };
     },
 
-
     methods: {
-
         async handleRemove(file) {
             const image = this.data;
 
@@ -316,10 +340,10 @@ export default {
         },
 
         handleError(res, file) {
-            this.w("Selectionner un jpg, png ou jpeg.");
+            this.w("Selectionner un jpg, png , jpeg, pdf, doc, ou docx");
         },
         handleFormatError(file) {
-            this.w("Selectionner un jpg, png ou jpeg");
+            this.w("Selectionner un jpg, png , jpeg, pdf, doc, ou docx");
         },
         handleMaxSize(file) {
             this.w("Selctionner un fichier de moins de 2M.");
@@ -333,108 +357,93 @@ export default {
             return check;
         },
         async Submit() {
-
-            if (this.data.sigleClasse.trim()=="") {
-
-                 return this.e("Saisir un nom de la classe ");
+            if (this.data.sigleClasse.trim() == "") {
+                return this.e("Saisir un nom de la classe ");
             }
 
-            if (this.data.FraisInscrip.trim()=="") {
-
-                 return this.e("Saisir un chiffre pour  les frais d'incription ");
+            if (this.data.FraisInscrip.trim() == "") {
+                return this.e(
+                    "Saisir un chiffre pour  les frais d'incription "
+                );
             }
 
-            if (this.data.MontantScolAffect.trim()=="") {
-
-                 return this.e("Saisir un chiffre le montant de la scolarite affecte");
+            if (this.data.MontantScolAffect.trim() == "") {
+                return this.e(
+                    "Saisir un chiffre le montant de la scolarite affecte"
+                );
             }
 
-            if (this.data.MontantScol.trim()=="") {
-
-                 return this.e("Saisir un chiffre le montant de la scolarite ");
+            if (this.data.MontantScol.trim() == "") {
+                return this.e("Saisir un chiffre le montant de la scolarite ");
             }
 
-            if(this.data.imageEmploiTmp.trim()==''){
-
-                 return this.e("Inserer l'emploi du temps");
+            if (this.data.imageEmploiTmp.trim() == "") {
+                return this.e("Inserer l'emploi du temps");
             }
 
-             this.data.EcoleInfos = this.EtabInfos;
+            this.data.EcoleInfos = this.EtabInfos;
 
-            const res = await this.callApi("post", "api/locale/Addclasse", this.data);
+            const res = await this.callApi(
+                "post",
+                "api/locale/Addclasse",
+                this.data
+            );
 
-           if (res.status == 200) {
+            if (res.status == 200) {
+                this.s("Classe ajoutée correctement");
 
-                    this.s("Classe ajoutée correctement");
+                this.modal6 = false;
 
-                    this.modal6=false;
-
-                    this.datas.unshift(res.data)
-
-
-                } else {
-                    this.e("Une erreure est survenue");
-                }
-
+                this.datas.unshift(res.data);
+            } else {
+                this.e("Une erreure est survenue");
+            }
         },
 
-       cloturer(data,i) {
-
-
-            this.classeItem = data
+        cloturer(data, i) {
+            this.classeItem = data;
 
             // Enregistrer les donnees de la classe  dans le local storage
 
-              localStorage.setItem('classeItem', JSON.stringify(data));
-
-
+            localStorage.setItem("classeItem", JSON.stringify(data));
         },
 
-        ListeEleve(data,i) {
-
-             this.classeId = data
+        ListeEleve(data, i) {
+            this.classeId = data;
 
             // mettre  id de la classe cliquee  dans le local storage
 
-              localStorage.setItem('classeId', JSON.stringify(data));
+            localStorage.setItem("classeId", JSON.stringify(data));
 
-        // console.log(data);
-
-    }
+            // console.log(data);
+        }
     },
 
-     async created() {
-
+    async created() {
         // Recuperer toutes les infos de cette ecole dans le storage
 
-        if (localStorage.EtabInfos)  {
-
-            this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
-
+        if (localStorage.EtabInfos) {
+            this.EtabInfos = JSON.parse(localStorage.getItem("EtabInfos"));
         }
 
-         // Recuperer toutes les sessions de cette ecole
+        // Recuperer toutes les sessions de cette ecole
 
         const response2 = await this.callApi(
             "post",
             "api/locale/getClasseEtablissement",
-             this.EtabInfos
+            this.EtabInfos
         );
 
-        this.datas = response2.data
+        this.datas = response2.data;
 
         //console.log(this.datas);
-
-    },
-
-
-
-}
+    }
+};
 </script>
 
 <style>
-.content-wrapper{
-    background-color: #FAFBFD
+.content-wrapper {
+    background-color: #fafbfd;
 }
 .demo-upload-list {
     display: inline-block;

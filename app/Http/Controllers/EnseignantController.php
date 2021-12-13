@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\TestMail;
 use App\Models\Classe;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\Matieres;
 use App\Models\Enseignants;
+use App\Models\Etablissement;
+use App\Models\Matiere;
+use App\Models\Parents;
+use App\Models\Presences;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use SebastianBergmann\CodeCoverage\Report\Xml\Tests;
 
 class EnseignantController extends Controller
 {
@@ -18,17 +25,176 @@ class EnseignantController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function getAllasseTeacherBylocale(Request $request){
+
+        $datas=Matieres::with('Classe')->where('enseignants_id',$request->id)->get();
+
+        return  $datas ;
+
+
+     }
+
     public function DoAppelByTeacher(Request $request){
+
+
+        // On recupere le jour , la classe, la matiere et les dates: classeName contient id de la claase
+
+        $Classe = Classe::where('id',$request->classeName)->first();
+
+        $libelleClasse = $Classe->libelleClasse;
+
+        $codeEtab = $Classe->codeEtabClasse;
+
+        // Recuperons le nom de l'ecole grace a son codeEtab
+
+        $Ecoles = Etablissement::where('codeEtab', $codeEtab)->first('libelleEtab');
+
+        $nomEcole = $Ecoles->libelleEtab;
+
+        $sessionEncour = $Classe->sessionClasse;
+
+        $matiere = $request->matiere;
+
+        $datetime = $request->dateJour;
+
+        $duree = $request->duree;
+
+        $date = date('Y-m-d', strtotime($datetime));
+
+        $heure = date('H:i:s', strtotime($datetime));
 
         // Recuperer les ID des eleves absents
 
         $Eleves = $request->checkBoxs;
 
+        foreach ($Eleves as  $Ideleve)
+
+
+        {
+
+
+            // Enregistrer les absents dans la table presence
+
+            $this->validate($request, [
+
+                'classeName' => 'required',
+                'matiere' => 'required',
+                'dateJour' => 'required',
+                'duree' => 'required'
+
+            ]);
+
+             // Recuperons le nom de l'enfant frace a son id
+
+            $Eleves = Student::where('id', $Ideleve)->first();
+
+            $nomEleve=$Eleves->nom;
+
+            $prenomEleve=$Eleves->prenom;
+
+            $data = Presences::Create([
+
+                'student_id' =>$Ideleve,
+                'user_id'=>1,
+                'classe_id'=>$request->classeName,
+                'dateHeure'=>$datetime,
+                'date'=>$date ,
+                'heure'=>$heure,
+                'duree'=>$request->duree,
+                'matiere'=>$matiere,
+                'session'=>$sessionEncour,
+                'codeEtab'=>$codeEtab,
+
+             ]);
+
+             $Idsparent = Student::where('id',$Ideleve)->first('parent_id');
+
+             $InfosParent = Parents::where('id', $Idsparent->parent_id)->first();
+
+             $idParent = $InfosParent->id;
+
+             $nomParent =  $InfosParent->nomParent;
+
+             $emailParent = $InfosParent->emailParent;
+
+
+             // Envoyons le mail aux parents de eleves absents
+
+             // Regroupons les infos utiles pour le mails qui partira
+
+             $infosMails = [
+
+                'nomEcole'=> $nomEcole   ,
+                'heureCour' =>$heure,
+                'duree'=>$duree,
+                'matiere'=>$matiere,
+                'dateCour'=>$date,
+                'nomEleve'=>$nomEleve,
+                'prenomEleve'=>$prenomEleve,
+                'nomParent'=>$nomParent
+             ];
+
+            //  $arr=json_encode(array(
+            //     "phone"=>"693333162",
+            //     "body"=>"Hello Vishal"
+            // ));
+            // $url="https://eu16.chat-api.com/instance375008/message?token=2czlurhv79jir2xo";
+
+
+            //     $ch=curl_init();
+            //     curl_setopt($ch,CURLOPT_URL,$url);
+            //     curl_setopt($ch,CURLOPT_POST,true);
+            //     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            //     curl_setopt($ch,CURLOPT_POSTFIELDS,$arr);
+            //     curl_setopt($ch,CURLOPT_HTTPHEADER,array(
+            //         'Content-type:application/json',
+            //         'Content-length:'.strlen($arr)
+            //     ));
+            //     $result=curl_exec($ch);
+            //     curl_close($ch);
+            //     echo $result;
+
+              Mail::to($emailParent)->send(new TestMail($infosMails));
+
+            //  $telParent = $InfosParent->telParent;
+            //  $nomParent = $InfosParent->nomParent;
+
+
+        }
+
+
+
+
+
         // Envoyer le mail aux parents de ces enfants
 
+        // Mail::to('test@mail.test')->send(new TestMail());
 
-
+        // return
     }
+
+    public function getEploiTempsTeacherForAclasse(Request $request){
+
+        // Recuperer l'id de la classe
+
+        $idclasse = $request->classe_id;
+
+        // Recuperer le code de l'ecole
+
+        $codeEtab  = $request->codeEtab;
+
+        // Recuperer la session en cour
+
+        $sessionEncour  = $request->session;
+
+        // Recuperer les eleves d'une classes
+
+         // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+
+         $Data = Classe::where('codeEtabClasse', $codeEtab)->where('sessionClasse', $sessionEncour)->where('id', $idclasse)->first();
+
+        return response()->json($Data);
+   }
 
      public function getEleveclasseByTeacher(Request $request){
 
@@ -48,7 +214,7 @@ class EnseignantController extends Controller
 
            // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-           $EleveData = Student::with('user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+           $EleveData = Student::with('user','classe')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('nom', 'asc')->orderBy('prenom', 'asc')->get();
 
           return response()->json($EleveData);
      }
@@ -187,17 +353,19 @@ class EnseignantController extends Controller
 
     {
 
+
          //  Recuperons le code etab
 
         $codeEtab = $request['EcoleInfos'][0]['codeEtab'];
 
+
         // Recuperons les datas de la session en cour
 
-        $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+        $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->first();
 
         // Recuperons le libelle  de la session en cour
 
-        $sessionEncour = $sessiondata[0]['libelle_sess'];
+        $sessionEncour = $sessiondata['libelle_sess'];
 
         // Recuperons tous les enseignants
 

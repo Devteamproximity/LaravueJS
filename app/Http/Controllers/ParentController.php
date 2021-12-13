@@ -22,8 +22,35 @@ class ParentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function getInfosParent(Request $request){
 
-    public function getAllStudentofeParentByLocal(Request $request) {
+          // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
+
+          $Ecole = Parents::where('user_id',$request->id)->first();
+
+          // id du parent  dans la table enseignant parent
+
+          $idParent = $Ecole->id;
+
+          // Prenons le codeEtab
+
+          $codeEtab = $Ecole->codeEtab;
+
+          //  Prenons  la session
+
+          $sessionEncour = $Ecole->session;
+
+          $Datas = Student::with('parent','Classe','user')->where('parent_id', $idParent)
+                                          ->where('codeEtab', $codeEtab)
+                                          ->where('session',$sessionEncour)->orderBy('id', 'desc')->get();
+
+          return  response()->json($Datas);
+
+       }
+
+
+
+     public function getAllStudentofeParentByLocal(Request $request) {
 
         // Recuperrons l'id du parent
 
@@ -130,6 +157,8 @@ class ParentController extends Controller
     public function getParent (Request $request)
     {
 
+        // dd($request);
+
         //  Recuperons le code etab
 
         $codeEtab = $request[0]['codeEtab'];
@@ -138,11 +167,11 @@ class ParentController extends Controller
 
         // Recuperons les datas de la session en cour
 
-           $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
+           $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->first();
 
         // Recuperons le libelle  de la session en cour
 
-           $sessionEncour = $sessiondata[0]['libelle_sess'];
+           $sessionEncour = $sessiondata['libelle_sess'];
 
         // Recuperons les parents de cette ecole et et de la session en cour
 

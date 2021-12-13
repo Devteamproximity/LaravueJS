@@ -12,7 +12,7 @@ export default {
                     data:dataObj
                 });
             } catch (e) {
-                return e.response 
+                return e.response
             }
         },
 
@@ -36,7 +36,7 @@ export default {
         },
         e(desc) {
             this.$Notice.error({
-                title: 'Oops!',
+                title: 'Oops !',
                 desc:desc
             });
         },

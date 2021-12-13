@@ -13,13 +13,16 @@
                             <div class="col-12">
 				<div class="box">
 					<div class="box-header bg-primary">
-						<h4 class="box-title"  style="marging:auto"> Liste des parents
-                            <span>
+						<h4 class="box-title"  style="margin:auto"> Liste des parents
+
+                        </h4>
+
+                        <span>
                                 <router-link to="addParent">
 
-                                    <button style="margin-left: 650px;"
+                                    <button
                                                     type="button"
-                                                    class="btn  btn-primary mb-5"
+                                                    class=" pull-right btn  btn-primary mb-5"
                                                     @click="modal6 = true"
                                                 >
                                                     <Icon type="md-person-add" />
@@ -30,9 +33,8 @@
                                 </router-link>
 
                             </span>
-                        </h4>
 					</div>
-					<div class="box-body">
+					<div  class="box-body">
 						<div class="table-responsive">
 							<table   id="example"
                                      class="table simple mb-0"
@@ -46,7 +48,7 @@
 										<th>Telephone</th>
 										<th>Email</th>
                                         <th>Profession </th>
-                                        <th>Actions</th>
+                                        <th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -57,7 +59,7 @@
 										<td>{{data.telParent}}</td>
 										<td>{{data.emailParent}}</td>
                                         <td>{{data.professionParent}}</td>
-                                        <td style="text-align:center" class="center">
+                                        <td  style="text-align:center" class="center">
                                                 <span class="btn btn-xs" style="background-color:green;color:white" title="">
                                                     <i class="ti-pencil"></i>
                                                 </span>

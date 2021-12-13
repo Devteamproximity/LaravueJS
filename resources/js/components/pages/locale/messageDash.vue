@@ -18,6 +18,25 @@
 
                             <div class="col-md-12 col-lg-4">
 
+                                <router-link to="messagerie">
+
+                                    <div class="card">
+
+                                        <Icon type="ios-chatbubbles" style="margin-top: 50px;font-size: 50px;"/>
+
+                                        <div class="box-body py-25" style="text-align: center;">
+
+                                                <p class="font-weight-600"> Messages   </p>
+                                        </div>
+
+                                    </div>
+
+                                </router-link>
+
+                            </div>
+
+                            <div class="col-md-12 col-lg-4">
+
                                 <router-link to="sms">
 
                                     <div class="card">
@@ -36,17 +55,19 @@
 
                             </div>
 
-                            <div class="col-md-12 col-lg-4">
+
+
+                             <div class="col-md-12 col-lg-4">
 
                                 <router-link to="messagerie">
 
                                     <div class="card">
 
-                                        <Icon type="ios-chatbubbles" style="margin-top: 50px;font-size: 50px;"/>
+                                        <Icon type="ios-megaphone" style="margin-top: 50px;font-size: 50px;"/>
 
                                         <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Messages   </p>
+                                                <p class="font-weight-600"> Notifications  </p>
                                         </div>
 
                                     </div>

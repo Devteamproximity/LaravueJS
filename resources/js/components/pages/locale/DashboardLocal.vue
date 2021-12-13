@@ -1,82 +1,80 @@
 <template>
-<div>
-<div class="wrapper">
-<Header/>
-<MenuLocal/>
-<div class="content-wrapper">
-<div class="container-full">
+    <div>
+        <div class="wrapper">
+            <Header />
+            <MenuLocal />
+            <div class="content-wrapper">
+                <div class="container-full">
+                    <section class="content">
+                        <div class="row align-items-end">
+                            <div class="col-xl-12 col-12">
+                                <div class="box bg-primary-light pull-up">
+                                    <div class="box-body p-xl-0">
+                                        <div class="row align-items-center">
+                                            <div class="col-12 col-lg-3">
+                                                <img
+                                                    src="images/cap3.png"
+                                                    alt=""
+                                                />
+                                            </div>
 
-		<section class="content">
+                                            <div class="col-12 col-lg-9">
+                                                <h2
+                                                    v-for="(data,
+                                                    i) in EtabInfos"
+                                                    :key="i"
+                                                >
+                                                    {{ data.libelleEtab }}
+                                                </h2>
 
-				<div class="row align-items-end">
+                                                <p
+                                                    class="text-dark mb-0 font-size-16"
+                                                >
+                                                    Bienvenu,
+                                                    {{
+                                                        this.users.prenom
+                                                    }}
+                                                    (Admin)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-								<div class="col-xl-12 col-12">
-									<div class="box bg-primary-light pull-up">
-										<div class="box-body p-xl-0">
-											<div class="row align-items-center">
-												<div class="col-12 col-lg-3">
-													<img src="images/cap3.png" alt="">
-												</div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="box no-shadow mb-0 bg-transparent">
+                                    <div class="box-header no-border px-0">
+                                        <Alert fade=true show-icon closable>
+                                            Statistiques
 
-												<div class="col-12 col-lg-9">
-													<h2   v-for="(data, i) in EtabInfos" :key="i"> {{data.libelleEtab}}</h2>
-
-													<p class="text-dark mb-0 font-size-16" > Bienvenu, {{this.users.prenom}}
-
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<div class="box no-shadow mb-0 bg-transparent">
-						<div class="box-header no-border px-0">
-							<h4 class="box-title">Your Courses</h4>
-							<ul class="box-controls pull-right d-md-flex d-none">
-							  <li>
-								<button class="btn btn-primary-light px-10">View All</button>
-							  </li>
-							  <li class="dropdown">
-								<button class="dropdown-toggle btn btn-primary-light px-10" data-toggle="dropdown" href="#" aria-expanded="false">Most Popular</button>
-								<div class="dropdown-menu dropdown-menu-right" style="">
-								  <a class="dropdown-item active" href="#">Today</a>
-								  <a class="dropdown-item" href="#">Yesterday</a>
-								  <a class="dropdown-item" href="#">Last week</a>
-								  <a class="dropdown-item" href="#">Last month</a>
-								</div>
-							  </li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-6 col-12">
-					<div class="box bg-secondary-light pull-up" style="background-image: url(https://www.multipurposethemes.com/admin/eduadmin-template/images/svg-icon/color-svg/st-1.svg); background-position: right bottom; background-repeat: no-repeat;">
+                                            <!-- <img  style=""  src="/images/app.gif" alt="" width="30px" height="50px"> -->
+                                            <Icon
+                                                type="ios-bulb-outline"
+                                                slot="icon"
+                                            ></Icon>
+                                            <template slot="desc">
+                                                Quelques chiffres concernant votre école...
+                                            </template>
+                                        </Alert>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xl-3 col-md-6 col-12">
+					<div class="box bg-secondary-light pull-up" style=" background-color:red">
 						<div class="box-body">
 							<div class="flex-grow-1">
 								<div class="d-flex align-items-center pr-2 justify-content-between">
 									<div class="d-flex">
-										<span class="badge badge-primary mr-15">Active</span>
-										<span class="badge badge-primary mr-5"><i class="fa fa-lock"></i></span>
-										<span class="badge badge-primary"><i class="fa fa-clock-o"></i></span>
+										<span class="badge badge-primary mr-15">50</span>
+
 									</div>
-									<div class="dropdown">
-										<a data-toggle="dropdown" href="#" class="px-10 pt-5"><i class="ti-more-alt"></i></a>
-										<div class="dropdown-menu dropdown-menu-right">
-										  <a class="dropdown-item" href="#"><i class="ti-import"></i> Import</a>
-										  <a class="dropdown-item" href="#"><i class="ti-export"></i> Export</a>
-										  <a class="dropdown-item" href="#"><i class="ti-printer"></i> Print</a>
-										  <div class="dropdown-divider"></div>
-										  <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-										</div>
-									</div>
+
 								</div>
-								<h4 class="mt-25 mb-5">It & software</h4>
-								<p class="text-fade mb-0 font-size-12">45 Days Left</p>
+								<h4 class="mt-25 mb-5">ELEVES</h4>
+
 							</div>
 						</div>
 					</div>
@@ -157,108 +155,129 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</div> -->
+                        </div>
 
-			<div class="row">
-				<div class="col-xl-4 col-12">
-					<div class="box">
-						<div class="box-body">
-							<p  class="text-fade">fff </p>
-							<h3 class="mt-0 mb-20">test<small class="text-success"><i class="fa fa-arrow-up ml-15 mr-5"></i> 2 New</small></h3>
-							<div id="charts_widget_2_chart"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-5 col-12">
-					<div class="box">
-						<div class="box-body">
-							<p class="text-fade">Hours spent</p>
-							<h3 class="mt-0 mb-20">21 h 30 min <small class="text-danger"><i class="fa fa-arrow-down ml-25 mr-5"></i> 15%</small></h3>
-							<div id="charts_widget_1_chart"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-12">
-					<div class="box">
-						<div class="box-header with-border">
-							<h4 class="box-title">Working Hours</h4>
-							<ul class="box-controls pull-right d-md-flex d-none">
-							  <li class="dropdown">
-								<button class="dropdown-toggle btn btn-warning-light px-10" data-toggle="dropdown" href="#">Today</button>
-								<div class="dropdown-menu dropdown-menu-right">
-								  <a class="dropdown-item active" href="#">Today</a>
-								  <a class="dropdown-item" href="#">Yesterday</a>
-								  <a class="dropdown-item" href="#">Last week</a>
-								  <a class="dropdown-item" href="#">Last month</a>
-								</div>
-							  </li>
-							</ul>
-						</div>
-						<div class="box-body">
-							<div id="revenue5"></div>
-							<div class="d-flex justify-content-center">
-								<p class="d-flex align-items-center font-weight-600 mx-20"><span class="badge badge-xl badge-dot badge-warning mr-20"></span> Progress</p>
-								<p class="d-flex align-items-center font-weight-600 mx-20"><span class="badge badge-xl badge-dot badge-primary mr-20"></span> Done</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                        <div class="row">
 
-		</section>
-
-
-</div>
-
-</div>
-</div>
-<Chats/>
-
-</div>
+                            <div class="col-xl-4 col-12">
+                                <div
+                                    class="box"
+                                    style="background-color:#E67D21;color:white"
+                                >
+                                    <div class="box-body">
+                                        <h1 style="font-size: 40px;">
+                                            {{ Stats["totalEleves"]
+                                            }}
+<!--
+                                            <Divider type="vertical" /> -->
+                                            <Icon type="md-walk" class ="pull-right "  style="font-size: 80px;"/>
+                                        </h1>
+                                        <p
+                                            class="mt-0 mb-20 "
+                                            style="font-size: 10px;"
+                                        >
+                                            ELEVES
+                                        </p>
+                                        <div id="charts_widget_2_chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-12">
+                                <div
+                                    class="box"
+                                    style="background-color:#2196F3;color:white"
+                                >
+                                    <div class="box-body">
+                                        <h1 style="font-size: 40px;">
+                                            {{ Stats["totalEnseignants"] }}
+                                            <!-- <Divider type="vertical" /> -->
+                                          <Icon class ="pull-right "  style="font-size: 80px;" type="ios-man" />
+                                        </h1>
+                                        <p
+                                            class="mt-0 mb-20 "
+                                            style="font-size: 10px;"
+                                        >
+                                            ENSEIGNANTS
+                                        </p>
+                                        <div id="charts_widget_2_chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-12">
+                                <div
+                                    class="box"
+                                    style="background-color:#E91E63;color:white"
+                                >
+                                    <div class="box-body">
+                                        <h1 style="font-size: 40px;">
+                                            {{ Stats["totalParents"] }}
+                                            <!-- <Divider type="vertical" /> -->
+                                            <Icon type="ios-people" class ="pull-right "  style="font-size: 80px;"/>
+                                        </h1>
+                                        <p
+                                            class="mt-0 mb-20 "
+                                            style="font-size: 10px;"
+                                        >
+                                            PARENTS
+                                        </p>
+                                        <div id="charts_widget_2_chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <Chats />
+    </div>
 </template>
 
 <script>
-
-import Header from '../../headers/Header.vue';
-import MenuLocal from '../../navs/MenuLocal.vue';
-import Chats from '../../navs/Chats.vue';
+import Header from "../../headers/Header.vue";
+import MenuLocal from "../../navs/MenuLocal.vue";
+import Chats from "../../navs/Chats.vue";
 import { mapState } from "vuex";
 
-    export default {
-
-        components:{Header,MenuLocal,Chats},
-        data() {
-      return {
-          EtabInfos : [],
-		  users : []
-      }
+export default {
+    components: { Header, MenuLocal, Chats },
+    data() {
+        return {
+            EtabInfos: [],
+            Stats: [],
+            users: []
+        };
     },
 
-            //  Recuperer les donnees envoyees dans la store par computed:
+    //  Recuperer les donnees envoyees dans la store par computed:
 
-
-       async  mounted() {
-
-			   if (localStorage.users)  {
-
-				   this.users =  JSON.parse(localStorage.getItem("users"));
-
-				   console.log(this.users.nom);
-
-              }
-
-			  const response = await this.callApi("post", "api/locale/getEtabinfos",this.users);
-
-			  this.EtabInfos=response.data
-
-			  // Garder les donnees de l'ecole dans le storage de navigateur
-
-			  localStorage.setItem('EtabInfos', JSON.stringify( this.EtabInfos));
-
-
-
+    async mounted() {
+        if (localStorage.users) {
+            this.users = JSON.parse(localStorage.getItem("users"));
         }
 
+        const response = await this.callApi(
+            "post",
+            "api/locale/getEtabinfos",
+            this.users
+        );
+
+        this.EtabInfos = response.data;
+
+        // Garder les donnees de l'ecole dans le storage de navigateur
+
+        localStorage.setItem("EtabInfos", JSON.stringify(this.EtabInfos));
+
+        //  STATISTIQUES
+
+        const response2 = await this.callApi(
+            "post",
+            "api/locale/getstatsEtab",
+            this.EtabInfos
+        );
+
+        this.Stats = response2.data;
     }
+};
 </script>

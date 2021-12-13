@@ -33,7 +33,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Présence journaliere au cours </p>
+                                                <p class="font-weight-600"> PRESENCE JOURNALIERE </p>
                                         </div>
 
 
@@ -53,7 +53,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Récapitulatif des absences </p>
+                                                <p class="font-weight-600"> RECAPITULATIF </p>
                                         </div>
 
 
@@ -75,7 +75,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Courbes des absences  </p>
+                                                <p class="font-weight-600"> COURBES  </p>
                                         </div>
 
 

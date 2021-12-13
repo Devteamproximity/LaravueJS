@@ -20,6 +20,8 @@ class StudentController extends Controller
      *
      */
 
+
+
      public function getStudentByTeacherForAppel(Request $request)  {
 
        $datas = Student::with('user')->where('classe_id',$request->classeName)->orderBy('nom', 'asc')->get();
@@ -81,6 +83,32 @@ class StudentController extends Controller
 
   }
 
+  public function getEleveclasseById (Request $request)
+  {
+
+
+    $classes  = Classe::where('id',$request->idClasse)->first();
+
+
+
+       // Recuperer le code de l'ecole
+
+      $codeEtab  = $classes->codeEtabClasse;
+
+       // Recuperer la session en cour
+
+      $sessionEncour  = $classes->sessionClasse;
+
+      // Recuperer les eleves d'une classes, on couple avec la table user pour pouvoir recuperer les photos
+
+      // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+
+       $EleveData = Student::where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $request->idClasse)->orderBy('nom', 'asc')->orderBy('prenom', 'asc')->get();
+
+      return response()->json($EleveData);
+
+  }
+
     public function getEleveclasse(Request $request)
     {
 
@@ -100,7 +128,7 @@ class StudentController extends Controller
 
         // $EleveData = Student::with('user)->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
 
-         $EleveData = Student::with('user')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('id', 'desc')->get();
+         $EleveData = Student::with('user')->where('codeEtab', $codeEtab)->where('session', $sessionEncour)->where('classe_id', $idclasse)->orderBy('nom', 'asc')->orderBy('prenom', 'asc')->get();
 
         return response()->json($EleveData);
 
@@ -195,7 +223,7 @@ class StudentController extends Controller
             'genre' => $request->sexe,
             'email' => $request->email,
             'login' => $request->login,
-            'password' => $request->pass,
+            'password' => bcrypt($request->pass),
             'type' => 'Eleve',
             'photo' => $request->imageLogo
 

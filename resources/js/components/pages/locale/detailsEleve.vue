@@ -20,33 +20,31 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-6 col-12">
-                                <div class="box box-widget widget-user">
-                                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                                    <div
-                                        class="widget-user-header bg-black"
-                                        style="background: url('/Photos/Logos/10.jpg') center center;"
-                                    >
-                                        <h3 class="widget-user-username">
-                                            {{InfoEleveParent.nom}}  {{InfoEleveParent.prenom}}
-                                        </h3>
 
-                                    </div>
-                                    <div class="widget-user-image">
-                                        <img
-                                            class="rounded-circle"
-                                            :src="
+                             <div class="col-xl-6 col-12">
+
+                                        <div class="card" >
+
+                                              <div style="margin:auto;text-align:center;width: 100%;height: 80px;background-color:#0052cc;">
+
+                                                   <img  style="margin: 15px auto auto;width: 100px;border-radius: 50%;" class="card-img-top img-responsive" :src="
                                                      `/Photos/Logos/${InfoEleveParent.user.photo}`
-                                                "
+                                                " alt="Card image cap">
 
-                                            alt="User Avatar"
-                                        />
-                                    </div> <br>
-                                     <div class="table-responsive">
+
+                                              </div>
+
+
+                                                <div class="table-responsive">
                                                 <table
                                                     class="table simple mb-0"
                                                 >
                                                     <tbody> <br><br>
+
+                                                    <tr>
+                                                        <td>Noms et prénoms </td>
+                                                        <td class="font-weight-700">{{InfoEleveParent.nom}} {{InfoEleveParent.prenom}}</td>
+                                                    </tr>
 
                                                          <tr>
                                                             <td>
@@ -76,7 +74,7 @@
                                                             <td
                                                                 class=" font-weight-700"
                                                             >
-                                                               {{InfoEleveParent.dateNaiss}}
+                                                               {{InfoEleveParent.dateNaiss|dateFormat}}
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -121,10 +119,12 @@
 
                                                     </tbody>
                                                 </table>
-                                            </div>
-                                </div>
+                                    </div>
 
-                            </div>
+                                        </div>
+
+
+				            </div>
 
                             <div class="col-xl-6 col-12">
                                 <div class="box box-widget widget-user">

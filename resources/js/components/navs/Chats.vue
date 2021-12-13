@@ -1,133 +1,145 @@
 <template>
-<div>
-<div id="chat-box-body">
-		<div id="chat-circle" class="waves-effect waves-circle btn btn-circle btn-lg btn-warning l-h-70">
-            <div id="chat-overlay"></div>
-            <span class="icon-Group-chat font-size-30"><span class="path1"></span><span class="path2"></span></span>
-		</div>
+    <div>
+        <div id="chat-box-body">
+            <div
+                id="chat-circle"
+                class="waves-effect waves-circle btn btn-circle btn-lg -light l-h-70"
+            >
+                <div id="chat-overlay"></div>
+                <span class="font-size-30">
+                    <img
+                        src="/images/wp.gif"
+                        alt=""
+                        style="padding-bottom: 30px;"
+                    />
+                    <span class="path1"> </span>
+                    <span class="path2"></span>
+                </span>
+            </div>
 
-		<div class="chat-box">
-            <div class="chat-box-header p-15 d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button class="waves-effect waves-circle btn btn-circle btn-primary-light h-40 w-40 rounded-circle l-h-45" type="button" data-toggle="dropdown">
-                      <span class="icon-Add-user font-size-22"><span class="path1"></span><span class="path2"></span></span>
-                  </button>
-                  <div class="dropdown-menu min-w-200">
-                    <a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Color mr-15"></span>
-                        New Group</a>
-                    <a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Clipboard mr-15"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                        Contacts</a>
-                    <a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Group mr-15"><span class="path1"></span><span class="path2"></span></span>
-                        Groups</a>
-                    <a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Active-call mr-15"><span class="path1"></span><span class="path2"></span></span>
-                        Calls</a>
-                    <a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Settings1 mr-15"><span class="path1"></span><span class="path2"></span></span>
-                        Settings</a>
-                    <div class="dropdown-divider"></div>
-					<a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Question-circle mr-15"><span class="path1"></span><span class="path2"></span></span>
-                        Help</a>
-					<a class="dropdown-item font-size-16" href="#">
-                        <span class="icon-Notifications mr-15"><span class="path1"></span><span class="path2"></span></span>
-                        Privacy</a>
-                  </div>
-                </div>
-                <div class="text-center flex-grow-1">
-                    <div class="text-dark font-size-18">Mayra Sibley</div>
-                    <div>
-                        <span class="badge badge-sm badge-dot badge-primary"></span>
-                        <span class="text-muted font-size-12">Active</span>
+            <div class="chat-box">
+                <div
+                    class="chat-box-header p-15 d-flex justify-content-between align-items-center"
+                    style="border-radius: 5px 10px 0 5px;
+    background-color: #82d47e;"
+                >
+                    <div class="flex-grow-1">
+                        <div class="text-dark font-size-18">
+                            <span>
+                                <Icon
+                                    type="logo-whatsapp"
+                                    style="color: #fafafa;font-size:40px"
+                                />
+                                Whatsapp</span
+                            >
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="chat-box-toggle">
+                        <button
+                            id="chat-box-toggle"
+                            class="waves-effect waves-circle btn btn-circle btn-danger-light h-40 w-40 rounded-circle l-h-45"
+                            type="button"
+                        >
+                            <span class="icon-Close font-size-22"
+                                ><span class="path1"></span
+                                ><span class="path2"></span
+                            ></span>
+                        </button>
                     </div>
                 </div>
-                <div class="chat-box-toggle">
-                    <button id="chat-box-toggle" class="waves-effect waves-circle btn btn-circle btn-danger-light h-40 w-40 rounded-circle l-h-45" type="button">
-                      <span class="icon-Close font-size-22"><span class="path1"></span><span class="path2"></span></span>
-                    </button>
-                </div>
-            </div>
-            <div class="chat-box-body">
-                <div class="chat-box-overlay">
-                </div>
-                <div class="chat-logs">
+                <div class="container">
                     <div class="chat-msg user">
                         <div class="d-flex align-items-center">
                             <span class="msg-avatar">
-                                <img src="images/avatar/2.jpg" class="avatar avatar-lg">
+                                <img
+                                    src="/images/avatar-15.png"
+                                    class="avatar avatar-lg"
+                                />
                             </span>
                             <div class="mx-10">
-                                <a href="#" class="text-dark hover-primary font-weight-bold">Mayra Sibley</a>
-                                <p class="text-muted font-size-12 mb-0">2 Hours</p>
+                                <a
+                                    disabled=""
+                                    class="text-dark hover-primary font-weight-bold"
+                                >
+                                    Assistance technique
+                                </a>
+                                <p class="text-muted font-size-12 mb-0">
+                                    <span
+                                        class="badge badge-sm badge-dot badge-success"
+                                    ></span>
+                                    <span class="text-muted font-size-12"
+                                        >En ligne</span
+                                    >
+                                </p>
                             </div>
                         </div>
                         <div class="cm-msg-text">
-                            Hi there, I'm Jesse and you blabla?
+                            Bonjour! <br />Comment pouvons-nous vous aider ?
                         </div>
                     </div>
-                    <div class="chat-msg self">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <div class="mx-10">
-                                <a href="#" class="text-dark hover-primary font-weight-bold">You</a>
-                                <p class="text-muted font-size-12 mb-0">3 minutes</p>
+                </div>
+                <div class="chat-input">
+                    <div class="container">
+                        <form id="validewhatsapp">
+                            <div class="input-group">
+                                <input
+
+                                    v-model="data.message"
+                                    type="text"
+                                    class="form-control"
+                                    id="messagewhatsapp"
+                                    name="messagewhatsapp"
+                                    placeholder="Saisir le message"
+
+                                />
+                                <div class="input-group-append">
+                                    <a
+                                        class="btn"
+                                        id="buttonsend"
+                                        @click="sendwhatsapp"
+                                        ><Icon type="ios-paper-plane"
+                                    /></a>
+                                </div>
                             </div>
-                            <span class="msg-avatar">
-                                <img src="images/avatar/3.jpg" class="avatar avatar-lg">
-                            </span>
-                        </div>
-                        <div class="cm-msg-text">
-                           My name is Anne Clarc.
-                        </div>
+                        </form>
+                        <br />
                     </div>
-                    <div class="chat-msg user">
-                        <div class="d-flex align-items-center">
-                            <span class="msg-avatar">
-                                <img src="images/avatar/2.jpg" class="avatar avatar-lg">
-                            </span>
-                            <div class="mx-10">
-                                <a href="#" class="text-dark hover-primary font-weight-bold">Mayra Sibley</a>
-                                <p class="text-muted font-size-12 mb-0">40 seconds</p>
-                            </div>
-                        </div>
-                        <div class="cm-msg-text">
-                            Nice to meet you Anne.<br>How can i help you?
-                        </div>
-                    </div>
-                </div><!--chat-log -->
+                </div>
             </div>
-            <div class="chat-input">
-                <form>
-                    <input type="text" id="chat-input" placeholder="Send a message..."/>
-                    <button type="submit" class="chat-submit" id="chat-submit">
-                        <span class="icon-Send font-size-22"></span>
-                    </button>
-                </form>
-            </div>
-		</div>
-	</div>
-
-</div>
-
-
+        </div>
+    </div>
 </template>
 
 <script>
+export default {
+    mounted() {
+        // console.log('Component mounted.')
+    },
 
-    export default {
+ data() {
+        return {
 
-        mounted() {
-            // console.log('Component mounted.')
+            data: {
+
+                message:''
+            },
+        }
+    },
+
+    methods: {
+        sendwhatsapp() {
+            if (this.data.message == "") {
+            } else {
+                var send =
+                    "https://api.whatsapp.com/send?phone=+237699481386&text=" +
+                    this.data.message;
+                window.open(send);
+                this.data.message = ''
+            }
         }
     }
+}
 </script>
 
-<style scoped>
-
-</style>
-
-
-
-
+<style scoped></style>

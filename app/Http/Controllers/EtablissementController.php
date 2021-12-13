@@ -2,32 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assigners;
 use App\Models\Pays;
 use App\Models\User;
-use App\Models\Etablissement;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Session;
+use App\Models\Messages;
+use App\Models\Assigners;
+use App\Models\Enseignants;
 use Illuminate\Http\Request;
+use App\Models\Etablissement;
+use App\Models\Parents;
+use App\Models\Student;
 use PhpParser\Node\Expr\Assign;
+use Illuminate\Support\Facades\Auth;
 
 class EtablissementController extends Controller
 {
 
 
+    public function getstatsEtab(Request $request){
+
+
+        $codeEtab = $request[0]['codeEtab'];
+
+        $session = Session::where('codeEtab_sess', $codeEtab)->first('libelle_sess');
+
+        $sessionEncour = $session->libelle_sess;
+
+        $nbreEleves = Student::where('codeEtab',$codeEtab)->where('session',$sessionEncour)->get()->count();
+
+        $nbreParents = Parents::where('codeEtab',$codeEtab)->where('session',$sessionEncour)->get()->count();
+
+        $nbreEnseignants = Enseignants::where('codeEtab',$codeEtab)->where('session',$sessionEncour)->get()->count();
+
+
+        $stats = [
+            'totalEleves'=>$nbreEleves,
+            'totalParents'=>$nbreParents,
+            'totalEnseignants'=>$nbreEnseignants
+        ];
+
+        return response()->json($stats);
+
+    }
+
+
     public function getEtabinfos(Request  $request) {
 
 
-        // Recuperons l'id de l'etablissment 
+        // Recuperons l'id de l'etablissment
 
         $user = User::with('Etablissements')->where('id',$request->id)->get();
 
         $id = $user[0]['Etablissements'][0]['id'];
 
-        
-
         $infos = Etablissement::with('users')->where('id',$id)->get();
 
-      
         return response()->json($infos);
 
     }
@@ -43,7 +72,7 @@ class EtablissementController extends Controller
 
     public function addAdmin( Request $request){
 
-       
+
         $this->validate($request, [
 
             'nomAdmin' => 'required',
@@ -54,15 +83,15 @@ class EtablissementController extends Controller
             'loginAdmin' => 'required',
             'passAdmin' => 'required',
             'CpassAdmin' => 'required',
-        
+
         ]);
 
 
-        // Recuperer l 'id de la derniere ecole cree 
+        // Recuperer l 'id de la derniere ecole cree
 
-       
 
-       
+
+
         if($request->imageLogo==null) {
 
             $request->imageLogo="profildefaut.png";
@@ -86,7 +115,7 @@ class EtablissementController extends Controller
 
          return response()->json($data);
 
-       
+
 
     }
 
@@ -97,7 +126,7 @@ class EtablissementController extends Controller
 
         $this->validate($request, [
 
-            'file' => 'required|mimes:png,jpg,jpeg'
+            'file' => 'required|mimes:png,jpg,jpeg,pdf,doc,docx,xls,xlsx'
 
         ]);
 
@@ -112,7 +141,7 @@ class EtablissementController extends Controller
 
     {
 
-       
+
 
 
         $this->validate($request, [
@@ -140,14 +169,14 @@ class EtablissementController extends Controller
             'loginAdmin' => 'required',
             'passAdmin' => 'required',
             'CpassAdmin' => 'required',
-            
+
         ]);
 
         if ($request->groupe == "Oui") {
 
             $request->groupe = 1;
-        } 
-        
+        }
+
         else if ($request->groupe == "Non") {
 
             $request->groupe = 0;
@@ -155,7 +184,7 @@ class EtablissementController extends Controller
             $request->groupeName = '';
         }
 
-    
+
         if($request->siteInternetEtablissement==null){
 
             $request->siteInternetEtablissement="";
@@ -187,19 +216,13 @@ class EtablissementController extends Controller
             'principalteldirecteurEtab' => $request->telephoneDirecteurEtablissement,
             'adresseEtab' => $request->addressEtablissement,
             'logoEtab' => $request->imageLogo
-            // 'createbyEtab'=>$request->createbyEtab,
-            // 'typeEtab'=>$request->typeEtablissement
-            // 'groupidEtab'=>$request->groupidEtab,
-            // 'primaireEtab'=>$request->primaireEtab,
-            // 'datebuildEtab'=>$datebuildEtab,
-            // 'status'=>$status,
-            //'user_id'=> $data->user_id= Auth::user()->id,
+
         ]);
 
-        //dd($data->id);
 
-        
-  
+
+
+
         // insertion dans la table utulisateur (compte)
 
         $user = User::Create([
@@ -216,20 +239,20 @@ class EtablissementController extends Controller
 
          ]);
 
-          // insertion dans la table Assigner 
+          // insertion dans la table Assigner
 
-        
+
         $assigner = Assigners::Create([
 
-            'user_id'=>$user->id, 
+            'user_id'=>$user->id,
             'etablissement_id'=>$data->id
-            
+
          ]);
 
-       
+
     }
 
-    //  Recuperation des ecoles 
+    //  Recuperation des ecoles
 
     public function getAllEtablissement() {
 
@@ -247,7 +270,7 @@ class EtablissementController extends Controller
 
     }
 
-        //  Editer une ecole 
+        //  Editer une ecole
 
     public function updateEtablissement (Request $request)
     {
@@ -293,7 +316,7 @@ class EtablissementController extends Controller
             //'logoEtab' => $request->logoEtab
         ]);
     }
-    
+
 
     public function delateImage(Request $request)
 

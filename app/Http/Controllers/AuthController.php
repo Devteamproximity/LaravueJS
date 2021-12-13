@@ -22,7 +22,7 @@ class AuthController extends Controller
     function login(Request $request)
     {
 
-        $this->validate($request, [ 
+        $this->validate($request, [
 
             'login' => 'required',
             'password' => 'required',
@@ -37,7 +37,7 @@ class AuthController extends Controller
             return response()->json([
                 'msg'=>'Connexion reuissi',
                 'userDatas'=>$user
-                
+
             ]);
         }
 
@@ -87,7 +87,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Show the form for creating a new resource.

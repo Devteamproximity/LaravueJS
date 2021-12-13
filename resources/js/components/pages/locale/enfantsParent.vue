@@ -14,132 +14,128 @@
                                             <p
                                                 class="subtitle font-size-14 mb-0"
                                             >
-                                                Liste de tous enfants
-                                                appartenent a ce parent dans cet
-                                                etablissement
+                                                Ce parent possede <span style="font-size:medium" > {{InfoEleveParent.length}} </span> enfant(s)
                                             </p>
                                         </h4>
                                     </div>
                                 </Alert>
 
                         <div class="row">
-                            <div
-                                v-for="(data, i) in InfoEleveParent"
-                                :key="i"
-                                class="col-md-12 col-lg-4"
-                            >
-                                <div class="box box-widget widget-user">
-                                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                                    <div
-                                        class="widget-user-header bg-black"
-                                        style="background: url('/Photos/Logos/10.jpg') center center;"
-                                    >
-                                        <h3 class="widget-user-username">
-                                            {{ data.nom }} {{ data.prenom }}
-                                        </h3>
-                                    </div>
-                                    <div class="widget-user-image">
-                                        <img
-                                            class="rounded-circle"
-                                            :src="
-                                                `/Photos/Logos/${data.user.photo}`
-                                            "
-                                            alt="User Avatar"
-                                        />
-                                    </div>
-                                    <br />
-                                    <div class="table-responsive">
-                                        <table class="table simple mb-0">
-                                            <tbody>
-                                                <br /><br />
 
-                                                <tr>
-                                                    <td>
-                                                        Classe
-                                                    </td>
-                                                    <td class="font-weight-700">
-                                                        {{
-                                                            data.classe
-                                                                .libelleClasse
-                                                        }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Matricule
-                                                    </td>
-                                                    <td class="font-weight-700">
-                                                        {{ data.matricule }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Date de naissance
-                                                    </td>
-                                                    <td
-                                                        class=" font-weight-700"
-                                                    >
-                                                        {{ data.dateNaiss }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Lieu de naissance
-                                                    </td>
-                                                    <td
-                                                        class=" font-weight-700"
-                                                    >
-                                                        {{ data.lieuNaiss }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Email
-                                                    </td>
-                                                    <td
-                                                        class=" font-weight-700"
-                                                    >
-                                                        {{ data.email }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Statut</td>
-                                                    <td
-                                                        class=" font-weight-700"
-                                                    >
-                                                        {{ data.doublant }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="bt-1">
-                                                        Sexe
-                                                    </th>
-                                                    <th
-                                                        class=" font-weight-700"
-                                                    >
-                                                        {{ data.sexe }}
-                                                    </th>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                             <div v-for="(data, i) in InfoEleveParent"
+                                :key="i"
+                                class="col-md-12 col-lg-4">
+
+                                <div class="card" >
+
+                                              <div style="margin:auto;text-align:center;width: 100%;height: 80px;background-color:#0052cc;">
+
+                                                   <img  style="margin: 15px auto auto;width: 100px;border-radius: 50%;" class="card-img-top img-responsive" :src="
+                                                     `/Photos/Logos/${data.user.photo}`
+                                                " alt="Card image cap">
+
+
+                                              </div>
+
+
+                                            <div class="table-responsive">
+                                                <table class="table simple mb-0">
+                                                    <tbody>
+                                                        <br /><br />
+
+                                                         <tr>
+                                                            <th class="bt-1">
+                                                                Noms
+                                                            </th>
+                                                            <td class="font-weight-700">
+                                                                {{
+                                                                    data.nom
+
+                                                                }}
+
+                                                                 {{
+                                                                    data.prenom
+
+                                                                }}
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                                Classe
+                                                            </td>
+                                                            <td class="font-weight-700">
+                                                                {{
+                                                                    data.classe
+                                                                        .libelleClasse
+                                                                }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Matricule
+                                                            </td>
+                                                            <td class="font-weight-700">
+                                                                {{ data.matricule }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Date de naiss..
+                                                            </td>
+                                                            <td
+                                                                class=" font-weight-700"
+                                                            >
+                                                                {{ data.dateNaiss|dateFormat }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Lieu de naiss..
+                                                            </td>
+                                                            <td
+                                                                class=" font-weight-700"
+                                                            >
+                                                                {{ data.lieuNaiss }}
+                                                            </td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                                            <td>
+                                                                Email
+                                                            </td>
+                                                            <td
+                                                                class=" font-weight-700"
+                                                            >
+                                                                {{ data.email }}
+                                                            </td>
+                                                        </tr> -->
+                                                        <tr>
+                                                            <td>Statut</td>
+                                                            <td
+                                                                class=" font-weight-700"
+                                                            >
+                                                                {{ data.doublant }}
+                                                            </td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                                            <td>
+                                                                Sexe
+                                                            </td>
+                                                            <th
+                                                                class=" font-weight-700"
+                                                            >
+                                                                {{ data.sexe }}
+                                                            </th>
+                                                        </tr> -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                 </div>
 
-                                <!-- <div class="card">
 
-                                        <img
-                                            class="card-img-top"
-                                            src="images/cap2.PNG"
-                                            alt="Card image cap"
-                                        />
+				            </div>
 
-                                          <div class="box-body py-25" style="text-align: center;">
-
-                                                <p class="font-weight-600"> PARENTS  </p>
-                                        </div>
-
-                                    </div> -->
-                            </div>
                         </div>
                     </section>
                 </div>

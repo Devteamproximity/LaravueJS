@@ -15,17 +15,19 @@
 				<div class="box">
 
                     <div class="box-header bg-primary">
-                        <h4 class="box-title" style="marging:auto"><strong>{{data.classeId.libelleClasse}}
-                             <button style="margin-left: 650px;"
-                                                    type="button"
-                                                    class="waves-effect btn  btn-primary mb-5"
+                        <h4 class="box-title" style="margin:auto"><strong>{{data.classeId.libelleClasse}}
 
-                                                >
-                                                  <i class="ti-printer"></i> Liste de la classe
-                             </button>
 
 
                         </strong></h4>
+
+                         <button
+                                                    type="button"
+                                                    class="waves-effect btn  btn-primary mb-5  pull-right "
+
+                                                >
+                                                  <i class="ti-printer"></i> Imprimer la liste
+                             </button>
 					</div>
 
 
@@ -47,7 +49,7 @@
 								<tr v-for="(data,  i) in classeListe"  :key="i">
 									<td><img  :src="
                                                      `/Photos/Logos/${data.user.photo}`
-                                                " alt="" width="60"></td>
+                                                " alt="" width="60" style="width: 30px;"></td>
 									<td class="font-weight-900"><h5>{{data.nom}} {{data.prenom}}</h5></td>
 									<td> {{data.matricule}}</td>
 									<td >{{data.email}}</td>

@@ -137,6 +137,12 @@ export default {
                               this.$router.push('DashTeacher');
                           }
 
+                           if(typecompte==="Parent") {
+
+                              console.log(typecompte)
+                              this.$router.push('DashParent');
+                          }
+
                         //this.s(response.data.msg)
                           this.IsloggIn=true
                     }

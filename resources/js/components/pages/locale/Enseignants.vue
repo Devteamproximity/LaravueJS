@@ -13,13 +13,16 @@
                             <div class="col-12">
 				<div class="box">
 					<div class="box-header bg-primary">
-						<h4 class="box-title" style="marging:auto"> Liste des enseignants
-                            <span>
+						<h4 class="box-title"> Liste des enseignants
+
+                        </h4>
+
+                        <span>
                                 <router-link to="addenseignant">
 
-                                    <button style="margin-left: 650px;"
+                                    <button
                                                     type="button"
-                                                    class="waves-effect btn  btn-primary mb-5"
+                                                    class="pull-right waves-effect btn  btn-primary mb-5"
                                                     @click="modal6 = true"
                                                 >
                                                   <Icon type="md-person-add" />
@@ -30,7 +33,6 @@
                                 </router-link>
 
                             </span>
-                        </h4>
 					</div>
 					<div class="box-body">
 						<div class="table-responsive">
@@ -62,8 +64,11 @@
 
                                                 <span class="btn btn-xs" style="background-color:red;color:white" title="Supprimer"> <i class="ti-trash"></i> </span>
 
+                                                <router-link to="classeofTeacher">
 
-                                              <span class="btn btn-xs" style="background-color:gray;color:white" title="Voir"> <i class="ti-eye"></i>  </span>
+                                                    <span @click="Voir(data,i)" class="btn btn-xs" style="background-color:gray;color:white" title="Voir les classes de cet enseignant"> <i class="ti-eye"></i>  </span>
+
+                                                </router-link>
 
 
 
@@ -112,23 +117,14 @@ export default {
     components: { Header, MenuLocal, Chats },
     data() {
         return {
-            UserData: [],
-            BtnDisabled: "",
+
             EtabInfos:'',
-            Modal: false,
-            modal6: false,
+
             data: {
-                sigleClasse:'',
-                MontantScol:'',
-                FraisInscrip:'',
-                MontantScolAffect:'',
-                imageEmploiTmp:''
+
             },
 
-            datas:[],
 
-            visible: false,
-            uploadList: [],
             Enseignants:[]
 
         };
@@ -137,93 +133,17 @@ export default {
 
 
     methods: {
-        async handleRemove(file) {
-            const image = this.data;
-
-            this.data.imageLogo = "";
-
-            this.$refs.uploads.clearFiles();
-
-            try {
-                await axios.post("api/admin/delateImage", image);
-            } catch (e) {
-                this.generalError = e.response.data.errors;
-            }
-        },
-
-        handleView(name) {
-            this.data.imageLogo = name;
-            this.visible = true;
-        },
-
-        handleSuccess(res, file) {
-            this.data.imageEmploiTmp = res;
-            console.log(res);
-        },
-
-        handleError(res, file) {
-            this.w("Selectionner un jpg, png ou jpeg.");
-        },
-        handleFormatError(file) {
-            this.w("Selectionner un jpg, png ou jpeg");
-        },
-        handleMaxSize(file) {
-            this.w("Selctionner un fichier de moins de 2M.");
-        },
-
-        handleBeforeUpload() {
-            const check = this.uploadList.length < 1;
-            if (!check) {
-                this.w("Le logo est requi...");
-            }
-            return check;
-        },
-        async Submit() {
-
-            if (this.data.sigleClasse.trim()=="") {
-
-                 return this.e("Saisir un nom de la classe ");
-            }
-
-            if (this.data.FraisInscrip.trim()=="") {
-
-                 return this.e("Saisir un chiffre pour  les frais d'incription ");
-            }
-
-            if (this.data.MontantScolAffect.trim()=="") {
-
-                 return this.e("Saisir un chiffre le montant de la scolarite affecte");
-            }
-
-            if (this.data.MontantScol.trim()=="") {
-
-                 return this.e("Saisir un chiffre le montant de la scolarite ");
-            }
-
-            if(this.data.imageEmploiTmp.trim()==''){
-
-                 return this.e("Inserer l'emploi du temps");
-            }
-
-             this.data.EcoleInfos = this.EtabInfos;
-
-            const res = await this.callApi("post", "api/locale/Addclasse", this.data);
-
-           if (res.status == 200) {
-
-                    this.s("Classe ajoutée correctement");
-
-                    this.modal6=false;
-
-                    this.datas.unshift(res.data)
 
 
-                } else {
-                    this.e("Une erreure est survenue");
-                }
+        Voir(data,i) {
+
+             localStorage.setItem('Teacherdata', JSON.stringify(data));
+
 
         }
+
     },
+
 
      async mounted() {
 
@@ -232,7 +152,6 @@ export default {
         if (localStorage.EtabInfos)  {
 
             this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
-
 
 
         }

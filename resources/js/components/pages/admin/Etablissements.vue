@@ -3,7 +3,7 @@
         <div class="wrapper">
             <Header />
             <Menu />
-        
+
             <div class="content-wrapper">
                 <div class="container-full">
                     <!-- Main content -->
@@ -16,27 +16,27 @@
                                     <div class="box-header with-border">
                                         <h3 class="box-title">
 
-                                            Liste des écoles 
-                                                   
+                                            Liste des écoles
+
                                                      <router-link to="addetablissement">
 
                                                         <button
                                                            type="button"  class="waves-effect btn btn-outline btn-info mb-5"
-                                                        
-                                                        > 
 
-                                                           <Icon type="md-add" />  
+                                                        >
 
-                                                            Nouveau 
+                                                           <Icon type="md-add" />
+
+                                                            Nouveau
 
                                                         </button>
-                                                             
+
 
                                                      </router-link>
-                                                                
+
                                         </h3>
-                                           
-                                      
+
+
                                         <!-- <h6 class="box-subtitle">
                                             Export data to Copy, CSV, Excel, PDF
                                             & Print
@@ -50,7 +50,7 @@
                                                 </p>
                                                 <div style="text-align:center">
                                                     <p> Etes vous sure de voulor supprimer ?  </p>
-                                                    
+
                                                 </div>
                                                 <div slot="footer">
                                                     <Button type="error" size="large" long  @click="delateSchool">Confirmer</Button>
@@ -59,7 +59,7 @@
 
                                     <!-- /.box-header -->
                                     <div class="box-body">
-                                        
+
                                         <div class="table-responsive">
                                             <table
                                                 id="example"
@@ -82,8 +82,8 @@
                                                         i) in datas"
                                                         :key="i"
                                                     >
-                                                
-                
+
+
                                                        <td>
                                                             {{ data.libelleEtab }}
                                                         </td>
@@ -92,16 +92,16 @@
                                                               <div class="text-center">
 
                                                                    <img
-                                                                   style="width:50px"  
-                                                                   :src=" `/Photos/Logos/${data.logoEtab}` " 
+                                                                   style="width:50px"
+                                                                   :src=" `/Photos/Logos/${data.logoEtab}` "
                                                                    />
-                                                           
+
 
                                                               </div>
 
-                                                            
-                                                
-                                                         
+
+
+
                                                         </td>
 
                                                         <td>
@@ -157,7 +157,7 @@
                     <!-- /.content -->
                 </div>
             </div>
-     
+
         </div>
         <Chats />
     </div>
@@ -289,20 +289,20 @@ export default {
         }
     },
 
-    
+
     mounted(){
 
       console.log('App Mounted');
 
         if (localStorage.getItem('UserData'))
-        
+
             this.UserData = JSON.parse(localStorage.getItem('UserData'));
 
             console.log(this.UserData);
-    }, 
+    },
     methods: {
 
-    
+
        async  delateSchool() {
 
             const response = await axios.post("api/admin/delateEtablissement", this.delateItem)
@@ -320,22 +320,22 @@ export default {
 
         updataSchool(data, i) {
 
-            // Envoyer lecole sur laquelle on a clique dans la store 
+            // Envoyer lecole sur laquelle on a clique dans la store
             this.$store.commit("muttation", data);
-            // aller a la page edit 
+            // aller a la page edit
             this.$router.push("/editEtablissment");
         },
 
-        showDelatingModal(data, i){
+        showDelatingModal(data, i) {
 
             this.delateItem = data
-            this.i = i 
+            this.i = i
             this.showDelateModal=true
         }
     },
 
     async created() {
-        
+
         await axios
             .get("api/admin/getAllEtablissement")
             .then(response => {

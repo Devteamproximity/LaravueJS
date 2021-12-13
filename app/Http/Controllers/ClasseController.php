@@ -6,6 +6,8 @@ use App\Models\Classe;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\Enseignants;
+use App\Models\Matiere;
+use App\Models\Matieres;
 use Illuminate\Http\Request;
 
 class ClasseController extends Controller
@@ -16,6 +18,18 @@ class ClasseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+     public function getLibelleMatiereclasseById(Request $request){
+
+       $userId = $request->users['id'];
+       $teacher = Enseignants::where('user_id',$userId)->first();
+       $session = $teacher->session;
+       $codeEtab = $teacher->codeEtab;
+       $donnees =  Matiere::where('classe_id',$request->idClasse)->where('enseignants_id',$teacher->id)->where('session',$session)->where('codeEtab',$codeEtab)->get();
+
+       return $donnees;
+
+     }
 
      public function getAllTimetableTeacher(Request $request) {
 
@@ -28,9 +42,42 @@ class ClasseController extends Controller
             return response()->json($data[0]['classe']);
 
      }
-     public function getAllTimetable(){
 
-        $data = Classe::All();
+
+
+    //  public function getAllTimetableByParent (Request $request) {
+
+
+    //     // Recuperons l'id de l'enfant de ce parent
+
+    //     dd($request->id);
+
+
+    //         $timeTable = Classe::where('id',$request->classe_id)->first();
+
+    //         return response()->json($timeTable);
+
+    //  }
+
+
+     public function getAllTimetable(Request $request){
+
+
+         //  Recuperons le code etab
+
+        $codeEtab = $request['EtabInfos'][0]['codeEtab'];
+
+
+         // Recuperons les datas de la session en cour
+
+         $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->first();
+
+         // Recuperons le libelle  de la session en cour
+
+         $sessionEncour = $sessiondata['libelle_sess'];
+
+
+        $data = Classe::where('codeEtabClasse',$codeEtab)->where('sessionClasse',$sessionEncour)->orderBy('id','desc')->get();
 
          return response()->json($data);
      }
@@ -67,6 +114,38 @@ class ClasseController extends Controller
    }
 
 
+   public function getAllClasseOfTeacher (Request $request) {
+
+    // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
+
+    $Enseignants = Enseignants::with('classe')->where('user_id',$request->id)->first();
+
+    // id du prof dan la table enseignant
+
+    $idProf = $Enseignants->id;
+
+    // Prenons le codeEtab
+
+    $codeEtab = $Enseignants->codeEtab;
+
+    //  Prenons  la session
+
+    $sessionEncour = $Enseignants->session;
+
+    // Recuperons les classes de cet enseigants
+
+      $Datas =   Matieres::with('Classe')->where('enseignants_id', $idProf)->where('codeEtab', $codeEtab)->where('session',$sessionEncour )->orderBy('id', 'desc')->get();
+       // si on est au primaire , prendre cette requette et adapter la partie vue
+
+    // $Datas =  Classe::where('codeEtabClasse', $codeEtab)->where('sessionClasse',$sessionEncour )->orderBy('id', 'desc')->get('libelleClasse');
+
+    return response()->json($Datas);
+
+
+
+}
+
+
     public function getAcllasseTeacher (Request $request) {
 
          // RECUPERONS LES INFOS DE LA TABLE ENSEIGNANT
@@ -98,10 +177,9 @@ class ClasseController extends Controller
 
     public function getClasseEtablissement (Request $request)  {
 
+
         $codeEtab = $request[0]['codeEtab'];
-
         // Recuperer les informations sur la session en cour
-
         $sessiondata = Session::where('codeEtab_sess', $codeEtab)->where('encours_sess', 1)->orderBy('id', 'desc')->get();
 
         $sessionEncour = $sessiondata[0]['libelle_sess'];

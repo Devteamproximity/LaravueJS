@@ -63,7 +63,7 @@
                                       Détails </button>
 									<div class="dropdown-menu dropdown-menu dropdown-menu-left" style="">
                                             <router-link class="dropdown-item" to="listeEleveTeacher"> Liste des éleves </router-link>
-                                            <router-link class="dropdown-item" to="emploiTempteacher">Emploi du temps </router-link>
+                                            <router-link class="dropdown-item" to="emploiTempTeacherForAclass">Emploi du temps </router-link>
 									</div>
 						</div>
 					</div>

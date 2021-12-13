@@ -32,7 +32,7 @@
 
                             <div class="col-md-12 col-lg-4">
 
-                                <router-link to="matieres">
+                                <router-link to="classeFinance">
 
 
                                     <div class="card">
@@ -45,7 +45,7 @@
 
                                         <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> SALLES  </p>
+                                                <p class="font-weight-600"> PAYEMENTS </p>
                                         </div>
 
                                     </div>

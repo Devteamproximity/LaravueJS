@@ -33,7 +33,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Emploi du temps   </p>
+                                                <p class="font-weight-600"> EMPLOI DU TEMPS   </p>
                                         </div>
 
 
@@ -45,7 +45,7 @@
 
                             <div class="col-md-12 col-lg-4">
 
-                                <router-link to="session">
+                                <router-link to="devoirsDashTeacher">
 
                                     <div class="card">
 
@@ -53,7 +53,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Devoirs de maison  </p>
+                                                <p class="font-weight-600"> DEVOIRS DE MAISON   </p>
                                         </div>
 
 
@@ -67,7 +67,7 @@
 
                              <div class="col-md-12 col-lg-4">
 
-                                <router-link to="Enseignants">
+                                <router-link to="cahierDashTeacher">
 
                                     <div class="card">
 
@@ -75,7 +75,7 @@
 
                                          <div class="box-body py-25" style="text-align: center;">
 
-                                                <p class="font-weight-600"> Cahier de texte </p>
+                                                <p class="font-weight-600"> CAHIER DE TEXTE  </p>
                                         </div>
 
 

@@ -73,14 +73,26 @@ export default {
     components: { Header, MenuLocal, Chats },
     data() {
         return {
-            TimeTables: []
+            TimeTables: [],
+            data: {
+
+            }
         };
     },
 
     async mounted() {
+
+         if (localStorage.EtabInfos)  {
+
+            this.EtabInfos= JSON.parse(localStorage.getItem("EtabInfos"));
+
+        }
+
+        this.data.EtabInfos = this.EtabInfos
         const response2 = await this.callApi(
             "post",
-            "api/locale/getAllTimetable"
+            "api/locale/getAllTimetable",
+            this.data
         );
 
         this.TimeTables = response2.data;
